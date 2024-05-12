@@ -11,14 +11,26 @@
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#DAEFA2"
+        android:background="@color/yellowGreen"
         tools:context=".start2Fragment">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="74dp"
+            android:layout_height="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.024"
+            app:srcCompat="@drawable/warning" />
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="233dp"
             android:layout_height="140dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:src="@drawable/safety"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,10 +110,10 @@
             android:id="@+id/next_btn"
             android:layout_width="140dp"
             android:layout_height="52dp"
-            android:backgroundTint="#FEFDE7"
+            android:backgroundTint="@color/beige"
             android:fontFamily="@font/chab"
             android:text="@string/next_button"
-            android:textColor="#7F8C5A"
+            android:textColor="@color/khaki"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -109,6 +121,48 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.902" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="310dp"
+            android:layout_height="510dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.18"
+            app:srcCompat="@drawable/safety2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="이어폰 착용"
+            android:textColor="@color/khaki"
+            android:textSize="31sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.390"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.290" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="금지"
+            android:textColor="@color/red"
+            android:textSize="31sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.708"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.290" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

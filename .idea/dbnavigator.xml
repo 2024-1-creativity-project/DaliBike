@@ -25,9 +25,7 @@ SELECT * FROM Bicycle]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="2fa1cba8-7268-4b6e-832e-e354b036bd6c" object-ref="consoles/Dali_bike" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="2fa1cba8-7268-4b6e-832e-e354b036bd6c" />

@@ -77,7 +77,7 @@
         <Button
             android:id="@+id/next_btn"
             android:layout_width="140dp"
-            android:layout_height="52dp"
+            android:layout_height="60dp"
             android:backgroundTint="@color/beige"
             android:fontFamily="@font/chab"
             android:text="@string/next_button"
@@ -99,14 +99,14 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.024"
+            app:layout_constraintVertical_bias="0.04"
             app:srcCompat="@drawable/warning" />
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="233dp"
             android:layout_height="140dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:src="@drawable/safety"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -125,13 +125,13 @@
         <View
             android:id="@+id/view4"
             android:layout_width="253dp"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:background="@drawable/view_border3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.695" />
+            app:layout_constraintVertical_bias="0.691" />
 
         <View
             android:id="@+id/view5"
@@ -214,5 +214,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.813" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="횡단보도는"
+            android:textColor="@color/khaki"
+            android:textSize="31sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.34"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.290" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="걸어서"
+            android:textColor="@color/red"
+            android:textSize="31sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.72"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.290" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

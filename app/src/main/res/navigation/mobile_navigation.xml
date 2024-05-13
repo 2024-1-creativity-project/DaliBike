@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.dali_bike.startFragment"
+        android:name="com.example.dali_bike.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/start2Fragment"
-        android:name="com.example.dali_bike.start2Fragment"
+        android:name="com.example.dali_bike.Start2Fragment"
         android:label="fragment_start2"
         tools:layout="@layout/fragment_start2" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/start3Fragment"
-        android:name="com.example.dali_bike.start3Fragment"
+        android:name="com.example.dali_bike.Start3Fragment"
         android:label="fragment_start3"
         tools:layout="@layout/fragment_start3" >
         <action
@@ -34,7 +34,21 @@
     </fragment>
     <fragment
         android:id="@+id/start4Fragment"
-        android:name="com.example.dali_bike.start4Fragment"
+        android:name="com.example.dali_bike.Start4Fragment"
         android:label="fragment_start4"
-        tools:layout="@layout/fragment_start4" />
+        tools:layout="@layout/fragment_start4" >
+        <action
+            android:id="@+id/action_start4Fragment_to_start5Fragment"
+            app:destination="@id/start5Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/start5Fragment"
+        android:name="com.example.dali_bike.Start5Fragment"
+        android:label="fragment_start5"
+        tools:layout="@layout/fragment_start5" />
+    <fragment
+        android:id="@+id/joinFragment"
+        android:name="com.example.dali_bike.JoinFragment"
+        android:label="fragment_join"
+        tools:layout="@layout/fragment_join" />
 </navigation>

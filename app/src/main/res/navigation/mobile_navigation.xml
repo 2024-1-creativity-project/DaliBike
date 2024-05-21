@@ -47,9 +47,6 @@
         android:label="fragment_start5"
         tools:layout="@layout/fragment_start5" >
         <action
-            android:id="@+id/action_start5Fragment_to_joinFragment"
-            app:destination="@id/joinFragment" />
-        <action
             android:id="@+id/action_start5Fragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>

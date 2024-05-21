@@ -22,7 +22,7 @@ class Start5Fragment : Fragment() {
         // 버튼 클릭 이벤트 설정
         binding.startBtn.setOnClickListener {
             // 네비게이션 액션 실행
-            findNavController().navigate(R.id.action_start5Fragment_to_joinFragment)
+            findNavController().navigate(R.id.action_start5Fragment_to_loginFragment)
         }
 
         return rootView

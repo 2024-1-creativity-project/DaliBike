@@ -62,9 +62,6 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.10.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
-    //lifeCycle
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-
     // 네이버 지도 SDK
     implementation("com.naver.maps:map-sdk:3.18.0")
 }

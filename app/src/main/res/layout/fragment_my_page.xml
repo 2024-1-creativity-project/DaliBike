@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellowGreen"
+        tools:context=".MyPageFragment">
+
+        <View
+            android:id="@+id/view29"
+            android:layout_width="393dp"
+            android:layout_height="95dp"
+            android:background="@color/ivory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/view30"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/view29"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.190"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view29"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <View
+            android:id="@+id/view31"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/view29"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view29"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <View
+            android:id="@+id/view32"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/view29"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view29"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <ImageButton
+            android:id="@+id/imageButton8"
+            android:layout_width="81dp"
+            android:layout_height="86dp"
+            android:src="@drawable/home"
+            app:layout_constraintBottom_toBottomOf="@+id/view29"
+            app:layout_constraintEnd_toEndOf="@+id/view29"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintStart_toStartOf="@+id/view29"
+            app:layout_constraintTop_toTopOf="@+id/view29" />
+
+        <ImageButton
+            android:id="@+id/imageButton11"
+            android:layout_width="85dp"
+            android:layout_height="88dp"
+            android:src="@drawable/chat"
+            app:layout_constraintBottom_toBottomOf="@+id/view29"
+            app:layout_constraintEnd_toEndOf="@+id/view29"
+            app:layout_constraintHorizontal_bias="0.340"
+            app:layout_constraintStart_toStartOf="@+id/view29"
+            app:layout_constraintTop_toTopOf="@+id/view29"
+            app:layout_constraintVertical_bias="0.90999997" />
+
+        <ImageButton
+            android:id="@+id/imageButton16"
+            android:layout_width="75dp"
+            android:layout_height="84dp"
+            android:src="@drawable/location"
+            app:layout_constraintBottom_toBottomOf="@+id/view29"
+            app:layout_constraintEnd_toEndOf="@+id/view29"
+            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintStart_toStartOf="@+id/view29"
+            app:layout_constraintTop_toTopOf="@+id/view29"
+            app:layout_constraintVertical_bias="0.545" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

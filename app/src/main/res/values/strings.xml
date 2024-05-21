@@ -12,4 +12,6 @@
     <string name="pw">비밀번호</string>
     <string name="check_pw">비밀번호 확인</string>
     <string name="phone">전화번호</string>
+    <string name="ok">확인</string>
+    <string name="join">회원가입</string>
 </resources>

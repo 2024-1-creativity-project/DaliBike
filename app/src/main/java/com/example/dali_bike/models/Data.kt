@@ -51,3 +51,59 @@ data class report (
     val image: String
 )
 
+data class RentalStation (
+    val RSId: Int,
+    val RSName: String,
+    val UnmanRs: Boolean,
+    val ManRs: Boolean,
+    val RoadAddress: String,
+    val LocalAddress: String,
+    val Latitude: Double,
+    val Longitude: Double,
+    val StartTime: String,
+    val EndTime: String,
+    val DayOff: String,
+    val IsFare: Boolean,
+    val Fare: String,
+    val ManagePhone: String
+)
+
+data class record (
+    val USERId: String,
+    val date: Date,
+    val dailyTime: Int
+)
+
+data class Post (
+    val PostId: Int,
+    val Title: String,
+    val Content: String,
+    val Like: Int,
+    val category: String,
+    val USERId: String
+)
+
+data class Lodging (
+    val LodgingId: Int,
+    val BusinessName: String,
+    val LocationPhoneNumber: String,
+    val LocationAddress: String,
+    val LocationPostcode: String,
+    val RoadAddress: String,
+    val RoadPostcode: String,
+    val Latitude: Double,
+    val Longitude: Double
+)
+
+data class Comment (
+    val CommentId: Int,
+    val Id: Int,
+    val PostId: Int,
+    val Comment: String
+)
+
+data class AirInjector (
+    val AIId: Int,
+    val Latitude: Double,
+    val Longitude: Double
+)

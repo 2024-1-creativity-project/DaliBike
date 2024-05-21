@@ -338,15 +338,15 @@
 
         <CheckBox
             android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="95dp"
+            android:layout_height="45dp"
             android:buttonTint="@color/green"
             app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.788"
+            app:layout_constraintHorizontal_bias="0.848"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.947" />
+            app:layout_constraintVertical_bias="0.948" />
 
         <EditText
             android:id="@+id/password_edit"
@@ -426,12 +426,12 @@
             app:layout_constraintVertical_bias="0.919" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/lightYellow"
             android:fontFamily="@font/chab"
-            android:text="이전"
+            android:text="@string/back"
             android:textColor="@color/oliveGreen"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"

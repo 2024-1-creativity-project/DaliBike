@@ -40,8 +40,14 @@ class JoinFragment : Fragment() {
         val check2: Button = view.findViewById(R.id.check_btn2)
         val checkBox: CheckBox = view.findViewById(R.id.checkBox)
 
-        val nickCheck = false
-        val idCheck = false
+        val backBtn: Button = view.findViewById(R.id.back_btn)
+
+        var nickCheck = false
+        var idCheck = false
+
+        backBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
+        }
 
 
         check1.setOnClickListener {

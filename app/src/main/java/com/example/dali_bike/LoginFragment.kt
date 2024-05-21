@@ -12,7 +12,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.databinding.FragmentLoginBinding
 import com.example.dali_bike.models.LoginRequest
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginFragment : Fragment() {
     private lateinit var _binding: FragmentLoginBinding
@@ -58,16 +61,22 @@ class LoginFragment : Fragment() {
             }
 
             //입력 값으로 LoginRequest 객체 생성
-//            val loginRequest = LoginRequest(USERId = id, Password = pw)
-//                try {
-//                    val user = apiService.loginUser(loginRequest)
-//                    Toast.makeText(context, "${user.Name}님 환영합니다!", Toast.LENGTH_LONG).show()
-//                }
-//                catch (e: Exception) {
-//                    e.printStackTrace()
-//                    Toast.makeText(context, "로그인 실패", Toast.LENGTH_LONG).show()
-//                }
-//            }
+            val loginRequest = LoginRequest(id = id, pw = pw)
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val user = apiService.loginUser(loginRequest)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "${user.Name}님 환영합니다!", Toast.LENGTH_LONG).show()
+                    }
+                }
+                catch (e: Exception) {
+                    e.printStackTrace()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "로그인 실패", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
     }
 }

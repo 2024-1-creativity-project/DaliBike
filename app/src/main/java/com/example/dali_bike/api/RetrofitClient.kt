@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-private const val BASE_URL = "http://3000"
+private const val BASE_URL = "http://172.20.10.10:3000"
 
 interface ApiInterface {
     @POST("/user/login")

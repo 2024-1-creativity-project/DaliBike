@@ -34,7 +34,7 @@
             android:id="@+id/imageView5"
             android:layout_width="233dp"
             android:layout_height="140dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="72dp"
             android:src="@drawable/safety"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
             android:id="@+id/view"
             android:layout_width="253dp"
             android:layout_height="347dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="220dp"
             android:background="@drawable/view_border"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,9 +112,9 @@
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="253dp"
-            android:layout_height="368dp"
-            android:layout_marginTop="200dp"
+            android:layout_width="229dp"
+            android:layout_height="312dp"
+            android:layout_marginTop="284dp"
             android:src="@drawable/safety1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,12 +128,12 @@
             android:text="안전 장비"
             android:textColor="@color/khaki"
             android:textSize="31sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.328"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.290" />
+            app:layout_constraintTop_toTopOf="@+id/view"
+            app:layout_constraintVertical_bias="0.054" />
 
         <TextView
             android:id="@+id/textView2"
@@ -143,12 +143,12 @@
             android:text="꼭"
             android:textColor="@color/red"
             android:textSize="31sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.578"
+            app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.290" />
+            app:layout_constraintTop_toTopOf="@+id/view"
+            app:layout_constraintVertical_bias="0.205" />
 
         <TextView
             android:id="@+id/textView3"
@@ -158,12 +158,12 @@
             android:text="착용"
             android:textColor="@color/khaki"
             android:textSize="31sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.724"
+            app:layout_constraintHorizontal_bias="0.56"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.290" />
+            app:layout_constraintTop_toTopOf="@+id/view"
+            app:layout_constraintVertical_bias="0.205" />
 
         <ImageView
             android:id="@+id/imageView3"

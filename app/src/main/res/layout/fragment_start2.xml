@@ -30,7 +30,7 @@
             android:id="@+id/imageView5"
             android:layout_width="233dp"
             android:layout_height="140dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="72dp"
             android:src="@drawable/safety"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
             android:id="@+id/view"
             android:layout_width="253dp"
             android:layout_height="347dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="220dp"
             android:background="@drawable/view_border"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,14 +124,13 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="310dp"
-            android:layout_height="510dp"
+            android:layout_width="303dp"
+            android:layout_height="412dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.18"
+            app:layout_constraintVertical_bias="0.371"
             app:srcCompat="@drawable/safety2" />
 
         <TextView
@@ -142,12 +141,12 @@
             android:text="이어폰 착용"
             android:textColor="@color/khaki"
             android:textSize="31sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.390"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.290" />
+            app:layout_constraintTop_toTopOf="@+id/view"
+            app:layout_constraintVertical_bias="0.08" />
 
         <TextView
             android:id="@+id/textView5"
@@ -157,12 +156,12 @@
             android:text="금지"
             android:textColor="@color/red"
             android:textSize="31sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.708"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.290" />
+            app:layout_constraintTop_toTopOf="@+id/view"
+            app:layout_constraintVertical_bias="0.228" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

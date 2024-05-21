@@ -13,8 +13,8 @@ data class User(
 )
 
 data class LoginRequest (
-    val USERId: String,
-    val Password: String
+    val id: String,
+    val pw: String
 )
 
 data class Store (

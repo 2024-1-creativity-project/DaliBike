@@ -22,20 +22,6 @@
         </com.naver.maps.map.MapView>
 
 
-        <ImageView
-            android:id="@+id/checkboxtool"
-            android:layout_width="300dp"
-            android:layout_height="53dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/navermap"
-            app:layout_constraintEnd_toEndOf="@+id/navermap"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/navermap"
-            app:layout_constraintTop_toTopOf="@+id/navermap"
-            app:layout_constraintVertical_bias="0.021"
-            app:srcCompat="@drawable/icon_png_checkboxtool" />
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detailbox"
             android:layout_width="400dp"
@@ -201,6 +187,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+        <ImageView
+            android:id="@+id/checkboxtool"
+            android:layout_width="318dp"
+            android:layout_height="58dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/navermap"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.89"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="@+id/navermap"
+            app:layout_constraintVertical_bias="0.015"
+            app:srcCompat="@drawable/icon_png_checkboxtool" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="40dp"
@@ -230,13 +229,13 @@
             android:layout_above="@id/fab"
             android:background="@drawable/custom_checkbox_danger"
             android:button="@null"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="@+id/navermap"
-            app:layout_constraintVertical_bias="0.03" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_store"
@@ -246,13 +245,13 @@
             android:background="@drawable/custom_checkbox_store"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.37"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.03" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_airinjector"
@@ -262,13 +261,13 @@
             android:background="@drawable/custom_checkbox_airinjector"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.03" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_lodging"
@@ -278,13 +277,13 @@
             android:background="@drawable/custom_checkbox_lodging"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.67"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.03" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_rental"
@@ -294,13 +293,13 @@
             android:background="@drawable/custom_checkbox_rental"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.82"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.03" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_storagefacility"
@@ -310,17 +309,13 @@
             android:background="@drawable/custom_checkbox_storagefacility"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.97"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.03" />
-
-
-
-
+            app:layout_constraintVertical_bias="0.025" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

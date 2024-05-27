@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.naver.maps.map.MapView
+            android:id="@+id/navermap"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" >
+
+        </com.naver.maps.map.MapView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detailbox"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:background="@drawable/icon_xml_detailbox"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <LinearLayout
+                android:id="@+id/lodging_detail"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:rotationX="0"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.57"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.25">
+
+                <LinearLayout
+                    android:id="@+id/businessName"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_businessName"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="숙박업소명" />
+
+                    <TextView
+                        android:id="@+id/text_businessName_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="TextView" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/locationPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_locationPhoneNumber"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="숙박업소 전화번호" />
+
+                    <TextView
+                        android:id="@+id/text_locationPhoneNumber_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="TextView" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/locationAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_locationAddress"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="지번 주소" />
+
+                    <TextView
+                        android:id="@+id/text_locationAddress_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="TextView" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/locationPostcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_locationPostcode"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="지번 우편번호" />
+
+                    <TextView
+                        android:id="@+id/text_locationPostcode_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="TextView" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/roadAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_roadAddress"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="도로명 주소" />
+
+                    <TextView
+                        android:id="@+id/text_roadAddress_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="TextView" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/roadPostcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_roadPostcode"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="도로명 우편번호" />
+
+                    <TextView
+                        android:id="@+id/text_roadPostcode_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="TextView" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageView
+            android:id="@+id/checkboxtool"
+            android:layout_width="318dp"
+            android:layout_height="58dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/navermap"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.89"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="@+id/navermap"
+            app:layout_constraintVertical_bias="0.015"
+            app:srcCompat="@drawable/icon_png_checkboxtool" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/icon_xml_menubutton"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="@+id/navermap"
+            app:layout_constraintVertical_bias="0.0"
+            app:maxImageSize="40dp"
+            app:fabCustomSize="40dp"
+            app:tint="@null" />
+
+        <CheckBox
+            android:id="@+id/checkBox_danger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/fab"
+            android:background="@drawable/custom_checkbox_danger"
+            android:button="@null"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.22"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="@+id/navermap"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <CheckBox
+            android:id="@+id/checkBox_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/checkBox_danger"
+            android:background="@drawable/custom_checkbox_store"
+            android:button="@null"
+            android:rotationY="0"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.37"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <CheckBox
+            android:id="@+id/checkBox_airinjector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/checkBox_store"
+            android:background="@drawable/custom_checkbox_airinjector"
+            android:button="@null"
+            android:rotationY="0"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <CheckBox
+            android:id="@+id/checkBox_lodging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/checkBox_airinjector"
+            android:background="@drawable/custom_checkbox_lodging"
+            android:button="@null"
+            android:rotationY="0"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.67"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <CheckBox
+            android:id="@+id/checkBox_rental"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/checkBox_lodging"
+            android:background="@drawable/custom_checkbox_rental"
+            android:button="@null"
+            android:rotationY="0"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.82"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <CheckBox
+            android:id="@+id/checkBox_storagefacility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/checkBox_rental"
+            android:background="@drawable/custom_checkbox_storagefacility"
+            android:button="@null"
+            android:rotationY="0"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/navermap"
+            app:layout_constraintHorizontal_bias="0.97"
+            app:layout_constraintStart_toStartOf="@+id/navermap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.025" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

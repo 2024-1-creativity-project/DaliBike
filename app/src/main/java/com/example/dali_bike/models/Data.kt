@@ -18,6 +18,7 @@ data class LoginRequest (
 )
 
 data class LoginRes (
+    val token: String,
     val result: String
 )
 

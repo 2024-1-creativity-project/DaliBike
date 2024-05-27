@@ -16,7 +16,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "https://172.30.101.87:3000"
+private const val BASE_URL = "http://172.30.101.87:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -26,9 +26,6 @@ interface ApiInterface {
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
-
-private val mHttpLoggingInterceptor = HttpLoggingInterceptor()
-    .setLevel(HttpLoggingInterceptor.Level.BODY)
 
 fun mOkHttpClient(): OkHttpClient.Builder {
     val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {

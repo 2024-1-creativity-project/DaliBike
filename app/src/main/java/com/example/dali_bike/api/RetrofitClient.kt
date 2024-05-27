@@ -5,11 +5,13 @@ import com.example.dali_bike.models.LoginRes
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.POST
+import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -18,7 +20,7 @@ private const val BASE_URL = "http://172.30.101.87:3000"
 
 interface ApiInterface {
     @POST("/user/login")
-    suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginRes>
+    suspend fun loginUser(@Body loginRequest: LoginRequest): Response<List<LoginRes>>
 }
 
 private val moshi = Moshi.Builder()

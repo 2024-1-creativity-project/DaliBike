@@ -1,6 +1,7 @@
 package com.example.dali_bike
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,12 +43,6 @@ class LoginFragment : Fragment() {
         val loginBtn: Button = view.findViewById(R.id.login_btn)
         val editId: EditText = view.findViewById(R.id.edit_ID)
         val editPw: EditText = view.findViewById(R.id.edit_PW)
-        val startBtn: Button = view.findViewById(R.id.start_btn)
-
-        startBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
-        }
-
 
         //버튼 클릭 시 POST 요청 수행
         loginBtn.setOnClickListener {
@@ -72,22 +67,33 @@ class LoginFragment : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response = apiService.loginUser(loginRequest)
+
+
                     if (response.isSuccessful) {
-                        val result = response.body()
-                        if (result?.equals("true") == true) {
-                            Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
+                        val loginResList = response.body()
+                        if (loginResList != null && loginResList.isNotEmpty()) {
+                            val loginRes = loginResList[0]
+                            withContext(Dispatchers.Main) {  // UI 작업을 메인 스레드에서 실행
+                                if (loginRes.result == "true") {
+                                    Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
+                                    // 로그인 성공 후의 행동을 추가합니다.
+                                } else {
+                                    Toast.makeText(context, "회원을 찾을 수 없습니다", Toast.LENGTH_LONG).show()
+                                    editId.error = "아이디 혹은 비밀번호를 확인해주세요"
+                                    editPw.error = "아이디 혹은 비밀번호를 확인해주세요"
+                                }
+                            }
                         }
-                        //넘기기?
-
                         else {
-                            Toast.makeText(context, "회원을 찾을 수 없습니다", Toast.LENGTH_LONG).show()
-                            editId.error = "아이디 혹은 비밀번호를 확인해주세요"
-                            editPw.error = "아이디 혹은 비밀번호를 확인해주세요"
-
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(context, "서버 응답이 올바르지 않습니다", Toast.LENGTH_LONG).show()
+                            }
                         }
                     }
                     else {
-                        Toast.makeText(context, "재접속 후 로그인 바랍니다", Toast.LENGTH_LONG).show()
+                        withContext(Dispatchers.Main){
+                            Toast.makeText(context, "재접속 후 로그인 바랍니다", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
                 catch (e: Exception) {
@@ -100,5 +106,3 @@ class LoginFragment : Fragment() {
         }
     }
 }
-
-//Hello

@@ -42,6 +42,12 @@ class LoginFragment : Fragment() {
         val loginBtn: Button = view.findViewById(R.id.login_btn)
         val editId: EditText = view.findViewById(R.id.edit_ID)
         val editPw: EditText = view.findViewById(R.id.edit_PW)
+        val startBtn: Button = view.findViewById(R.id.start_btn)
+
+        startBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
+        }
+
 
         //버튼 클릭 시 POST 요청 수행
         loginBtn.setOnClickListener {
@@ -94,3 +100,5 @@ class LoginFragment : Fragment() {
         }
     }
 }
+
+//Hello

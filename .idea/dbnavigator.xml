@@ -17,8 +17,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="2fa1cba8-7268-4b6e-832e-e354b036bd6c">
-      <console name="Dali_bike" type="STANDARD" schema="" session="Main"><![CDATA[USE DALI_BIKE;
-SELECT * FROM Bicycle]]></console>
+      <console name="Dali_bike" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

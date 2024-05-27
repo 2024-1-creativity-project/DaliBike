@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.dali_bike.R
 import com.example.dali_bike.model.Item
@@ -45,6 +46,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var checkBox6: CheckBox
     lateinit var checkboxtool: ImageView
 
+    lateinit var detailbox: ConstraintLayout
     lateinit var businessName_detail: TextView
     lateinit var locationAddress_detail: TextView
     lateinit var locationPhoneNumber_detail: TextView
@@ -109,6 +111,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         checkBox6 = view.findViewById(R.id.checkBox_storagefacility)
         checkboxtool = view.findViewById(R.id.checkboxtool)
 
+        detailbox = view.findViewById(R.id.detailbox)
         lodging_detail = view.findViewById(R.id.lodging_detail)
         businessName_detail = view.findViewById(R.id.text_businessName_detail)
         locationPhoneNumber_detail = view.findViewById(R.id.text_locationPhoneNumber_detail)
@@ -233,6 +236,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
         // 현재 위치
         naverMap.locationSource = locationSource
+
         // 현재 위치 나타내는 마커 설정
         naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
@@ -323,6 +327,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         }
     }
     private fun showItemDetail(detailItem: LinearLayout) {
+        detailbox.visibility = View.VISIBLE
         detailItem.visibility = View.VISIBLE
 
         // 페이드 인 애니메이션 설정
@@ -333,6 +338,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
         // lodging_detail 애니메이션 적용
         detailItem.startAnimation(fadeIn)
+        detailbox.startAnimation(fadeIn)
     }
 
     private fun closeItemDetail(detailItem: LinearLayout) {
@@ -344,7 +350,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
         // lodging_detail 애니메이션 적용
         detailItem.startAnimation(fadeOut)
-
+        detailbox.startAnimation(fadeOut)
 
         // 애니메이션 리스너 설정
         fadeOut.setAnimationListener(object : Animation.AnimationListener {
@@ -353,6 +359,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             // 애니메이션 종료 후 CheckBox를 숨김
             override fun onAnimationEnd(animation: Animation?) {
                 detailItem.visibility = View.GONE
+                detailbox.visibility = View.GONE
             }
 
             override fun onAnimationRepeat(animation: Animation?) {}
@@ -414,7 +421,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             2 -> marker.icon = OverlayImage.fromResource(R.drawable.icon_xml_marker_store)
             3 -> marker.icon = OverlayImage.fromResource(R.drawable.icon_xml_marker_airinjector)
             4 -> marker.icon = OverlayImage.fromResource(R.drawable.icon_xml_marker_lodging)
-             5 -> marker.icon = OverlayImage.fromResource(R.drawable.icon_xml_marker_retal)
+            5 -> marker.icon = OverlayImage.fromResource(R.drawable.icon_xml_marker_retal)
             6 -> marker.icon = OverlayImage.fromResource(R.drawable.icon_xml_marker_storagefacility)
         }
     }

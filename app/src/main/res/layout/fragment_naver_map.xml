@@ -24,16 +24,256 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/detailbox"
-            android:layout_width="400dp"
-            android:layout_height="200dp"
+            android:layout_width="402dp"
+            android:layout_height="268dp"
             android:background="@drawable/icon_xml_detailbox"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0">
+
+            <ScrollView
+                android:layout_width="387dp"
+                android:layout_height="239dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.65">
+
+                <LinearLayout
+                    android:id="@+id/rental_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:rotationX="0"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/rentalName"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalName"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="대여소명" />
+
+                        <TextView
+                            android:id="@+id/text_rentalName_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalType"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalType"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="대여소 종류" />
+
+                        <TextView
+                            android:id="@+id/text_rentalType_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalPhoneNumber"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="대여소 전화번호" />
+
+                        <TextView
+                            android:id="@+id/text_rentalPhoneNumber_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalLocationAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalLocationAddress"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="지번 주소" />
+
+                        <TextView
+                            android:id="@+id/text_rentalLocationAddress_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalRoadAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalRoadAddress"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="도로명 주소" />
+
+                        <TextView
+                            android:id="@+id/text_rentalRoadAddress_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalDayOff"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalDayOff"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="휴무일" />
+
+                        <TextView
+                            android:id="@+id/text_rentalDayOff_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalStartTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalStartTime"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="시작 시간" />
+
+                        <TextView
+                            android:id="@+id/text_rentalStartTime_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalEndTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalEndTime"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="종료 시간" />
+
+                        <TextView
+                            android:id="@+id/text_rentalEndTime_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalIsFare"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalIsFare"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="요금 구분" />
+
+                        <TextView
+                            android:id="@+id/text_rentalIsFare_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/rentalFare"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/text_rentalFare"
+                            android:layout_width="115dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/laundrygothicbold"
+                            android:text="요금" />
+
+                        <TextView
+                            android:id="@+id/text_rentalFare_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/laundrygothic"
+                            android:text="X" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
 
             <LinearLayout
                 android:id="@+id/lodging_detail"
@@ -44,146 +284,319 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.57"
+                app:layout_constraintHorizontal_bias="0.66"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.25">
+                app:layout_constraintVertical_bias="0.22000003">
 
                 <LinearLayout
-                    android:id="@+id/businessName"
+                    android:id="@+id/lodgingName"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_businessName"
+                        android:id="@+id/text_lodgingName"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/laundrygothicbold"
                         android:text="숙박업소명" />
 
                     <TextView
-                        android:id="@+id/text_businessName_detail"
+                        android:id="@+id/text_lodgingName_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/laundrygothic"
-                        android:text="TextView" />
+                        android:text="X" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/locationPhoneNumber"
+                    android:id="@+id/lodgingPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_locationPhoneNumber"
+                        android:id="@+id/text_lodgingPhoneNumber"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/laundrygothicbold"
                         android:text="숙박업소 전화번호" />
 
                     <TextView
-                        android:id="@+id/text_locationPhoneNumber_detail"
+                        android:id="@+id/text_lodgingPhoneNumber_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/laundrygothic"
-                        android:text="TextView" />
+                        android:text="X" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/locationAddress"
+                    android:id="@+id/lodgingLocationAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_locationAddress"
+                        android:id="@+id/text_lodgingLocationAddress"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/laundrygothicbold"
                         android:text="지번 주소" />
 
                     <TextView
-                        android:id="@+id/text_locationAddress_detail"
+                        android:id="@+id/text_lodgingLocationAddress_detail"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/laundrygothic"
-                        android:text="TextView" />
+                        android:text="X" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/locationPostcode"
+                    android:id="@+id/lodgingLocationPostcode"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_locationPostcode"
+                        android:id="@+id/text_lodgingLocationPostcode"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/laundrygothicbold"
                         android:text="지번 우편번호" />
 
                     <TextView
-                        android:id="@+id/text_locationPostcode_detail"
+                        android:id="@+id/text_lodgingLocationPostcode_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/laundrygothic"
-                        android:text="TextView" />
+                        android:text="X" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/roadAddress"
+                    android:id="@+id/lodgingRoadAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="25dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_roadAddress"
+                        android:id="@+id/text_lodgingRoadAddress"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/laundrygothicbold"
                         android:text="도로명 주소" />
 
                     <TextView
-                        android:id="@+id/text_roadAddress_detail"
+                        android:id="@+id/text_lodgingRoadAddress_detail"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/laundrygothic"
-                        android:text="TextView" />
+                        android:text="X" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/roadPostcode"
+                    android:id="@+id/lodgingRoadPostcode"
                     android:layout_width="match_parent"
                     android:layout_height="25dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_roadPostcode"
+                        android:id="@+id/text_lodgingRoadPostcode"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/laundrygothicbold"
                         android:text="도로명 우편번호" />
 
                     <TextView
-                        android:id="@+id/text_roadPostcode_detail"
+                        android:id="@+id/text_lodgingRoadPostcode_detail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="@font/laundrygothic"
-                        android:text="TextView" />
+                        android:text="X" />
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/store_detail"
+                android:layout_width="380dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:rotationX="0"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.66"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36">
+
+                <LinearLayout
+                    android:id="@+id/storeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_storeName"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="대리점명" />
+
+                    <TextView
+                        android:id="@+id/text_storeName_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="X" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storePhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_storePhoneNumber"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="대리점 전화번호" />
+
+                    <TextView
+                        android:id="@+id/text_storePhoneNumber_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="X" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storeLocationAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_storeLocationAddress"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="지번 주소" />
+
+                    <TextView
+                        android:id="@+id/text_storeLocationAddress_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="X" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storeRoadAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_storeRoadAddress"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="도로명 주소" />
+
+                    <TextView
+                        android:id="@+id/text_storeRoadAddress_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="X" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storeDayOff"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_storeDayOff"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="휴무일" />
+
+                    <TextView
+                        android:id="@+id/text_storeDayOff_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="X" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storeStartTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_storeStartTime"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="시작 시간" />
+
+                    <TextView
+                        android:id="@+id/text_storeStartTime_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="X" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storeEndTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_storeEndTime"
+                        android:layout_width="115dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/laundrygothicbold"
+                        android:text="종료 시간" />
+
+                    <TextView
+                        android:id="@+id/text_storeEndTime_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/laundrygothic"
+                        android:text="X" />
+                </LinearLayout>
+
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -191,7 +604,7 @@
             android:id="@+id/checkboxtool"
             android:layout_width="318dp"
             android:layout_height="58dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/navermap"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.89"
@@ -229,7 +642,7 @@
             android:layout_above="@id/fab"
             android:background="@drawable/custom_checkbox_danger"
             android:button="@null"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.22"
@@ -245,7 +658,7 @@
             android:background="@drawable/custom_checkbox_store"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.37"
@@ -261,7 +674,7 @@
             android:background="@drawable/custom_checkbox_airinjector"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.52"
@@ -277,7 +690,7 @@
             android:background="@drawable/custom_checkbox_lodging"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.67"
@@ -293,7 +706,7 @@
             android:background="@drawable/custom_checkbox_rental"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.82"
@@ -309,7 +722,7 @@
             android:background="@drawable/custom_checkbox_storagefacility"
             android:button="@null"
             android:rotationY="0"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.97"

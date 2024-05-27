@@ -44,7 +44,7 @@ class Repository {
     }
 
 
-    fun getLodgingDetailItem(lodgingId : Int, onResult: (List<lodgingDetailItem>?) -> Unit, onError: (Throwable) -> Unit ) {
+    fun getLodgingDetailItem(onResult: (List<lodgingDetailItem>?) -> Unit, onError: (Throwable) -> Unit, lodgingId : Int) {
         val call =RetrofitClient.apiService.getLodgingDetail(lodgingId)
         call.enqueue(object : Callback<List<lodgingDetailItem>> {
             override fun onResponse(call: Call<List<lodgingDetailItem>>, response: Response<List<lodgingDetailItem>>) {

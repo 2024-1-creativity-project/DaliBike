@@ -15,7 +15,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.dali_bike.R
 import com.example.dali_bike.model.Item
-import com.example.dali_bike.model.lodgingDetailItem
 import com.example.dali_bike.repository.Repository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.naver.maps.geometry.LatLng
@@ -47,26 +46,36 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var checkboxtool: ImageView
 
     lateinit var detailbox: ConstraintLayout
-    lateinit var businessName_detail: TextView
-    lateinit var locationAddress_detail: TextView
-    lateinit var locationPhoneNumber_detail: TextView
-    lateinit var locationPostcode_detail: TextView
-    lateinit var roadAddress_detail: TextView
-    lateinit var roadPostcode_detail: TextView
-
-//    lateinit var dayOff_detail: TextView
-//    lateinit var endTime_detail: TextView
-//    lateinit var fare_detail: TextView
-//    lateinit var isFare_detail: TextView
-//    lateinit var localAddress_detail: TextView
-//    lateinit var manRS_detail: TextView
-//    lateinit var managePhone_detail: TextView
-//    lateinit var rSName_detail: TextView
-//    lateinit var roadAddress_detail: TextView
-//    lateinit var startTime_detail: TextView
-//    lateinit var unmanRS_detail: TextView
 
     lateinit var lodging_detail:LinearLayout
+    lateinit var lodgingName_detail: TextView
+    lateinit var lodgingPhoneNumber_detail: TextView
+    lateinit var lodgingLocationAddress_detail: TextView
+    lateinit var lodgingLocationPostcode_detail: TextView
+    lateinit var lodgingRoadAddress_detail: TextView
+    lateinit var lodgingRoadPostcode_detail: TextView
+
+    lateinit var store_detail:LinearLayout
+    lateinit var storeName_detail: TextView
+    lateinit var storePhoneNumber_detail: TextView
+    lateinit var storeLocationAddress_detail: TextView
+    lateinit var storeRoadAddress_detail: TextView
+    lateinit var storeDayOff_detail: TextView
+    lateinit var storeStartTime_detail: TextView
+    lateinit var storeEndTime_detail: TextView
+
+    lateinit var rental_detail:LinearLayout
+    lateinit var rentalName_detail: TextView
+    lateinit var rentalType_detail: TextView
+    lateinit var rentalPhoneNumber_detail: TextView
+    lateinit var rentalLocationAddress_detail: TextView
+    lateinit var rentalRoadAddress_detail: TextView
+    lateinit var rentalDayOff_detail: TextView
+    lateinit var rentalStartTime_detail: TextView
+    lateinit var rentalEndTime_detail: TextView
+    lateinit var rentalIsFare_detail: TextView
+    lateinit var rentalFare_detail: TextView
+
     var isFabOpen = false
     var isChecked1 = true
     var isChecked2 = true
@@ -75,25 +84,6 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     var isChecked5 = true
     var isChecked6 = true
 
-    private fun fetchRentalDetail(indexNum: Int) {
-        val repository = Repository()
-
-        repository.getLodgingDetailItem(indexNum, { lodging ->
-            lodging?.let {
-                // lodgingDetailItem이 성공적으로 로드된 후에 값을 사용합니다.
-                businessName_detail.text = it[0].BusinessName
-                locationPhoneNumber_detail.text = it[0].LocationPhoneNumber
-                locationAddress_detail.text = it[0].LocationAddress
-                locationPostcode_detail.text = it[0].LocationPostcode
-                roadAddress_detail.text = it[0].RoadAddress
-                roadPostcode_detail.text = it[0].RoadPostcode
-            }
-
-        }, { error ->
-            // 오류 처리
-            Toast.makeText(requireContext(), "fetchLodgingDetail: ${error.message}", Toast.LENGTH_LONG).show()
-        })
-    }
 
     // 마커 리스트를 MarkerWrapper로 변경
     private val markerList = mutableListOf<MarkerWrapper>()
@@ -112,13 +102,35 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         checkboxtool = view.findViewById(R.id.checkboxtool)
 
         detailbox = view.findViewById(R.id.detailbox)
+
         lodging_detail = view.findViewById(R.id.lodging_detail)
-        businessName_detail = view.findViewById(R.id.text_businessName_detail)
-        locationPhoneNumber_detail = view.findViewById(R.id.text_locationPhoneNumber_detail)
-        locationAddress_detail = view.findViewById(R.id.text_locationAddress_detail)
-        locationPostcode_detail = view.findViewById(R.id.text_locationPostcode_detail)
-        roadAddress_detail = view.findViewById(R.id.text_roadAddress_detail)
-        roadPostcode_detail = view.findViewById(R.id.text_roadPostcode_detail)
+        lodgingName_detail = view.findViewById(R.id.text_lodgingName_detail)
+        lodgingPhoneNumber_detail = view.findViewById(R.id.text_lodgingPhoneNumber_detail)
+        lodgingLocationAddress_detail = view.findViewById(R.id.text_lodgingLocationAddress_detail)
+        lodgingLocationPostcode_detail = view.findViewById(R.id.text_lodgingLocationPostcode_detail)
+        lodgingRoadAddress_detail = view.findViewById(R.id.text_lodgingRoadAddress_detail)
+        lodgingRoadPostcode_detail = view.findViewById(R.id.text_lodgingRoadPostcode_detail)
+
+        store_detail = view.findViewById(R.id.store_detail)
+        storeName_detail = view.findViewById(R.id.text_storeName_detail)
+        storePhoneNumber_detail = view.findViewById(R.id.text_storePhoneNumber_detail)
+        storeLocationAddress_detail = view.findViewById(R.id.text_storeLocationAddress_detail)
+        storeRoadAddress_detail = view.findViewById(R.id.text_storeRoadAddress_detail)
+        storeDayOff_detail = view.findViewById(R.id.text_storeDayOff_detail)
+        storeStartTime_detail = view.findViewById(R.id.text_storeStartTime)
+        storeEndTime_detail = view.findViewById(R.id.text_storeEndTime_detail)
+
+        rental_detail = view.findViewById(R.id.rental_detail)
+        rentalName_detail = view.findViewById(R.id.text_rentalName_detail)
+        rentalType_detail = view.findViewById(R.id.text_rentalType_detail)
+        rentalPhoneNumber_detail = view.findViewById(R.id.text_rentalPhoneNumber_detail)
+        rentalLocationAddress_detail = view.findViewById(R.id.text_rentalLocationAddress_detail)
+        rentalRoadAddress_detail = view.findViewById(R.id.text_rentalRoadAddress_detail)
+        rentalDayOff_detail = view.findViewById(R.id.text_rentalDayOff_detail)
+        rentalStartTime_detail = view.findViewById(R.id.text_rentalStartTime_detail)
+        rentalEndTime_detail = view.findViewById(R.id.text_rentalEndTime_detail)
+        rentalIsFare_detail = view.findViewById(R.id.text_rentalIsFare_detail)
+        rentalFare_detail = view.findViewById(R.id.text_rentalFare_detail)
 
         // FloatingActionButton 클릭 리스너 설정
         fab.setOnClickListener {
@@ -129,8 +141,6 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             }
             isFabOpen = !isFabOpen // 상태를 반전시킴
         }
-
-
     }
 
     private fun showFabMenu() {
@@ -231,6 +241,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     }
 
     override fun onMapReady(naverMap: NaverMap) {
+
         // 건물 표시
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
 
@@ -369,11 +380,11 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     private fun getItemDetailService(itemNum: Int, indexNum: Int){
         when (itemNum) {
             2 -> {
-                if (isFabOpen) {fetchLodgingDetail(indexNum)
-                    closeItemDetail(lodging_detail)  // CheckBox를 숨김
+                if (isFabOpen) {fetchStoreDetail(indexNum)
+                    closeItemDetail(store_detail)  // CheckBox를 숨김
                 }
                 else {
-                    showItemDetail(lodging_detail ) // CheckBox를 표시
+                    showItemDetail(store_detail ) // CheckBox를 표시
                 }
             }
             4 -> {
@@ -385,11 +396,11 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
                 }
             }
             5 -> {
-                if (isFabOpen) {fetchLodgingDetail(indexNum)
-                    closeItemDetail(lodging_detail)  // CheckBox를 숨김
+                if (isFabOpen) {fetchRentalDetail(indexNum)
+                    closeItemDetail(rental_detail)  // CheckBox를 숨김
                 }
                 else {
-                    showItemDetail(lodging_detail ) // CheckBox를 표시
+                    showItemDetail(rental_detail ) // CheckBox를 표시
                 }
             }
         }
@@ -398,21 +409,77 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     private fun fetchLodgingDetail(indexNum: Int) {
         val repository = Repository()
 
-        repository.getLodgingDetailItem(indexNum, { lodging ->
+        repository.getLodgingDetailItem({ lodging ->
             lodging?.let {
                 // lodgingDetailItem이 성공적으로 로드된 후에 값을 사용합니다.
-                businessName_detail.text = it[0].BusinessName
-                locationPhoneNumber_detail.text = it[0].LocationPhoneNumber
-                locationAddress_detail.text = it[0].LocationAddress
-                locationPostcode_detail.text = it[0].LocationPostcode
-                roadAddress_detail.text = it[0].RoadAddress
-                roadPostcode_detail.text = it[0].RoadPostcode
+                lodgingName_detail.text = it[0].BusinessName
+                lodgingPhoneNumber_detail.text = it[0].LocationPhoneNumber
+                lodgingLocationAddress_detail.text = it[0].LocationAddress
+                lodgingLocationPostcode_detail.text = it[0].LocationPostcode
+                lodgingRoadAddress_detail.text = it[0].RoadAddress
+                lodgingRoadPostcode_detail.text = it[0].RoadPostcode
             }
 
         }, { error ->
             // 오류 처리
             Toast.makeText(requireContext(), "fetchLodgingDetail: ${error.message}", Toast.LENGTH_LONG).show()
-        })
+        }, indexNum)
+    }
+
+    private fun fetchStoreDetail(indexNum: Int) {
+        val repository = Repository()
+
+        repository.getStoreDetailItem({ store ->
+            store?.let {
+                storeName_detail.text = it[0].StoreName
+                storePhoneNumber_detail.text = it[0].StorePhone
+                storeLocationAddress_detail.text = it[0].LocalAddress
+                storeRoadAddress_detail.text = it[0].RoadAddress
+                storeDayOff_detail.text = it[0].DayOff
+                storeStartTime_detail.text = it[0].StartTime
+                storeEndTime_detail.text = it[0].EndTime
+            }
+
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchStoreDetail: ${error.message}", Toast.LENGTH_LONG).show()
+        }, indexNum)
+    }
+
+    private fun fetchRentalDetail(indexNum: Int) {
+        val repository = Repository()
+
+        repository.getRentalDetailItem({ rental ->
+            rental?.let {
+                rentalName_detail.text = it[0].RSName
+                if(it[0].ManRS == 1 && it[0].UnmanRS ==1){
+                    rentalType_detail.text = "유인,무인 대여소"
+                }
+                else if(it[0].ManRS == 1){
+                    rentalType_detail.text = "유인 대여소"
+                }
+                else if(it[0].UnmanRS == 1){
+                    rentalType_detail.text = "무인 대여소"
+                }
+                rentalPhoneNumber_detail.text = it[0].ManagePhone
+                rentalLocationAddress_detail.text = it[0].LocalAddress
+                rentalRoadAddress_detail.text = it[0].RoadAddress
+                rentalDayOff_detail.text = it[0].DayOff
+                rentalStartTime_detail.text = it[0].StartTime
+                rentalEndTime_detail.text = it[0].EndTime
+                if(it[0].IsFare == 1){
+                    rentalIsFare_detail.text = "유료"
+                }
+                else{
+                    rentalIsFare_detail.text = "무료"
+                }
+                rentalFare_detail.text = it[0].Fare
+            }
+
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchRentalDetail: ${error.message}", Toast.LENGTH_LONG).show()
+        }, indexNum)
     }
 
     private fun getItemService(itemNum : Int, marker: Marker) {

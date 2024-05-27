@@ -64,4 +64,20 @@ dependencies {
 
     // 네이버 지도 SDK
     implementation("com.naver.maps:map-sdk:3.18.0")
+
+    // 현재 위치
+    implementation ("com.google.android.gms:play-services-location:21.2.0")
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.google.code.gson:gson:2.10")
+
+    //viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
+    implementation("androidx.activity:activity-ktx:1.9.0")
+
+    //activityViewModels
+    implementation ("androidx.fragment:fragment-ktx:1.7.1")
+    implementation ("androidx.activity:activity-ktx:1.9.0")
 }

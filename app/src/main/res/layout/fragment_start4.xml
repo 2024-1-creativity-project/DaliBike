@@ -127,93 +127,93 @@
             android:layout_width="253dp"
             android:layout_height="70dp"
             android:background="@drawable/view_border3"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.655" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <View
             android:id="@+id/view5"
             android:layout_width="253dp"
             android:layout_height="55dp"
             android:background="@color/gray"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.594" />
+            app:layout_constraintVertical_bias="0.92" />
 
         <View
             android:id="@+id/view8"
             android:layout_width="20dp"
             android:layout_height="60dp"
             android:background="@drawable/crosswalk_border"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.635" />
+            app:layout_constraintVertical_bias="0.96" />
 
         <View
             android:id="@+id/view9"
             android:layout_width="20dp"
             android:layout_height="60dp"
             android:background="@drawable/crosswalk_border"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.616"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.635" />
+            app:layout_constraintVertical_bias="0.96" />
 
         <View
             android:id="@+id/view10"
             android:layout_width="20dp"
             android:layout_height="60dp"
             android:background="@drawable/crosswalk_border"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.731"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.635" />
+            app:layout_constraintVertical_bias="0.96" />
 
         <View
             android:id="@+id/view6"
             android:layout_width="20dp"
             android:layout_height="60dp"
             android:background="@drawable/crosswalk_border"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.268"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.635" />
+            app:layout_constraintVertical_bias="0.96" />
 
         <View
             android:id="@+id/view7"
             android:layout_width="20dp"
             android:layout_height="60dp"
             android:background="@drawable/crosswalk_border"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.381"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.635" />
+            app:layout_constraintVertical_bias="0.96" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="407dp"
             android:layout_height="581dp"
             android:src="@drawable/safety4"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.697" />
+            app:layout_constraintTop_toTopOf="@+id/view"
+            app:layout_constraintVertical_bias="0.17" />
 
         <TextView
             android:id="@+id/textView9"
@@ -227,7 +227,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.064" />
+            app:layout_constraintVertical_bias="0.083" />
 
         <TextView
             android:id="@+id/textView10"
@@ -241,6 +241,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.200" />
+            app:layout_constraintVertical_bias="0.237" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

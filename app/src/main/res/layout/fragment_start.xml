@@ -114,7 +114,7 @@
             android:id="@+id/imageView12"
             android:layout_width="229dp"
             android:layout_height="312dp"
-            android:layout_marginTop="284dp"
+            android:layout_marginTop="292dp"
             android:src="@drawable/safety1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

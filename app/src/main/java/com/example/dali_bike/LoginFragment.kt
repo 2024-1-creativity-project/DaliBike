@@ -76,6 +76,7 @@ class LoginFragment : Fragment() {
                             withContext(Dispatchers.Main) {  // UI 작업을 메인 스레드에서 실행
                                 if (loginRes.result == "true") {
                                     Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
+                                    findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                                     // 로그인 성공 후의 행동을 추가합니다.
                                 } else {
                                     Toast.makeText(context, "회원을 찾을 수 없습니다", Toast.LENGTH_LONG).show()

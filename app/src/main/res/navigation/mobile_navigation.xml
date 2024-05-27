@@ -67,10 +67,17 @@
         <action
             android:id="@+id/action_loginFragment_to_joinFragment"
             app:destination="@id/joinFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/myPageFragment"
         android:name="com.example.dali_bike.MyPageFragment"
         android:label="fragment_my_page"
         tools:layout="@layout/fragment_my_page" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.dali_bike.MainFragment"
+        android:label="MainFragment" />
 </navigation>

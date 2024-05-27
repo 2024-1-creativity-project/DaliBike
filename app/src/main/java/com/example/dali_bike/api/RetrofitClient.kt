@@ -20,7 +20,7 @@ private const val BASE_URL = "http://172.30.101.87:3000"
 
 interface ApiInterface {
     @POST("/user/login")
-    suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginRes>
+    suspend fun loginUser(@Body loginRequest: LoginRequest): Response<List<LoginRes>>
 }
 
 private val moshi = Moshi.Builder()

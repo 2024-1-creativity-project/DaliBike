@@ -126,11 +126,11 @@
             android:id="@+id/imageView"
             android:layout_width="303dp"
             android:layout_height="412dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.371"
+            app:layout_constraintTop_toTopOf="@+id/view"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/safety2" />
 
         <TextView

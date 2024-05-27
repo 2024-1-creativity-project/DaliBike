@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import com.example.dali_bike.databinding.FragmentStartBinding
 import androidx.navigation.fragment.findNavController
 
@@ -24,6 +25,7 @@ class StartFragment : Fragment() {
             // 네비게이션 액션 실행
             findNavController().navigate(R.id.action_startFragment_to_start2Fragment)
         }
+
 
         return rootView
     }

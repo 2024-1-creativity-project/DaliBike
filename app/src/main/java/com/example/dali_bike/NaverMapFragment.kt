@@ -26,7 +26,6 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
-
 data class MarkerWrapper(val marker: Marker, val itemNum: Int)
 
 class NaverMapFragment : Fragment(), OnMapReadyCallback {
@@ -376,19 +375,19 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-    private fun closeItemDetail(detailItem: LinearLayout) {
+    private fun closeItemDetail() {
         // 페이드 아웃 애니메이션 설정
         val fadeOut = AlphaAnimation(1.0f, 0.0f).apply {
-            duration = 300 // 애니메이션 지속 시간
+            duration = 1 // 애니메이션 지속 시간
             fillAfter = true // 애니메이션 후 상태 유지
         }
 
         // lodging_detail 애니메이션 적용
-        detailItem.startAnimation(fadeOut)
+        lodging_detail.startAnimation(fadeOut)
+        store_detail.startAnimation(fadeOut)
+        rental_detail.startAnimation(fadeOut)
+        rental_detail_scroll.startAnimation(fadeOut)
         detailbox.startAnimation(fadeOut)
-        if(detailItem == rental_detail){
-            rental_detail_scroll.startAnimation(fadeOut)
-        }
 
         // 애니메이션 리스너 설정
         fadeOut.setAnimationListener(object : Animation.AnimationListener {
@@ -396,11 +395,11 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
             // 애니메이션 종료 후 CheckBox를 숨김
             override fun onAnimationEnd(animation: Animation?) {
-                detailItem.visibility = View.GONE
+                lodging_detail.visibility = View.GONE
+                store_detail.visibility = View.GONE
+                rental_detail.visibility = View.GONE
+                rental_detail_scroll.visibility = View.GONE
                 detailbox.visibility = View.GONE
-                if(detailItem == rental_detail){
-                    rental_detail_scroll.visibility = View.GONE
-                }
             }
 
             override fun onAnimationRepeat(animation: Animation?) {}
@@ -411,7 +410,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         when (itemNum) {
             2 -> {
                 if (isFabOpen) {fetchStoreDetail(indexNum)
-                    closeItemDetail(store_detail)  // CheckBox를 숨김
+                    closeItemDetail()  // CheckBox를 숨김
                 }
                 else {
                     showItemDetail(store_detail ) // CheckBox를 표시
@@ -419,7 +418,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             }
             4 -> {
                 if (isFabOpen) {fetchLodgingDetail(indexNum)
-                    closeItemDetail(lodging_detail)  // CheckBox를 숨김
+                    closeItemDetail()  // CheckBox를 숨김
                 }
                 else {
                     showItemDetail(lodging_detail ) // CheckBox를 표시
@@ -427,7 +426,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             }
             5 -> {
                 if (isFabOpen) {fetchRentalDetail(indexNum)
-                    closeItemDetail(rental_detail)  // CheckBox를 숨김
+                    closeItemDetail()  // CheckBox를 숨김
                 }
                 else {
                     showItemDetail(rental_detail ) // CheckBox를 표시

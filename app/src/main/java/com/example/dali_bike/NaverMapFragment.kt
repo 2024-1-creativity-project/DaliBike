@@ -9,6 +9,7 @@ import android.view.animation.Animation
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -64,6 +65,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var storeStartTime_detail: TextView
     lateinit var storeEndTime_detail: TextView
 
+    lateinit var rental_detail_scroll: ScrollView
     lateinit var rental_detail:LinearLayout
     lateinit var rentalName_detail: TextView
     lateinit var rentalType_detail: TextView
@@ -120,6 +122,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         storeStartTime_detail = view.findViewById(R.id.text_storeStartTime)
         storeEndTime_detail = view.findViewById(R.id.text_storeEndTime_detail)
 
+        rental_detail_scroll = view.findViewById(R.id.rental_detail_scroll)
         rental_detail = view.findViewById(R.id.rental_detail)
         rentalName_detail = view.findViewById(R.id.text_rentalName_detail)
         rentalType_detail = view.findViewById(R.id.text_rentalType_detail)
@@ -298,6 +301,21 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             fetchItemSaveList(naverMap,itemNum) // 체크되면 데이터를 불러옴
         } else {
             clearMarkers(itemNum) // 체크 해제되면 마커를 제거함
+            val fadeOut = AlphaAnimation(1.0f, 0.0f).apply {
+                duration = 300 // 애니메이션 지속 시간
+                fillAfter = true // 애니메이션 후 상태 유지
+            }
+            detailbox.startAnimation(fadeOut)
+            // 애니메이션 리스너 설정
+            fadeOut.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {}
+
+                // 애니메이션 종료 후 CheckBox를 숨김
+                override fun onAnimationEnd(animation: Animation?) {
+                    detailbox.visibility = View.GONE
+                }
+                override fun onAnimationRepeat(animation: Animation?) {}
+            })
         }
     }
 
@@ -340,6 +358,9 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     private fun showItemDetail(detailItem: LinearLayout) {
         detailbox.visibility = View.VISIBLE
         detailItem.visibility = View.VISIBLE
+        if(detailItem == rental_detail){
+            rental_detail_scroll.visibility = View.VISIBLE
+        }
 
         // 페이드 인 애니메이션 설정
         val fadeIn = AlphaAnimation(0.0f, 1.0f).apply {
@@ -350,6 +371,9 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         // lodging_detail 애니메이션 적용
         detailItem.startAnimation(fadeIn)
         detailbox.startAnimation(fadeIn)
+        if(detailItem == rental_detail){
+            rental_detail_scroll.startAnimation(fadeIn)
+        }
     }
 
     private fun closeItemDetail(detailItem: LinearLayout) {
@@ -362,6 +386,9 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         // lodging_detail 애니메이션 적용
         detailItem.startAnimation(fadeOut)
         detailbox.startAnimation(fadeOut)
+        if(detailItem == rental_detail){
+            rental_detail_scroll.startAnimation(fadeOut)
+        }
 
         // 애니메이션 리스너 설정
         fadeOut.setAnimationListener(object : Animation.AnimationListener {
@@ -371,6 +398,9 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             override fun onAnimationEnd(animation: Animation?) {
                 detailItem.visibility = View.GONE
                 detailbox.visibility = View.GONE
+                if(detailItem == rental_detail){
+                    rental_detail_scroll.visibility = View.GONE
+                }
             }
 
             override fun onAnimationRepeat(animation: Animation?) {}

@@ -106,5 +106,3 @@ class LoginFragment : Fragment() {
         }
     }
 }
-
-//HEllo

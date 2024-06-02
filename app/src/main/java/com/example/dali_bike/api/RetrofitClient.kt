@@ -1,26 +1,35 @@
 package com.example.dali_bike.api
 
 import com.example.dali_bike.models.LoginRequest
-import com.example.dali_bike.models.LoginRes
+import com.example.dali_bike.models.Register
+import com.example.dali_bike.models.Respon
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
-import javax.net.ssl.HostnameVerifier
+import retrofit2.http.Path
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://172.30.101.87:3000"
+private const val BASE_URL = "http://172.20.10.10:3000"
 
 interface ApiInterface {
     @POST("/user/login")
-    suspend fun loginUser(@Body loginRequest: LoginRequest): Response<List<LoginRes>>
+    suspend fun loginUser(@Body loginRequest: LoginRequest): Response<List<Respon>>
+    @GET("/user/redundancy/id/{id}")
+    suspend fun checkId(@Path("id") id: String): Response<List<Respon>>
+
+    @GET("/user/redundancy/nickname/{nickname}}")
+    suspend fun checkNickName(@Path("nickname") nickname: String): Response<List<Respon>>
+
+    @POST("/user/register")
+    suspend fun register(@Body register: Register): Response<List<Respon>>
 }
 
 private val moshi = Moshi.Builder()

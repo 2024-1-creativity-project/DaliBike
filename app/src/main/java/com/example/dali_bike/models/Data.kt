@@ -17,8 +17,16 @@ data class LoginRequest (
     val pw: String
 )
 
-data class LoginRes (
+data class Respon (
     val result: String
+)
+
+data class Register (
+    val id: String,
+    val pw: String,
+    val phone: String,
+    val name: String,
+    val nickname: String
 )
 
 data class Store (

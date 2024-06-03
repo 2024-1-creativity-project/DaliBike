@@ -1,6 +1,7 @@
 package com.example.dali_bike
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -51,35 +52,38 @@ class JoinFragment : Fragment() {
         var nickCheck = false
         var idCheck = false
 
-        val id = editID.text.toString()
-        val nickName = editNickname.text.toString()
-        val name = editName.text.toString()
-        val pw = editPW.text.toString()
-        val pwCheck = checkPW.text.toString()
-        val phone = editPhone.text.toString()
-
-
         backBtn.setOnClickListener {
             findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
         }
 
         check1.setOnClickListener {
+            val nickName = editNickname.text.toString()
             if (nickName.isEmpty()) {
                 editNickname.error = "닉네임을 입력하세요"
                 return@setOnClickListener
             }
 
+            if (nickName.length > 5) {
+                editNickname.error = "네글자 이하의 닉네임을 입력하세요"
+                return@setOnClickListener
+            }
+            Log.d("@@@@nickname", nickName)
+
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val response = apiService.checkNickName(nickName)
+
+                    Log.d("@@@body", response.toString())
 
                     if (response.isSuccessful) {
                         val joinResList = response.body()
                         if (joinResList != null && joinResList.isNotEmpty()) {
                             val joinRes = joinResList[0]
+                            Log.d("@@@@response", joinRes.toString())
                             withContext(Dispatchers.Main) {
                                 if (joinRes.result == "true") {
                                     Toast.makeText(context, "사용 가능한 닉네임입니다.", Toast.LENGTH_LONG).show()
+                                    editNickname.error = null
                                     nickCheck = true
                                 } else {
                                     Toast.makeText(context, "사용할 수 없는 닉네임입니다", Toast.LENGTH_LONG).show()
@@ -108,6 +112,7 @@ class JoinFragment : Fragment() {
         }
 
         check2.setOnClickListener {
+            val id = editID.text.toString()
             if (id.isEmpty()) {
                 editID.error = "아이디를 입력하세요"
                 return@setOnClickListener
@@ -133,10 +138,11 @@ class JoinFragment : Fragment() {
                             withContext(Dispatchers.Main) {
                                 if (idRes.result == "true") {
                                     Toast.makeText(context, "사용 가능한 아이디입니다.", Toast.LENGTH_LONG).show()
+                                    editName.error = null
                                     idCheck = true
                                 } else {
                                     Toast.makeText(context, "사용할 수 없는 아이디입니다", Toast.LENGTH_LONG).show()
-                                    editNickname.error = "다른 아이디를 입력하세요"
+                                    editID.error = "다른 아이디를 입력하세요"
                                 }
                             }
                         }
@@ -161,6 +167,13 @@ class JoinFragment : Fragment() {
         }
 
         okBtn.setOnClickListener {
+            val name = editName.text.toString()
+            val nickName = editNickname.text.toString()
+            val id = editID.text.toString()
+            val pw = editPW.text.toString()
+            val pwCheck = checkPW.text.toString()
+            var phone = editPhone.text.toString()
+
             if (name.isEmpty()) {
                 editName.error = "이름을 입력하세요"
                 return@setOnClickListener
@@ -191,6 +204,8 @@ class JoinFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            phone = formatPhoneNumber(phone)
+
             if (!checkBox.isChecked) {
                 checkBox.error = "체크되지 않았습니다"
                 Toast.makeText(context, "동의하셔야 본 서비스 이용이 가능합니다.", Toast.LENGTH_LONG).show()
@@ -214,25 +229,18 @@ class JoinFragment : Fragment() {
                     val response = apiService.register(register)
 
                     if (response.isSuccessful) {
-                        val regiResList = response.body()
-                        if (regiResList != null && regiResList.isNotEmpty()) {
-                            val regiRes = regiResList[0]
-                            withContext(Dispatchers.Main) {
-                                if (regiRes.result == "true") {
-                                    Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
-                                    findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
-                                } else {
-                                    Toast.makeText(context, "회원가입 할 수 없습니다", Toast.LENGTH_LONG).show()
-                                }
-                            }
-                        } else {
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(context, "서버 응답이 올바르지 않습니다", Toast.LENGTH_LONG).show()
+                        val regiRes = response.body()
+                        withContext(Dispatchers.Main) {
+                            if (regiRes?.result == "true") {
+                                Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
+                                findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
+                            } else {
+                                Toast.makeText(context, "회원가입 할 수 없습니다", Toast.LENGTH_LONG).show()
                             }
                         }
                     } else {
-                        withContext(Dispatchers.Main){
-                            Toast.makeText(context, "재접속 후 다시 회원가입 바랍니다", Toast.LENGTH_LONG).show()
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "서버 응답이 올바르지 않습니다", Toast.LENGTH_LONG).show()
                         }
                     }
                 } catch(e: Exception) {
@@ -242,6 +250,16 @@ class JoinFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+    private fun formatPhoneNumber(phoneNumber: String): String {
+        return if (phoneNumber.length == 11) {
+            val firstPart = phoneNumber.substring(0, 3)
+            val secondPart = phoneNumber.substring(3, 7)
+            val thirdPart = phoneNumber.substring(7, 11)
+            "$firstPart-$secondPart-$thirdPart"
+        } else {
+            phoneNumber // 길이가 11이 아니면 원래 번호 반환
         }
     }
 }

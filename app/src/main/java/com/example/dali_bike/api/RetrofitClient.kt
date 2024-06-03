@@ -17,7 +17,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://172.20.10.10:3000"
+private const val BASE_URL = "http://172.30.101.87:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -25,11 +25,13 @@ interface ApiInterface {
     @GET("/user/redundancy/id/{id}")
     suspend fun checkId(@Path("id") id: String): Response<List<Respon>>
 
-    @GET("/user/redundancy/nickname/{nickname}}")
+    @GET("/user/redundancy/nickname/{nickname}")
     suspend fun checkNickName(@Path("nickname") nickname: String): Response<List<Respon>>
 
     @POST("/user/register")
-    suspend fun register(@Body register: Register): Response<List<Respon>>
+    suspend fun register(@Body register: Register): Response<Respon>
+
+
 }
 
 private val moshi = Moshi.Builder()

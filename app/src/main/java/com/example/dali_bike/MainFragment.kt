@@ -34,7 +34,7 @@ class MainFragment : Fragment(), OnMapReadyCallback {
         val ridingTimerBtn: AppCompatImageButton = view.findViewById(R.id.ridingTimer_btn)
         val ridingCalBtn: AppCompatImageButton = view.findViewById(R.id.ridingCal_btn)
         val hotPostBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
-        // 이거주석처리함 locationSource = FusedLocationSource(requireActivity(), LOCATION_PERMISSION_REQUEST_CODE)
+        locationSource = FusedLocationSource(requireActivity(), LOCATION_PERMISSION_REQUEST_CODE)
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as MapFragment?
             ?: MapFragment.newInstance().also {
@@ -48,6 +48,8 @@ class MainFragment : Fragment(), OnMapReadyCallback {
         mapButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
+
+        hot
 
         //val postBtn: ImageButton = view.findViewById()
 
@@ -81,5 +83,7 @@ class MainFragment : Fragment(), OnMapReadyCallback {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
+
+
 }
 

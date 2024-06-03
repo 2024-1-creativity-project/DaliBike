@@ -14,18 +14,6 @@
         android:background="@color/yellowGreen"
         tools:context=".MyPageFragment">
 
-
-
-
-
-        <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="237dp"
-            tools:layout_editor_absoluteY="550dp" />
-
         <View
             android:id="@+id/menubar"
             android:layout_width="393dp"
@@ -127,10 +115,9 @@
             app:srcCompat="@drawable/user" />
 
         <ImageButton
-            android:id="@+id/myPage_btn"
+            android:id="@+id/imageButton3"
             android:layout_width="345dp"
             android:layout_height="90dp"
-            android:layout_marginTop="17dp"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -164,11 +151,11 @@
             android:text="마동석"
             android:textColor="@color/khaki"
             android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/myPage_btn"
-            app:layout_constraintEnd_toEndOf="@+id/myPage_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
             app:layout_constraintHorizontal_bias="0.409"
-            app:layout_constraintStart_toStartOf="@+id/myPage_btn"
-            app:layout_constraintTop_toTopOf="@+id/myPage_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/imageButton3"
             app:layout_constraintVertical_bias="0.196" />
 
         <!--     <TextView
@@ -192,11 +179,11 @@
             android:text="총 주행시간:"
             android:textColor="@color/green"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/myPage_btn"
-            app:layout_constraintEnd_toEndOf="@+id/myPage_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
             app:layout_constraintHorizontal_bias="0.335"
-            app:layout_constraintStart_toStartOf="@+id/myPage_btn"
-            app:layout_constraintTop_toTopOf="@+id/myPage_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/imageButton3"
             app:layout_constraintVertical_bias="0.726" />
 
         <TextView
@@ -209,11 +196,11 @@
             android:text="27h 16m 45s"
             android:textColor="@color/green"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/myPage_btn"
-            app:layout_constraintEnd_toEndOf="@+id/myPage_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
             app:layout_constraintHorizontal_bias="0.034"
             app:layout_constraintStart_toEndOf="@+id/textView27"
-            app:layout_constraintTop_toTopOf="@+id/myPage_btn"
+            app:layout_constraintTop_toTopOf="@+id/imageButton3"
             app:layout_constraintVertical_bias="0.73" />
 
         <ImageView
@@ -221,18 +208,17 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/user"
-            app:layout_constraintBottom_toBottomOf="@+id/myPage_btn"
-            app:layout_constraintEnd_toEndOf="@+id/myPage_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
             app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="@+id/myPage_btn"
-            app:layout_constraintTop_toTopOf="@+id/myPage_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/imageButton3"
             app:layout_constraintVertical_bias="0.4" />
 
         <ImageButton
-            android:id="@+id/ridingCal_btn"
+            android:id="@+id/imageButton5"
             android:layout_width="160dp"
             android:layout_height="150dp"
-            android:layout_marginTop="620dp"
             android:layout_marginEnd="180dp"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -244,7 +230,7 @@
             app:srcCompat="@drawable/mini_map" />
 
         <ImageButton
-            android:id="@+id/ridingTimer_btn"
+            android:id="@+id/imageButton6"
             android:layout_width="160dp"
             android:layout_height="155dp"
             android:layout_marginEnd="180dp"
@@ -258,9 +244,9 @@
             app:srcCompat="@drawable/mini_map" />
 
         <ImageButton
-            android:id="@+id/hotpost_btn"
-            android:layout_width="160dp"
-            android:layout_height="325dp"
+            android:id="@+id/imageButton7"
+            android:layout_width="162dp"
+            android:layout_height="296dp"
             android:layout_marginStart="180dp"
             android:background="@android:color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -274,11 +260,11 @@
             android:id="@+id/imageView15"
             android:layout_width="148dp"
             android:layout_height="54dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ridingTimer_btn"
-            app:layout_constraintEnd_toEndOf="@+id/ridingTimer_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton6"
             app:layout_constraintHorizontal_bias="0.50"
-            app:layout_constraintStart_toStartOf="@+id/ridingTimer_btn"
-            app:layout_constraintTop_toTopOf="@+id/ridingTimer_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton6"
+            app:layout_constraintTop_toTopOf="@+id/imageButton6"
             app:layout_constraintVertical_bias="0.13999999"
             app:srcCompat="@drawable/drive" />
 
@@ -290,22 +276,22 @@
             android:text="주행타이머"
             android:textColor="#BDDA71"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/ridingTimer_btn"
-            app:layout_constraintEnd_toEndOf="@+id/ridingTimer_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton6"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/ridingTimer_btn"
-            app:layout_constraintTop_toTopOf="@+id/ridingTimer_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton6"
+            app:layout_constraintTop_toTopOf="@+id/imageButton6"
             app:layout_constraintVertical_bias="0.52" />
 
         <ImageView
             android:id="@+id/driveYellobox"
             android:layout_width="140dp"
             android:layout_height="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ridingTimer_btn"
-            app:layout_constraintEnd_toEndOf="@+id/ridingTimer_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton6"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/ridingTimer_btn"
-            app:layout_constraintTop_toTopOf="@+id/ridingTimer_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton6"
+            app:layout_constraintTop_toTopOf="@+id/imageButton6"
             app:layout_constraintVertical_bias="0.73"
             app:srcCompat="@drawable/round_squere_yellow" />
 
@@ -326,11 +312,11 @@
             android:id="@+id/ridingCalander"
             android:layout_width="110dp"
             android:layout_height="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ridingCal_btn"
-            app:layout_constraintEnd_toEndOf="@+id/ridingCal_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton5"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/ridingCal_btn"
-            app:layout_constraintTop_toTopOf="@+id/ridingCal_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton5"
+            app:layout_constraintTop_toTopOf="@+id/imageButton5"
             app:layout_constraintVertical_bias="0.120000005"
             app:srcCompat="@drawable/ridingcalender" />
 
@@ -338,11 +324,11 @@
             android:id="@+id/ridingCalanderToday"
             android:layout_width="131dp"
             android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ridingCal_btn"
-            app:layout_constraintEnd_toEndOf="@+id/ridingCal_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton5"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/ridingCal_btn"
-            app:layout_constraintTop_toTopOf="@+id/ridingCal_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton5"
+            app:layout_constraintTop_toTopOf="@+id/imageButton5"
             app:layout_constraintVertical_bias="0.533"
             app:srcCompat="@drawable/date" />
 
@@ -353,22 +339,13 @@
             android:fontFamily="@font/laundrygothicbold"
             android:text="02h 16m 28s"
             android:textColor="#BCD971"
-            app:layout_constraintBottom_toBottomOf="@+id/ridingCal_btn"
-            app:layout_constraintEnd_toEndOf="@+id/ridingCal_btn"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
+            app:layout_constraintEnd_toEndOf="@+id/imageButton5"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/ridingCal_btn"
-            app:layout_constraintTop_toTopOf="@+id/ridingCal_btn"
+            app:layout_constraintStart_toStartOf="@+id/imageButton5"
+            app:layout_constraintTop_toTopOf="@+id/imageButton5"
             app:layout_constraintVertical_bias="0.81" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="com.naver.maps.map.MapFragment"
-            android:layout_width="317dp"
-            android:layout_height="219dp"
-            app:layout_constraintBottom_toBottomOf="@+id/map_btn"
-            app:layout_constraintEnd_toEndOf="@+id/map_btn"
-            app:layout_constraintStart_toStartOf="@+id/map_btn"
-            app:layout_constraintTop_toTopOf="@+id/map_btn" />
         <View
             android:id="@+id/view29"
             android:layout_width="340dp"
@@ -390,7 +367,7 @@
             app:layout_constraintTop_toTopOf="@+id/mapImg_btn" />
 
         <ImageButton
-            android:id="@+id/map_btn"
+            android:id="@+id/mapImg_btn"
             android:layout_width="340dp"
             android:layout_height="250dp"
             android:background="@android:color/transparent"
@@ -401,111 +378,6 @@
             app:layout_constraintTop_toTopOf="@+id/view29"
             app:layout_constraintVertical_bias="0.023" />
 
-        <ImageView
-            android:id="@+id/imageView21"
-            android:layout_width="160dp"
-            android:layout_height="21dp"
-            android:layout_marginEnd="28dp"
-            app:layout_constraintBottom_toBottomOf="@+id/hotpost_btn"
-            app:layout_constraintEnd_toEndOf="@+id/imageView22"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/hotpost_btn"
-            app:layout_constraintTop_toTopOf="@+id/hotpost_btn"
-            app:layout_constraintVertical_bias="0.075"
-            app:srcCompat="@drawable/mini_map_yellow" />
-
-        <ImageView
-            android:id="@+id/imageView22"
-            android:layout_width="160dp"
-            android:layout_height="36dp"
-            app:layout_constraintBottom_toBottomOf="@+id/hotpost_btn"
-            app:layout_constraintEnd_toEndOf="@+id/hotpost_btn"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/hotpost_btn"
-            app:layout_constraintTop_toTopOf="@+id/hotpost_btn"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/mini_map_yellow_2" />
-
-        <ImageView
-            android:id="@+id/imageView18"
-            android:layout_width="136dp"
-            android:layout_height="47dp"
-            app:srcCompat="@drawable/HotPost"
-            tools:layout_editor_absoluteX="219dp"
-            tools:layout_editor_absoluteY="474dp" />
-
-        <ImageView
-            android:id="@+id/imageView23"
-            android:layout_width="160dp"
-            android:layout_height="47dp"
-            app:srcCompat="@drawable/post_yellowgreen"
-            tools:layout_editor_absoluteX="207dp"
-            tools:layout_editor_absoluteY="521dp" />
-
-        <ImageView
-            android:id="@+id/imageView25"
-            android:layout_width="160dp"
-            android:layout_height="47dp"
-            app:srcCompat="@drawable/post_yellowgreen"
-            tools:layout_editor_absoluteX="207dp"
-            tools:layout_editor_absoluteY="615dp" />
-
-        <ImageView
-            android:id="@+id/imageView26"
-            android:layout_width="160dp"
-            android:layout_height="47dp"
-            app:srcCompat="@drawable/post_yellowgreen"
-            tools:layout_editor_absoluteX="207dp"
-            tools:layout_editor_absoluteY="709dp" />
-
-        <TextView
-            android:id="@+id/textView31"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1post_title"
-            tools:layout_editor_absoluteX="216dp"
-            tools:layout_editor_absoluteY="526dp" />
-
-        <TextView
-            android:id="@+id/textView32"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2post_title"
-            tools:layout_editor_absoluteX="217dp"
-            tools:layout_editor_absoluteY="574dp" />
-
-        <TextView
-            android:id="@+id/textView33"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3post_title"
-            tools:layout_editor_absoluteX="219dp"
-            tools:layout_editor_absoluteY="621dp" />
-
-        <TextView
-            android:id="@+id/textView34"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4post_title"
-            tools:layout_editor_absoluteX="217dp"
-            tools:layout_editor_absoluteY="667dp" />
-
-        <TextView
-            android:id="@+id/textView35"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5post_title"
-            tools:layout_editor_absoluteX="220dp"
-            tools:layout_editor_absoluteY="714dp" />
-
-        <TextView
-            android:id="@+id/textView36"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="6post_title"
-            tools:layout_editor_absoluteX="222dp"
-            tools:layout_editor_absoluteY="761dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

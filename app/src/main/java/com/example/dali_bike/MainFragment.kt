@@ -49,8 +49,6 @@ class MainFragment : Fragment(), OnMapReadyCallback {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
 
-        hot
-
         //val postBtn: ImageButton = view.findViewById()
 
         val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapImg_btn)

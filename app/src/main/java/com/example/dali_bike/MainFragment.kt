@@ -26,6 +26,7 @@ class MainFragment : Fragment(), OnMapReadyCallback {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
+    val hotPost
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -82,6 +83,8 @@ class MainFragment : Fragment(), OnMapReadyCallback {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
+
+
 
 
 }

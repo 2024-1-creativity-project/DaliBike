@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.databinding.FragmentLoginBinding
 import com.example.dali_bike.models.LoginRequest
+import com.example.dali_bike.models.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,6 +22,7 @@ import kotlinx.coroutines.withContext
 
 class LoginFragment : Fragment() {
     private lateinit var _binding: FragmentLoginBinding
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,6 +79,8 @@ class LoginFragment : Fragment() {
                             withContext(Dispatchers.Main) {  // UI 작업을 메인 스레드에서 실행
                                 if (loginRes.result == "true") {
                                     Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
+
+                                    //userViewModel.setUser()
                                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                                 } else {
                                     Toast.makeText(context, "회원을 찾을 수 없습니다", Toast.LENGTH_LONG).show()

@@ -77,7 +77,7 @@
             app:layout_constraintTop_toTopOf="@+id/menubar" />
 
         <ImageButton
-            android:id="@+id/imageButton11"
+            android:id="@+id/postBtn"
             android:layout_width="85dp"
             android:layout_height="88dp"
             android:src="@drawable/chat"
@@ -89,7 +89,7 @@
             app:layout_constraintVertical_bias="0.90999997" />
 
         <ImageButton
-            android:id="@+id/imageButton16"
+            android:id="@+id/mapBtn"
             android:layout_width="75dp"
             android:layout_height="84dp"
             android:src="@drawable/location"
@@ -101,7 +101,7 @@
             app:layout_constraintVertical_bias="0.545" />
 
         <ImageView
-            android:id="@+id/imageView14"
+            android:id="@+id/myPageBtn"
             android:layout_width="78dp"
             android:layout_height="78dp"
             android:layout_marginStart="300dp"

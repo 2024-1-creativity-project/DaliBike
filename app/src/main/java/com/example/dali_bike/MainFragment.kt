@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.navigation.fragment.findNavController
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
@@ -30,7 +31,7 @@ class MainFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         // val myPageBtn: Button = view.findViewById(R.id.myPageFragment)
-        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPage_btn)
+        val myPageBtn: AppCompatImageView = view.findViewById(R.id.myPageBtn)
         val ridingTimerBtn: AppCompatImageButton = view.findViewById(R.id.ridingTimer_btn)
         val ridingCalBtn: AppCompatImageButton = view.findViewById(R.id.ridingCal_btn)
         val hotPostBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
@@ -56,9 +57,9 @@ class MainFragment : Fragment(), OnMapReadyCallback {
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
-        myPageBtn.setOnClickListener({
+        myPageBtn.setOnClickListener{
             findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
-        })
+        }
 
     }
 

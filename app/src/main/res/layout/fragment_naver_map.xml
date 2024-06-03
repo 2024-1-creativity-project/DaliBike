@@ -794,8 +794,7 @@
             app:layout_constraintTop_toTopOf="@+id/menubar" />
 
         <ImageButton
-            android:id="@+id/postBtn
-"
+            android:id="@+id/postBtn"
             android:layout_width="85dp"
             android:layout_height="88dp"
             android:src="@drawable/chat"

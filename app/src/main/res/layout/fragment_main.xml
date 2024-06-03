@@ -216,7 +216,7 @@
             app:layout_constraintVertical_bias="0.4" />
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/ridingCal_btn"
             android:layout_width="160dp"
             android:layout_height="150dp"
             android:layout_marginEnd="180dp"
@@ -225,13 +225,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.509"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton6"
+            app:layout_constraintTop_toBottomOf="@+id/ridingTimer_btn"
             app:layout_constraintVertical_bias="0.465"
             app:srcCompat="@drawable/mini_map" />
 
 
         <ImageButton
-            android:id="@+id/imageButton6"
+            android:id="@+id/ridingTimer_btn"
             android:layout_width="160dp"
             android:layout_height="155dp"
             android:layout_marginEnd="180dp"
@@ -245,7 +245,7 @@
             app:srcCompat="@drawable/mini_map" />
 
         <ImageButton
-            android:id="@+id/imageButton7"
+            android:id="@+id/hotpost_btn"
             android:layout_width="160dp"
             android:layout_height="323dp"
             android:layout_marginStart="180dp"
@@ -269,11 +269,11 @@
             android:id="@+id/imageView15"
             android:layout_width="148dp"
             android:layout_height="54dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+            app:layout_constraintBottom_toBottomOf="@+id/ridingTimer_btn"
+            app:layout_constraintEnd_toEndOf="@+id/ridingTimer_btn"
             app:layout_constraintHorizontal_bias="0.50"
-            app:layout_constraintStart_toStartOf="@+id/imageButton6"
-            app:layout_constraintTop_toTopOf="@+id/imageButton6"
+            app:layout_constraintStart_toStartOf="@+id/ridingTimer_btn"
+            app:layout_constraintTop_toTopOf="@+id/ridingTimer_btn"
             app:layout_constraintVertical_bias="0.13999999"
             app:srcCompat="@drawable/drive" />
 
@@ -285,22 +285,22 @@
             android:text="주행타이머"
             android:textColor="#BDDA71"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+            app:layout_constraintBottom_toBottomOf="@+id/ridingTimer_btn"
+            app:layout_constraintEnd_toEndOf="@+id/ridingTimer_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/imageButton6"
-            app:layout_constraintTop_toTopOf="@+id/imageButton6"
+            app:layout_constraintStart_toStartOf="@+id/ridingTimer_btn"
+            app:layout_constraintTop_toTopOf="@+id/ridingTimer_btn"
             app:layout_constraintVertical_bias="0.52" />
 
         <ImageView
             android:id="@+id/driveYellobox"
             android:layout_width="140dp"
             android:layout_height="20dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton6"
+            app:layout_constraintBottom_toBottomOf="@+id/ridingTimer_btn"
+            app:layout_constraintEnd_toEndOf="@+id/ridingTimer_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/imageButton6"
-            app:layout_constraintTop_toTopOf="@+id/imageButton6"
+            app:layout_constraintStart_toStartOf="@+id/ridingTimer_btn"
+            app:layout_constraintTop_toTopOf="@+id/ridingTimer_btn"
             app:layout_constraintVertical_bias="0.73"
             app:srcCompat="@drawable/round_squere_yellow" />
 
@@ -321,11 +321,11 @@
             android:id="@+id/ridingCalander"
             android:layout_width="110dp"
             android:layout_height="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton5"
+            app:layout_constraintBottom_toBottomOf="@+id/ridingCal_btn"
+            app:layout_constraintEnd_toEndOf="@+id/ridingCal_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/imageButton5"
-            app:layout_constraintTop_toTopOf="@+id/imageButton5"
+            app:layout_constraintStart_toStartOf="@+id/ridingCal_btn"
+            app:layout_constraintTop_toTopOf="@+id/ridingCal_btn"
             app:layout_constraintVertical_bias="0.120000005"
             app:srcCompat="@drawable/ridingcalender" />
 
@@ -333,11 +333,11 @@
             android:id="@+id/ridingCalanderToday"
             android:layout_width="131dp"
             android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton5"
+            app:layout_constraintBottom_toBottomOf="@+id/ridingCal_btn"
+            app:layout_constraintEnd_toEndOf="@+id/ridingCal_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/imageButton5"
-            app:layout_constraintTop_toTopOf="@+id/imageButton5"
+            app:layout_constraintStart_toStartOf="@+id/ridingCal_btn"
+            app:layout_constraintTop_toTopOf="@+id/ridingCal_btn"
             app:layout_constraintVertical_bias="0.533"
             app:srcCompat="@drawable/date" />
 
@@ -348,11 +348,11 @@
             android:fontFamily="@font/laundrygothicbold"
             android:text="02h 16m 28s"
             android:textColor="#BCD971"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton5"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton5"
+            app:layout_constraintBottom_toBottomOf="@+id/ridingCal_btn"
+            app:layout_constraintEnd_toEndOf="@+id/ridingCal_btn"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/imageButton5"
-            app:layout_constraintTop_toTopOf="@+id/imageButton5"
+            app:layout_constraintStart_toStartOf="@+id/ridingCal_btn"
+            app:layout_constraintTop_toTopOf="@+id/ridingCal_btn"
             app:layout_constraintVertical_bias="0.81" />
 
         <View

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.navigation.fragment.findNavController
 
@@ -22,11 +21,19 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // val myPageBtn: Button = view.findViewById(R.id.myPageFragment)
-        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapImg_btn)
+        val mapBtn: AppCompatImageButton = view.findViewById(R.id.map_btn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPage_btn)
+        val ridingTimerBtn: AppCompatImageButton = view.findViewById(R.id.ridingTimer_btn)
+        val ridingCalBtn: AppCompatImageButton = view.findViewById(R.id.ridingCal_btn)
+        val hotPostBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
 
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
+        myPageBtn.setOnClickListener({
+            findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
+        })
+
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.dali_bike
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,13 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.dali_bike.api.apiService
 import com.example.dali_bike.databinding.FragmentJoinBinding
+import com.example.dali_bike.models.Register
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class JoinFragment : Fragment() {
     private lateinit var _binding: FragmentJoinBinding
@@ -49,26 +56,63 @@ class JoinFragment : Fragment() {
             findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
         }
 
-
         check1.setOnClickListener {
             val nickName = editNickname.text.toString()
-
             if (nickName.isEmpty()) {
                 editNickname.error = "닉네임을 입력하세요"
                 return@setOnClickListener
             }
 
-            //데베에서 닉네임 중복 검사
+            if (nickName.length > 5) {
+                editNickname.error = "네글자 이하의 닉네임을 입력하세요"
+                return@setOnClickListener
+            }
+            Log.d("@@@@nickname", nickName)
 
-            //return값이 true일 경우 nickCheck = true로 바꿔주기
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = apiService.checkNickName(nickName)
 
-            //return값이 false일 경우 error = "새로운 닉네임을 입력하세요"
-            //+ Toast.makeText(context, "중복된 닉네임입니다.", Toast.LENGTH_LONG).show()
+                    Log.d("@@@body", response.toString())
+
+                    if (response.isSuccessful) {
+                        val joinResList = response.body()
+                        if (joinResList != null && joinResList.isNotEmpty()) {
+                            val joinRes = joinResList[0]
+                            Log.d("@@@@response", joinRes.toString())
+                            withContext(Dispatchers.Main) {
+                                if (joinRes.result == "true") {
+                                    Toast.makeText(context, "사용 가능한 닉네임입니다.", Toast.LENGTH_LONG).show()
+                                    editNickname.error = null
+                                    nickCheck = true
+                                } else {
+                                    Toast.makeText(context, "사용할 수 없는 닉네임입니다", Toast.LENGTH_LONG).show()
+                                    editNickname.error = "다른 닉네임을 입력하세요"
+                                }
+                            }
+                        }
+                        else {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(context, "서버 응답이 올바르지 않습니다", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                    else {
+                        withContext(Dispatchers.Main){
+                            Toast.makeText(context, "재접속 후 다시 회원가입 바랍니다", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "중복체크 실패: 네트워크 오류", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
 
         check2.setOnClickListener {
             val id = editID.text.toString()
-
             if (id.isEmpty()) {
                 editID.error = "아이디를 입력하세요"
                 return@setOnClickListener
@@ -83,24 +127,57 @@ class JoinFragment : Fragment() {
                 editID.error = "아이디는 10자 이하여야 합니다"
             }
 
-            //데베에서 아이디 중복 검사
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = apiService.checkId(id)
 
-            //return값이 true일 경우 idCheck = true로 바꿔주기
-
-            //return값이 false일 경우 error = "새로운 아이디를 입력하세요"
-            //+ Toast.makeText(context, "중복된 아이디입니다.", Toast.LENGTH_LONG).show()
+                    if (response.isSuccessful) {
+                        val idResList = response.body()
+                        if (idResList != null && idResList.isNotEmpty()) {
+                            val idRes = idResList[0]
+                            withContext(Dispatchers.Main) {
+                                if (idRes.result == "true") {
+                                    Toast.makeText(context, "사용 가능한 아이디입니다.", Toast.LENGTH_LONG).show()
+                                    editName.error = null
+                                    idCheck = true
+                                } else {
+                                    Toast.makeText(context, "사용할 수 없는 아이디입니다", Toast.LENGTH_LONG).show()
+                                    editID.error = "다른 아이디를 입력하세요"
+                                }
+                            }
+                        }
+                        else {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(context, "서버 응답이 올바르지 않습니다", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                    else {
+                        withContext(Dispatchers.Main){
+                            Toast.makeText(context, "재접속 후 다시 회원가입 바랍니다", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "중복체크 실패: 네트워크 오류", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
 
         okBtn.setOnClickListener {
             val name = editName.text.toString()
+            val nickName = editNickname.text.toString()
+            val id = editID.text.toString()
+            val pw = editPW.text.toString()
+            val pwCheck = checkPW.text.toString()
+            var phone = editPhone.text.toString()
 
             if (name.isEmpty()) {
                 editName.error = "이름을 입력하세요"
                 return@setOnClickListener
             }
-
-            val pw = editPW.text.toString()
-            val pwCheck = checkPW.text.toString()
 
             if (pw.length < 8) {
                 editPW.error = "비밀번호는 최소 8자 이상이어야 합니다"
@@ -117,8 +194,6 @@ class JoinFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            val phone = editPhone.text.toString()
-
             if (phone.isEmpty()) {
                 editPhone.error = "전화번호를 입력하세요"
                 return@setOnClickListener
@@ -129,15 +204,62 @@ class JoinFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            phone = formatPhoneNumber(phone)
+
             if (!checkBox.isChecked) {
                 checkBox.error = "체크되지 않았습니다"
                 Toast.makeText(context, "동의하셔야 본 서비스 이용이 가능합니다.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
-            findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
-        }
+            if (!idCheck) {
+                editID.error = "아이디 중복검사를 해야합니다"
+                return@setOnClickListener
+            }
 
-        //다 되면 @PUT? @SerializedName도 공부해서 어떻게 써야 되는건지 찾아보기
+            if (!nickCheck) {
+                editNickname.error = "닉네임 중복검사를 해야합니다"
+                return@setOnClickListener
+            }
+
+            val register = Register(id = id, pw = pw, phone = phone, name = name, nickname = nickName)
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val response = apiService.register(register)
+
+                    if (response.isSuccessful) {
+                        val regiRes = response.body()
+                        withContext(Dispatchers.Main) {
+                            if (regiRes?.result == "true") {
+                                Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
+                                findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
+                            } else {
+                                Toast.makeText(context, "회원가입 할 수 없습니다", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(context, "서버 응답이 올바르지 않습니다", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } catch(e: Exception) {
+                    e.printStackTrace()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(context, "회원가입 실패: 네트워크 오류", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+    private fun formatPhoneNumber(phoneNumber: String): String {
+        return if (phoneNumber.length == 11) {
+            val firstPart = phoneNumber.substring(0, 3)
+            val secondPart = phoneNumber.substring(3, 7)
+            val thirdPart = phoneNumber.substring(7, 11)
+            "$firstPart-$secondPart-$thirdPart"
+        } else {
+            phoneNumber // 길이가 11이 아니면 원래 번호 반환
+        }
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/startFragment"
@@ -86,14 +86,15 @@
         <action
             android:id="@+id/action_mainFragment_to_myPageFragment"
             app:destination="@id/myPageFragment" />
-        <action
-            android:id="@+id/action_mainFragment_self"
-            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/naverMapFragment"
         android:name="com.example.dali_bike.ui.NaverMapFragment"
-        android:label="NaverMapFragment" />
+        android:label="NaverMapFragment" >
+        <action
+            android:id="@+id/action_naverMapFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <navigation android:id="@+id/navigation"
         app:startDestination="@id/timerFragment">
         <fragment

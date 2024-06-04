@@ -6,10 +6,11 @@ data class User(
     val userId: String,
     val password: String,
     val phoneNumber: String,
-    val name: String,
-    val nickname: String,
-    val points: Int,
-    val subDate: Date
+    var name: String,
+    var nickname: String,
+    var points: Int,
+    val subDate: Date,
+    var dailyTime: Int
 )
 
 data class LoginRequest (
@@ -21,6 +22,11 @@ data class Respon (
     val result: String
 )
 
+data class mainInfo (
+    val nickname: String,
+    val dailyTime: Int
+)
+
 data class Register (
     val id: String,
     val pw: String,
@@ -29,30 +35,6 @@ data class Register (
     val nickname: String
 )
 
-data class Store (
-    val storeId: Int,
-    val storeName: String,
-    val storePhone: String,
-    val localAddress: String,
-    val roadAddress: String,
-    val latitude: Double,
-    val longitude: Double,
-    val dayOff: String,
-    val startTime: String,
-    val endTime: String
-)
-
-data class StorageFacility (
-    val sfId: Int,
-    val latitude: Double,
-    val longitude: Double
-)
-
-data class RemovalRequest (
-    val reportId2: Int,
-    val userId: String,
-    val image: String
-)
 
 data class Report (
     val reportId: Int,
@@ -61,23 +43,6 @@ data class Report (
     val latitude: Double,
     val longitude: Double,
     val image: String
-)
-
-data class RentalStation (
-    val rsId: Int,
-    val rsName: String,
-    val unmanRs: Boolean,
-    val manRs: Boolean,
-    val roadAddress: String,
-    val localAddress: String,
-    val latitude: Double,
-    val longitude: Double,
-    val startTime: String,
-    val endTime: String,
-    val dayOff: String,
-    val isFare: Boolean,
-    val fare: String,
-    val managePhone: String
 )
 
 data class Record (
@@ -94,28 +59,9 @@ data class Post (
     val category: String,
     val userId: String
 )
-
-data class Lodging (
-    val lodgingId: Int,
-    val businessName: String,
-    val locationPhoneNumber: String,
-    val locationAddress: String,
-    val locationPostcode: String,
-    val roadAddress: String,
-    val roadPostcode: String,
-    val latitude: Double,
-    val longitude: Double
-)
-
 data class Comment (
     val commentId: Int,
     val id: Int,
     val postId: Int,
     val comment: String
-)
-
-data class AirInjector (
-    val aiId: Int,
-    val latitude: Double,
-    val longitude: Double
 )

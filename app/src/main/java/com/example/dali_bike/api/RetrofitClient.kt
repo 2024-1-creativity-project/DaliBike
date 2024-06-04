@@ -3,6 +3,7 @@ package com.example.dali_bike.api
 import com.example.dali_bike.models.LoginRequest
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
+import com.example.dali_bike.models.mainInfo
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -33,6 +34,9 @@ interface ApiInterface {
 
     @GET("/post/hot")
     suspend fun hotPost():Response<List<Respon>>
+
+    @POST("/user/main")
+    suspend fun userMainInfo(@Body id: String): Response<List<mainInfo>>
 
 }
 

@@ -14,11 +14,13 @@ import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.databinding.FragmentLoginBinding
 import com.example.dali_bike.models.LoginRequest
+import com.example.dali_bike.models.User
 import com.example.dali_bike.models.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Date
 
 class LoginFragment : Fragment() {
     private lateinit var _binding: FragmentLoginBinding
@@ -80,7 +82,18 @@ class LoginFragment : Fragment() {
                                 if (loginRes.result == "true") {
                                     Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
 
-                                    //userViewModel.setUser()
+                                    val user = User(
+                                        userId = id,
+                                        password = pw,
+                                        phoneNumber = "",
+                                        name = "",
+                                        nickname = "",
+                                        points = 0,
+                                        subDate = Date(),
+                                        dailyTime = 0
+                                    )
+
+                                    userViewModel.setUser(user)
                                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                                 } else {
                                     Toast.makeText(context, "회원을 찾을 수 없습니다", Toast.LENGTH_LONG).show()

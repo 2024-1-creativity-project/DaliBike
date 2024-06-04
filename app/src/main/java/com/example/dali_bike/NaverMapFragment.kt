@@ -7,13 +7,17 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.R
 import com.example.dali_bike.model.Item
 import com.example.dali_bike.repository.Repository
@@ -133,6 +137,12 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         rentalEndTime_detail = view.findViewById(R.id.text_rentalEndTime_detail)
         rentalIsFare_detail = view.findViewById(R.id.text_rentalIsFare_detail)
         rentalFare_detail = view.findViewById(R.id.text_rentalFare_detail)
+
+        val homeBtn: AppCompatImageView = view.findViewById(R.id.homeBtn)
+
+        homeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_naverMapFragment_to_mainFragment)
+        }
 
         // FloatingActionButton 클릭 리스너 설정
         fab.setOnClickListener {

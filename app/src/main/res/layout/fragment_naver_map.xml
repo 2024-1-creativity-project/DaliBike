@@ -735,7 +735,8 @@
             android:id="@+id/imageButton_record_drivestart"
             android:layout_width="94dp"
             android:layout_height="45dp"
-            app:layout_constraintBottom_toBottomOf="@+id/navermap"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/detailbox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="parent"
@@ -745,13 +746,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ConstraintLayout_record_drive"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="406dp"
+            android:layout_height="72dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/detailbox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.98">
 
             <ImageView
                 android:id="@+id/imageView_record_drivetime"

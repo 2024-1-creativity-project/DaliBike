@@ -1,15 +1,19 @@
 package com.example.dali_bike
 
 import android.os.Bundle
+import android.telecom.Call
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -17,19 +21,27 @@ import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.models.UserViewModel
 import com.example.dali_bike.models.mainInfo
+import com.google.gson.JsonElement
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.util.FusedLocationSource
+import kotlinx.coroutines.CompletionHandler
+import org.w3c.dom.Text
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainFragment : Fragment(), OnMapReadyCallback {
+class MainFragment : Fragment(), OnMapReadyCallback  {
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
     private val userViewModel: UserViewModel by activityViewModels()
+    private val viewHotPost: UserViewModel by activityViewModels()
+
+//    fun viewHotPost(searchView: String?, completion: (String) -> Unit) {
+//        val call: Call<JsonElement>? = apiService?.hotPost( )
+//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,10 +50,12 @@ class MainFragment : Fragment(), OnMapReadyCallback {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val riderTxt: TextView = view.findViewById(R.id.rider_txt)
+
 
         userViewModel.user.observe(viewLifecycleOwner, Observer { user ->
             user?.let {
@@ -79,6 +93,10 @@ class MainFragment : Fragment(), OnMapReadyCallback {
         val hotPostBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
         locationSource = FusedLocationSource(requireActivity(), LOCATION_PERMISSION_REQUEST_CODE)
 
+        fun postViewHot(searchView: SearchView, completion: (String) -> Unit) {
+
+        }
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as MapFragment?
             ?: MapFragment.newInstance().also {
                 childFragmentManager.beginTransaction().replace(R.id.mapView, it).commit()
@@ -103,6 +121,32 @@ class MainFragment : Fragment(), OnMapReadyCallback {
             findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
         }
 
+//        --------------------------------------------------
+        setContentView(R.layout.fragment_main);
+
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        apiService.viewHotPost().enqueue(new LinearLayoutManager)
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if (response.isSuccessful()) {
+                    List<Post> posts = response.body();
+                    adapter = new PostAdapter(posts);
+                    recyclerView.setAdapter(adapter);
+                } else {
+                    Toast.makeText(MainActivity.this, "데이터 로드 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "네트워크 오류", Toast.LENGTH_SHORT).show();
+            }
+        });
+//        ----------------------------------------------
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -124,9 +168,5 @@ class MainFragment : Fragment(), OnMapReadyCallback {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
-
-
-
-
 }
 

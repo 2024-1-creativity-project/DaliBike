@@ -37,4 +37,7 @@ interface RetrofitService {
 
     @GET("map/rental/{itemNum}")
     fun getRentalDetail(@Path("itemNum") itemNum: Int): Call<List<rentalDetailItem>>
+
+    @GET("post/hot")
+    fun getHotPost(): Call<List<Item>>
 }

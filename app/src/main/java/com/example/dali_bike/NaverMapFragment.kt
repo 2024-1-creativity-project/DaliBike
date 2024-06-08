@@ -20,6 +20,8 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.R
 import com.example.dali_bike.model.Item
+import com.example.dali_bike.model.RecordUSERId
+import com.example.dali_bike.model.Record
 import com.example.dali_bike.repository.Repository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.naver.maps.geometry.LatLng
@@ -30,6 +32,9 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
+import java.util.Timer
+import kotlin.concurrent.timer
+
 data class MarkerWrapper(val marker: Marker, val itemNum: Int)
 
 class NaverMapFragment : Fragment(), OnMapReadyCallback {
@@ -90,6 +95,22 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     var isChecked6 = true
 
 
+    // 기록
+    lateinit var driveStart_button: ImageButton
+    lateinit var driveEnd_button: ImageButton
+    lateinit var drive_constraintLayout: ConstraintLayout
+
+    lateinit var tv_hour: TextView
+    lateinit var tv_minute: TextView
+    lateinit var tv_second: TextView
+
+
+    lateinit var userId : String
+
+    var isRunning = false
+    var timer : Timer? = null // ❶ timer 변수 추가
+    var time=0 // ❷ time 변수 추가
+
     // 마커 리스트를 MarkerWrapper로 변경
     private val markerList = mutableListOf<MarkerWrapper>()
 
@@ -138,6 +159,16 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         rentalIsFare_detail = view.findViewById(R.id.text_rentalIsFare_detail)
         rentalFare_detail = view.findViewById(R.id.text_rentalFare_detail)
 
+        driveStart_button = view.findViewById(R.id.imageButton_record_drivestart)
+        driveEnd_button = view.findViewById(R.id.imageButton_record_driveend)
+        drive_constraintLayout = view.findViewById(R.id.ConstraintLayout_record_drive)
+
+        //chronometer = view.findViewById(R.id.chronometer)
+        tv_hour = view.findViewById(R.id.tv_hour)
+        tv_minute = view.findViewById(R.id.tv_minute)
+        tv_second = view.findViewById(R.id.tv_second)
+
+
         val homeBtn: AppCompatImageView = view.findViewById(R.id.homeBtn)
 
         homeBtn.setOnClickListener {
@@ -153,8 +184,83 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             }
             isFabOpen = !isFabOpen // 상태를 반전시킴
         }
+
+        driveStart_button.setOnClickListener {
+            driveStart_button.visibility = View.GONE
+            drive_constraintLayout.visibility = View.VISIBLE
+            fetchTodayRecord(RecordUSERId(id = "lwknk"))
+            start()
+        }
+        driveEnd_button.setOnClickListener {
+            pause()
+            fetchRecord(Record(id="lwknk",dailyTime=time))
+            driveStart_button.visibility = View.VISIBLE
+            drive_constraintLayout.visibility = View.GONE
+        }
     }
 
+    private fun fetchTodayRecord(recordUSERId: RecordUSERId) {
+        val repository = Repository()
+        repository.postViewToday({ record ->
+            record?.let {
+                time = it[0].dailyTime
+            }
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchRecord: ${error.message}", Toast.LENGTH_LONG).show()
+        }, recordUSERId)
+    }
+
+
+    private fun fetchRecord(record: Record) {
+        val repository = Repository()
+        repository.postRecord({ recordSave ->
+            recordSave?.let {
+                if(it.result=="true"){
+                    Toast.makeText(requireContext(), "기록 저장 성공", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(requireContext(), "기록 저장 실패", Toast.LENGTH_LONG).show()
+                }
+            }
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchRecord: ${error.message}", Toast.LENGTH_LONG).show()
+        }, record)
+    }
+
+    private fun start() {
+        // ❻ 스톱워치 측정을 시작하는 로직
+        isRunning = true // ❷ 실행 상태 변경
+        // ❸ 스톱워치를 시작하는 로직
+        timer = timer(period = 10) {
+            time++ // ❹ 10밀리초 단위 타이머
+            // ❺ 시간 계산
+            var second = time / 100 % 60
+            var minute = (time / 6000) % 60
+            var hour = time / 360000
+
+            // UI 업데이트를 메인 스레드에서 수행
+            activity?.runOnUiThread {
+                // 시
+                if (hour < 10) tv_hour.text = "0${hour}"
+                else tv_hour.text = "${hour}"
+                // 분
+                if (minute < 10) tv_minute.text = ":0${minute}"
+                else tv_minute.text = ":${minute}"
+                // 초
+                if (second < 10) tv_second.text = ":0${second}"
+                else tv_second.text = ":${second}"
+            }
+        }
+    }
+
+
+    private fun pause() {
+        // ❶ 텍스트 속성 변경
+        isRunning = false // ❷ 멈춤 상태로 전환
+        timer?.cancel() // ❸ 타이머 멈추기
+    }
     private fun showFabMenu() {
         checkBox1.visibility = View.VISIBLE
         checkBox2.visibility = View.VISIBLE

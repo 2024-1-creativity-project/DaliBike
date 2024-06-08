@@ -5,7 +5,9 @@ import com.example.dali_bike.model.lodgingDetailItem
 import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.model.storeDetailItem
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface RetrofitService {
@@ -37,6 +39,13 @@ interface RetrofitService {
 
     @GET("map/rental/{itemNum}")
     fun getRentalDetail(@Path("itemNum") itemNum: Int): Call<List<rentalDetailItem>>
+
+    @POST("record/my/today")
+    fun postViewToday(@Body recordUSERId: RecordUSERId): Call<List<Record>>
+
+    @POST("record/record")
+    fun postRecord(@Body record: Record): Call<RecordResult>
+
 
     @GET("post/hot")
     fun getHotPost(): Call<List<Item>>

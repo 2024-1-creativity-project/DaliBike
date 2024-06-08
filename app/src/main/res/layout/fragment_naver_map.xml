@@ -731,6 +731,95 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.145" />
 
+        <ImageButton
+            android:id="@+id/imageButton_record_drivestart"
+            android:layout_width="94dp"
+            android:layout_height="45dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/detailbox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/navermap"
+            app:layout_constraintVertical_bias="0.98"
+            app:srcCompat="@drawable/icon_xml_record_drivestart" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstraintLayout_record_drive"
+            android:layout_width="406dp"
+            android:layout_height="72dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/detailbox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.98">
+
+            <ImageView
+                android:id="@+id/imageView_record_drivetime"
+                android:layout_width="155dp"
+                android:layout_height="56dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.99"
+                app:srcCompat="@drawable/icon_png_record_drivetime" />
+
+            <ImageButton
+                android:id="@+id/imageButton_record_driveend"
+                android:layout_width="94dp"
+                android:layout_height="45dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.98"
+                app:srcCompat="@drawable/icon_xml_record_driveend" />
+
+            <TextView
+                android:id="@+id/tv_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_record_drivetime"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_record_drivetime"
+                app:layout_constraintHorizontal_bias="0.44"
+                app:layout_constraintStart_toStartOf="@+id/imageView_record_drivetime"
+                app:layout_constraintTop_toTopOf="@+id/imageView_record_drivetime"
+                app:layout_constraintVertical_bias="0.74" />
+
+            <TextView
+                android:id="@+id/tv_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":00"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_record_drivetime"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_record_drivetime"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintStart_toStartOf="@+id/imageView_record_drivetime"
+                app:layout_constraintTop_toTopOf="@+id/imageView_record_drivetime"
+                app:layout_constraintVertical_bias="0.74" />
+
+            <TextView
+                android:id="@+id/tv_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":00"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_record_drivetime"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_record_drivetime"
+                app:layout_constraintHorizontal_bias="0.86"
+                app:layout_constraintStart_toStartOf="@+id/imageView_record_drivetime"
+                app:layout_constraintTop_toTopOf="@+id/imageView_record_drivetime"
+                app:layout_constraintVertical_bias="0.74" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <View
             android:id="@+id/menubar"
             android:layout_width="393dp"

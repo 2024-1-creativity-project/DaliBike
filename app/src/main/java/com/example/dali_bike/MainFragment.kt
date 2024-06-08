@@ -121,32 +121,6 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
             findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
         }
 
-//        --------------------------------------------------
-        setContentView(R.layout.fragment_main);
-
-
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-        apiService.viewHotPost().enqueue(new LinearLayoutManager)
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                if (response.isSuccessful()) {
-                    List<Post> posts = response.body();
-                    adapter = new PostAdapter(posts);
-                    recyclerView.setAdapter(adapter);
-                } else {
-                    Toast.makeText(MainActivity.this, "데이터 로드 실패", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "네트워크 오류", Toast.LENGTH_SHORT).show();
-            }
-        });
-//        ----------------------------------------------
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {

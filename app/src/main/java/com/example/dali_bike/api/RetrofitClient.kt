@@ -1,5 +1,6 @@
 package com.example.dali_bike.api
 
+import com.example.dali_bike.models.ID
 import com.example.dali_bike.models.LoginRequest
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
@@ -11,6 +12,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -19,7 +22,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://172.30.101.87:3000"
+private const val BASE_URL = "http://192.168.0.10:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -37,7 +40,7 @@ interface ApiInterface {
     suspend fun viewHtPost(@Path("hot") hot: Int):Response<List<Respon>>
 
     @POST("/user/main")
-    suspend fun userMainInfo(@Body id: String): Response<List<mainInfo>>
+    suspend fun userMainInfo(@Body id: ID): Response<mainInfo>
 
 }
 

@@ -1,5 +1,6 @@
 package com.example.dali_bike
 
+import UserViewModel
 import android.os.Bundle
 import android.telecom.Call
 import android.util.Log
@@ -11,15 +12,18 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
-import com.example.dali_bike.models.UserViewModel
+import com.example.dali_bike.models.ID
+import com.example.dali_bike.models.User
 import com.example.dali_bike.models.mainInfo
 import com.google.gson.JsonElement
 import com.naver.maps.map.LocationTrackingMode
@@ -28,10 +32,12 @@ import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.util.FusedLocationSource
 import kotlinx.coroutines.CompletionHandler
+import kotlinx.coroutines.CoroutineScope
 import org.w3c.dom.Text
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.http.Body
 
 class MainFragment : Fragment(), OnMapReadyCallback  {
     private lateinit var locationSource: FusedLocationSource
@@ -46,45 +52,37 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        val riderTxt: TextView = view.findViewById(R.id.rider_txt)
+        val dailyTimeTxt: TextView = view.findViewById(R.id.ridingCalanderTime)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val id = ID(userViewModel.user.value?.userId.toString())
+                val response = apiService.userMainInfo(id)
+
+                if (response.isSuccessful) {
+                    val mainRes = response.body()
+
+                    withContext(Dispatchers.Main) {
+                        if (mainRes != null) {
+                            userViewModel.setUserMain(mainRes.nickname, mainRes.dailyTime)
+                            riderTxt.text = mainRes.nickname
+//                            dailyTimeTxt.text = mainRes.dailyTime.toString()
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    return view
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val riderTxt: TextView = view.findViewById(R.id.rider_txt)
-
-
-        userViewModel.user.observe(viewLifecycleOwner, Observer { user ->
-            user?.let {
-                // user 데이터가 null이 아닐 때, API 호출
-                viewLifecycleOwner.lifecycleScope.launch {
-                    try {
-                        val response = apiService.userMainInfo(user.userId)
-
-                        if (response.isSuccessful) {
-                            val mainResList = response.body()
-                            if (mainResList != null && mainResList.isNotEmpty()) {
-                                val mainRes = mainResList[0]
-                                withContext(Dispatchers.Main) {
-                                    user.nickname = mainRes.nickname
-                                    user.dailyTime = mainRes.dailyTime
-                                    riderTxt.text = user.nickname
-                                }
-                            }
-                        }
-                    } catch (e: Exception) {
-                        Log.e("MainFragment", "Network request failed", e)
-                    }
-                }
-            }
-        })
-
-
-
-
 
         // val myPageBtn: Button = view.findViewById(R.id.myPageFragment)
         val myPageBtn: AppCompatImageView = view.findViewById(R.id.myPageBtn)
@@ -104,7 +102,7 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
 
         mapFragment.getMapAsync(this)
 
-        val mapButton: ImageButton = view.findViewById(R.id.mapBtn)
+        val mapButton: AppCompatImageButton = view.findViewById(R.id.mapBtn)
 
         mapButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)

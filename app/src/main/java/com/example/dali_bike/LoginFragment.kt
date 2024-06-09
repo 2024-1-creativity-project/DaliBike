@@ -1,5 +1,6 @@
 package com.example.dali_bike
 
+import UserViewModel
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,13 +10,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.databinding.FragmentLoginBinding
 import com.example.dali_bike.models.LoginRequest
 import com.example.dali_bike.models.User
-import com.example.dali_bike.models.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ import java.util.Date
 
 class LoginFragment : Fragment() {
     private lateinit var _binding: FragmentLoginBinding
-    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,20 +81,8 @@ class LoginFragment : Fragment() {
                             val loginRes = loginResList[0]
                             withContext(Dispatchers.Main) {  // UI 작업을 메인 스레드에서 실행
                                 if (loginRes.result == "true") {
+                                    userViewModel.setUserLogin(id, pw)
                                     Toast.makeText(context, "환영합니다!", Toast.LENGTH_LONG).show()
-
-                                    val user = User(
-                                        userId = id,
-                                        password = pw,
-                                        phoneNumber = "",
-                                        name = "",
-                                        nickname = "",
-                                        points = 0,
-                                        subDate = Date(),
-                                        dailyTime = 0
-                                    )
-
-                                    userViewModel.setUser(user)
                                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                                 } else {
                                     Toast.makeText(context, "회원을 찾을 수 없습니다", Toast.LENGTH_LONG).show()

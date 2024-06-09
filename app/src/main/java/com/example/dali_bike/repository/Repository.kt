@@ -3,6 +3,9 @@ package com.example.dali_bike.repository
 import android.widget.Toast
 import com.example.dali_bike.model.Item
 import com.example.dali_bike.RetrofitClient
+import com.example.dali_bike.model.RecordResult
+import com.example.dali_bike.model.Record
+import com.example.dali_bike.model.RecordUSERId
 import com.example.dali_bike.model.lodgingDetailItem
 import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.model.storeDetailItem
@@ -95,5 +98,39 @@ class Repository {
         })
     }
 
+    fun postViewToday(onResult: (List<Record>?) -> Unit, onError: (Throwable) -> Unit, recordUSERId: RecordUSERId) {
+        val call =RetrofitClient.apiService.postViewToday(recordUSERId)
+        call.enqueue(object : Callback<List<Record>> {
+            override fun onResponse(call: Call<List<Record>>, response: Response<List<Record>>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<List<Record>>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+
+    fun postRecord(onResult: (RecordResult?) -> Unit, onError: (Throwable) -> Unit, record: Record) {
+        val call =RetrofitClient.apiService.postRecord(record)
+        call.enqueue(object : Callback<RecordResult> {
+            override fun onResponse(call: Call<RecordResult>, response: Response<RecordResult>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<RecordResult>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
 
 }

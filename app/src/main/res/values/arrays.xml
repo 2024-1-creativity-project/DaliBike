@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="post_category">
+        <item>자유게시판</item>
+        <item>공유게시판</item>
+        <item>만남의광장</item>
+    </string-array>
+
+
+</resources>

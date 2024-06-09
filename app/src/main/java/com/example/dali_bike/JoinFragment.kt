@@ -35,7 +35,7 @@ class JoinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val editName: EditText = view.findViewById(R.id.name_txt)
+        val editName: EditText = view.findViewById(R.id.titleInput)
         val editNickname: EditText = view.findViewById(R.id.edit_nickName)
         val editID: EditText = view.findViewById(R.id.ID_edit)
         val editPW: EditText = view.findViewById(R.id.password_edit)

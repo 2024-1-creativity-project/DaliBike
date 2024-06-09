@@ -1,6 +1,9 @@
 package com.example.dali_bike
 
 import com.example.dali_bike.model.Item
+import com.example.dali_bike.model.Record
+import com.example.dali_bike.model.RecordResult
+import com.example.dali_bike.model.RecordUSERId
 import com.example.dali_bike.model.lodgingDetailItem
 import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.model.storeDetailItem

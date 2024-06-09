@@ -14,6 +14,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -32,8 +33,8 @@ interface ApiInterface {
     @POST("/user/register")
     suspend fun register(@Body register: Register): Response<Respon>
 
-    @GET("/post/hot")
-    suspend fun hotPost():Response<List<Respon>>
+    @GET("/post/hot/{hot}")
+    suspend fun viewHtPost(@Path("hot") hot: Int):Response<List<Respon>>
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: String): Response<List<mainInfo>>

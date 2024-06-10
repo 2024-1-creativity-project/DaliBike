@@ -14,12 +14,12 @@ public class SearchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_writepost);
 
-        // Spinner
-        Spinner yearSpinner = (Spinner)findViewById(R.id.spinner_postCategory);
-        ArrayAdapter yearAdapter = ArrayAdapter.createFromResource(this,
-                R.array.post_category, android.R.layout.simple_spinner_item);
-        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        yearSpinner.setAdapter(yearAdapter);
+//        // Spinner
+//        Spinner yearSpinner = (Spinner)findViewById(R.id.spinner_postCategory);
+//        ArrayAdapter yearAdapter = ArrayAdapter.createFromResource(this,
+//                R.array.post_category, android.R.layout.simple_spinner_item);
+//        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        yearSpinner.setAdapter(yearAdapter);
 
     }
 }

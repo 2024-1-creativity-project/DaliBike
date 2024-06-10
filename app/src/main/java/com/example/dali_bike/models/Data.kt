@@ -3,14 +3,19 @@ package com.example.dali_bike.models
 import java.util.Date
 
 data class User(
-    val userId: String,
-    val password: String,
-    val phoneNumber: String,
+    var userId: String,
+    var password: String,
+    var phoneNumber: String,
     var name: String,
     var nickname: String,
     var points: Int,
-    val subDate: Date,
-    var dailyTime: Int
+    var subDate: Date,
+    var dailyTime: Int,
+    var totalTime: Int
+)
+
+data class ID(
+    val id: String
 )
 
 data class LoginRequest (
@@ -24,7 +29,8 @@ data class Respon (
 
 data class mainInfo (
     val nickname: String,
-    val dailyTime: Int
+    val dailyTime: Int,
+    val totalTime: Int
 )
 
 data class Register (
@@ -59,6 +65,7 @@ data class Post (
     val category: String,
     val userId: String
 )
+
 data class Comment (
     val commentId: Int,
     val id: Int,

@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -169,7 +170,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         tv_second = view.findViewById(R.id.tv_second)
 
 
-        val homeBtn: AppCompatImageView = view.findViewById(R.id.homeBtn)
+        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
 
         homeBtn.setOnClickListener {
             findNavController().navigate(R.id.action_naverMapFragment_to_mainFragment)

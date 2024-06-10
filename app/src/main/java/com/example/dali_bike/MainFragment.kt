@@ -1,34 +1,25 @@
 package com.example.dali_bike
 
+import UserViewModel
 import android.os.Bundle
-import android.telecom.Call
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
-import com.example.dali_bike.models.UserViewModel
-import com.example.dali_bike.models.mainInfo
-import com.google.gson.JsonElement
+import com.example.dali_bike.models.ID
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.util.FusedLocationSource
-import kotlinx.coroutines.CompletionHandler
-import org.w3c.dom.Text
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -46,48 +37,58 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        val riderTxt: TextView = view.findViewById(R.id.rider_txt)
+        val dailyTimeTxt: TextView = view.findViewById(R.id.ridingCalanderTime)
+        val totalTimeTxt: TextView = view.findViewById(R.id.totalTime_txt)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val id = ID(userViewModel.user.value?.userId.toString())
+                val response = apiService.userMainInfo(id)
+
+                if (response.isSuccessful) {
+                    val mainRes = response.body()
+
+                    withContext(Dispatchers.Main) {
+                        if (mainRes != null) {
+                            userViewModel.setUserMain(mainRes.nickname, mainRes.dailyTime, mainRes.totalTime)
+
+                            //닉네임 보여주기
+                            riderTxt.text = mainRes.nickname
+
+                            //dailyTime 보여주기
+                            var dailyTime = mainRes.dailyTime
+                            val dailyH = dailyTime / 3600
+                            dailyTime -= dailyH * 3600
+                            val dailyM = dailyTime / 60
+                            dailyTime -= dailyM * 60
+                            val dailyS = dailyTime
+                            //dailyTimeTxt.text = mainRes.dailyTime.toString() 약간 00h 00m 00s 형식으로 정해놓을 수 있게 해서 toString() 쓰면 될 듯
+
+                            //totalTime 보여주기
+                            var totalTime = mainRes.totalTime
+                            val totalH = totalTime / 3600
+                            totalTime -= totalH * 3600
+                            val totalM = totalTime / 60
+                            totalTime -= totalM * 50
+                            val totalS = totalTime
+                            //totalTimeTxt.text = mainRes.totalTime.toString() 얘도 00h 00m 00s (이제 h가 두글자 이하면 0x 이렇게 뜨고 그 이상이면 그냥 xxxh 이런 식으로 뜨게 하면 될 듯
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    return view
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val riderTxt: TextView = view.findViewById(R.id.rider_txt)
-
-
-        userViewModel.user.observe(viewLifecycleOwner, Observer { user ->
-            user?.let {
-                // user 데이터가 null이 아닐 때, API 호출
-                viewLifecycleOwner.lifecycleScope.launch {
-                    try {
-                        val response = apiService.userMainInfo(user.userId)
-
-                        if (response.isSuccessful) {
-                            val mainResList = response.body()
-                            if (mainResList != null && mainResList.isNotEmpty()) {
-                                val mainRes = mainResList[0]
-                                withContext(Dispatchers.Main) {
-                                    user.nickname = mainRes.nickname
-                                    user.dailyTime = mainRes.dailyTime
-                                    riderTxt.text = user.nickname
-                                }
-                            }
-                        }
-                    } catch (e: Exception) {
-                        Log.e("MainFragment", "Network request failed", e)
-                    }
-                }
-            }
-        })
-
-
-
-
-
-        // val myPageBtn: Button = view.findViewById(R.id.myPageFragment)
-        val myPageBtn: AppCompatImageView = view.findViewById(R.id.myPageBtn)
         val ridingTimerBtn: AppCompatImageButton = view.findViewById(R.id.ridingTimer_btn)
         val ridingCalBtn: AppCompatImageButton = view.findViewById(R.id.ridingCal_btn)
         val hotPostBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
@@ -104,7 +105,7 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
 
         mapFragment.getMapAsync(this)
 
-        val mapButton: ImageButton = view.findViewById(R.id.mapBtn)
+        val mapButton: AppCompatImageButton = view.findViewById(R.id.mapBtn)
 
         mapButton.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
@@ -117,8 +118,16 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
+
+        val myPageBtn: AppCompatImageView = view.findViewById(R.id.imgView)
+        //이거 ImageView니까 Button으로 고치기
         myPageBtn.setOnClickListener{
             findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
+        }
+
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_postFragment)
         }
 
     }

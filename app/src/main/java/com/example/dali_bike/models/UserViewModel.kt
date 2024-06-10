@@ -17,7 +17,8 @@ class UserViewModel : ViewModel() {
             nickname = "",
             points = 0,
             subDate = Date(),
-            dailyTime = 0
+            dailyTime = 0,
+            totalTime = 0
         )
     }
 
@@ -26,8 +27,9 @@ class UserViewModel : ViewModel() {
         _user.value?.password = pw
     }
 
-    fun setUserMain(nickname: String, dailyTime: Int) {
+    fun setUserMain(nickname: String, dailyTime: Int, totalTime: Int) {
         _user.value?.nickname = nickname
         _user.value?.dailyTime = dailyTime
+        _user.value?.totalTime = totalTime
     }
 }

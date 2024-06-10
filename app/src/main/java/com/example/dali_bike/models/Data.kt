@@ -10,7 +10,8 @@ data class User(
     var nickname: String,
     var points: Int,
     var subDate: Date,
-    var dailyTime: Int
+    var dailyTime: Int,
+    var totalTime: Int
 )
 
 data class ID(
@@ -28,7 +29,8 @@ data class Respon (
 
 data class mainInfo (
     val nickname: String,
-    val dailyTime: Int
+    val dailyTime: Int,
+    val totalTime: Int
 )
 
 data class Register (
@@ -63,6 +65,7 @@ data class Post (
     val category: String,
     val userId: String
 )
+
 data class Comment (
     val commentId: Int,
     val id: Int,

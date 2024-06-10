@@ -90,29 +90,38 @@
 
         <ImageButton
             android:id="@+id/mapBtn"
-            android:layout_width="75dp"
-            android:layout_height="84dp"
+            android:layout_width="74.5dp"
+            android:layout_height="83.5dp"
             android:src="@drawable/location"
             app:layout_constraintBottom_toBottomOf="@+id/menubar"
             app:layout_constraintEnd_toEndOf="@+id/menubar"
-            app:layout_constraintHorizontal_bias="0.65"
+            app:layout_constraintHorizontal_bias="0.641"
             app:layout_constraintStart_toStartOf="@+id/menubar"
             app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.545" />
+            app:layout_constraintVertical_bias="0.363" />
 
         <ImageView
-            android:id="@+id/myPageBtn"
-            android:layout_width="78dp"
-            android:layout_height="78dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="7dp"
+            android:id="@+id/imgView"
+            android:layout_width="179dp"
+            android:layout_height="175dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.189"
             app:srcCompat="@drawable/user" />
+
+        <ImageButton
+            android:id="@+id/myPageBtn"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.98"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.444"
+            app:srcCompat="@drawable/user1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

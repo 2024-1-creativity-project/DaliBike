@@ -2,42 +2,27 @@ package com.example.dali_bike
 
 import UserViewModel
 import android.os.Bundle
-import android.telecom.Call
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.SearchView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.models.ID
-import com.example.dali_bike.models.User
-import com.example.dali_bike.models.mainInfo
-import com.google.gson.JsonElement
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.util.FusedLocationSource
-import kotlinx.coroutines.CompletionHandler
 import kotlinx.coroutines.CoroutineScope
-import org.w3c.dom.Text
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.http.Body
 
 class MainFragment : Fragment(), OnMapReadyCallback  {
     private lateinit var locationSource: FusedLocationSource
@@ -56,6 +41,7 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
 
         val riderTxt: TextView = view.findViewById(R.id.rider_txt)
         val dailyTimeTxt: TextView = view.findViewById(R.id.ridingCalanderTime)
+        val totalTimeTxt: TextView = view.findViewById(R.id.totalTime_txt)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -67,9 +53,28 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
 
                     withContext(Dispatchers.Main) {
                         if (mainRes != null) {
-                            userViewModel.setUserMain(mainRes.nickname, mainRes.dailyTime)
+                            userViewModel.setUserMain(mainRes.nickname, mainRes.dailyTime, mainRes.totalTime)
+
+                            //닉네임 보여주기
                             riderTxt.text = mainRes.nickname
-//                            dailyTimeTxt.text = mainRes.dailyTime.toString()
+
+                            //dailyTime 보여주기
+                            var dailyTime = mainRes.dailyTime
+                            val dailyH = dailyTime / 3600
+                            dailyTime -= dailyH * 3600
+                            val dailyM = dailyTime / 60
+                            dailyTime -= dailyM * 60
+                            val dailyS = dailyTime
+                            //dailyTimeTxt.text = mainRes.dailyTime.toString() 약간 00h 00m 00s 형식으로 정해놓을 수 있게 해서 toString() 쓰면 될 듯
+
+                            //totalTime 보여주기
+                            var totalTime = mainRes.totalTime
+                            val totalH = totalTime / 3600
+                            totalTime -= totalH * 3600
+                            val totalM = totalTime / 60
+                            totalTime -= totalM * 50
+                            val totalS = totalTime
+                            //totalTimeTxt.text = mainRes.totalTime.toString() 얘도 00h 00m 00s (이제 h가 두글자 이하면 0x 이렇게 뜨고 그 이상이면 그냥 xxxh 이런 식으로 뜨게 하면 될 듯
                         }
                     }
                 }
@@ -84,8 +89,6 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // val myPageBtn: Button = view.findViewById(R.id.myPageFragment)
-        val myPageBtn: AppCompatImageView = view.findViewById(R.id.myPageBtn)
         val ridingTimerBtn: AppCompatImageButton = view.findViewById(R.id.ridingTimer_btn)
         val ridingCalBtn: AppCompatImageButton = view.findViewById(R.id.ridingCal_btn)
         val hotPostBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
@@ -115,8 +118,16 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
+
+        val myPageBtn: AppCompatImageView = view.findViewById(R.id.imgView)
+        //이거 ImageView니까 Button으로 고치기
         myPageBtn.setOnClickListener{
             findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
+        }
+
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_postFragment)
         }
 
     }

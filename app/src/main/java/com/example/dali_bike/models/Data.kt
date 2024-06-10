@@ -72,3 +72,10 @@ data class Comment (
     val postId: Int,
     val comment: String
 )
+
+data class WritePost(
+    val category: String,
+    val title: String,
+    val content: String,
+    val userId: String
+)

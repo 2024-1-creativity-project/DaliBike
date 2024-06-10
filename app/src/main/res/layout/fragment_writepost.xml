@@ -252,7 +252,7 @@
             app:layout_constraintVertical_bias="0.110000014" />
 
         <EditText
-            android:id="@+id/contents_input"
+            android:id="@+id/contentsInput"
             android:layout_width="330dp"
             android:layout_height="430dp"
             android:background="@null"

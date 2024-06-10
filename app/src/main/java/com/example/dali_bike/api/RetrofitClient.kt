@@ -4,6 +4,7 @@ import com.example.dali_bike.models.ID
 import com.example.dali_bike.models.LoginRequest
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
+import com.example.dali_bike.models.WritePost
 import com.example.dali_bike.models.mainInfo
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -41,6 +42,9 @@ interface ApiInterface {
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: ID): Response<mainInfo>
+
+    @POST("/post/write")
+    suspend fun writePost(@Body writePost: WritePost): Response<Respon>
 
 }
 

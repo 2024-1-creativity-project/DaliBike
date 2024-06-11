@@ -1,7 +1,5 @@
 package com.example.dali_bike.models
 
-import java.util.Date
-
 data class User(
     var userId: String,
     var password: String,
@@ -9,7 +7,7 @@ data class User(
     var name: String,
     var nickname: String,
     var points: Int,
-    var subDate: Date,
+    var subDate: String,
     var dailyTime: Int,
     var totalTime: Int
 )
@@ -41,36 +39,12 @@ data class Register (
     val nickname: String
 )
 
-
-data class Report (
-    val reportId: Int,
-    val userId: String,
-    val type: Boolean,
-    val latitude: Double,
-    val longitude: Double,
-    val image: String
-)
-
-data class Record (
-    val userId: String,
-    val date: Date,
-    val dailyTime: Int
-)
-
-data class Post (
-    val postId: Int,
-    val title: String,
-    val content: String,
-    val like: Int,
-    val category: String,
-    val userId: String
-)
-
-data class Comment (
-    val commentId: Int,
-    val id: Int,
-    val postId: Int,
-    val comment: String
+data class myInfo (
+    val USERId: String,
+    val Name: String,
+    val Nickname: String,
+    val Points: Int,
+    val subDate: String
 )
 
 data class WritePost(

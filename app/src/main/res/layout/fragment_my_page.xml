@@ -102,13 +102,13 @@
 
         <ImageView
             android:id="@+id/imgView"
-            android:layout_width="179dp"
-            android:layout_height="175dp"
+            android:layout_width="169dp"
+            android:layout_height="151dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.189"
+            app:layout_constraintVertical_bias="0.174"
             app:srcCompat="@drawable/user" />
 
         <ImageButton
@@ -122,6 +122,176 @@
             app:layout_constraintTop_toTopOf="@+id/menubar"
             app:layout_constraintVertical_bias="0.444"
             app:srcCompat="@drawable/user1" />
+
+        <View
+            android:id="@+id/view11"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_sqaure1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgView"
+            app:layout_constraintVertical_bias="0.01" />
+
+        <TextView
+            android:id="@+id/nickTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="마동석"
+            android:textColor="@color/green"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view11" />
+
+        <Button
+            android:id="@+id/nickChangeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:fontFamily="@font/laundrygothic"
+            android:text="닉네임 변경"
+            android:textColor="@color/beige"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view11"
+            app:layout_constraintVertical_bias="0.025" />
+
+        <View
+            android:id="@+id/view30"
+            android:layout_width="342dp"
+            android:layout_height="135dp"
+            android:background="@drawable/view_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nickChangeBtn"
+            app:layout_constraintVertical_bias="0.077" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="@string/id"
+            android:textColor="@color/yellow"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view30"
+            app:layout_constraintEnd_toEndOf="@+id/view30"
+            app:layout_constraintHorizontal_bias="0.129"
+            app:layout_constraintStart_toStartOf="@+id/view30"
+            app:layout_constraintTop_toTopOf="@+id/view30"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="포인트"
+            android:textColor="@color/yellow"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view30"
+            app:layout_constraintEnd_toEndOf="@+id/view30"
+            app:layout_constraintHorizontal_bias="0.126"
+            app:layout_constraintStart_toStartOf="@+id/view30"
+            app:layout_constraintTop_toTopOf="@+id/view30"
+            app:layout_constraintVertical_bias="0.752" />
+
+        <TextView
+            android:id="@+id/idTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="아이디가나옴"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view30"
+            app:layout_constraintEnd_toEndOf="@+id/view30"
+            app:layout_constraintHorizontal_bias="0.262"
+            app:layout_constraintStart_toEndOf="@+id/textView28"
+            app:layout_constraintTop_toTopOf="@+id/view30"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/pointTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="포인트 얼마 ㅎㅎ"
+            android:textColor="@color/green"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view30"
+            app:layout_constraintEnd_toEndOf="@+id/view30"
+            app:layout_constraintHorizontal_bias="0.308"
+            app:layout_constraintStart_toEndOf="@+id/textView31"
+            app:layout_constraintTop_toTopOf="@+id/view30"
+            app:layout_constraintVertical_bias="0.75" />
+
+        <TextView
+            android:id="@+id/regDateTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="가입날짜나옴"
+            android:textColor="@color/green"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view31"
+            app:layout_constraintVertical_bias="0.43" />
+
+        <View
+            android:id="@+id/view31"
+            android:layout_width="342dp"
+            android:layout_height="170dp"
+            android:background="@drawable/view_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view30"
+            app:layout_constraintVertical_bias="0.25" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="내가 쓴 게시글"
+            android:textColor="@color/red"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view31"
+            app:layout_constraintEnd_toEndOf="@+id/view31"
+            app:layout_constraintHorizontal_bias="0.059"
+            app:layout_constraintStart_toStartOf="@+id/view31"
+            app:layout_constraintTop_toTopOf="@+id/view31"
+            app:layout_constraintVertical_bias="0.106" />
+
+        <Button
+            android:id="@+id/moreBtn"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/paleGreen"
+            android:fontFamily="@font/laundrygothic"
+            android:text="더보기 >"
+            android:textColor="@color/khaki"
+            app:layout_constraintBottom_toBottomOf="@+id/view31"
+            app:layout_constraintEnd_toEndOf="@+id/view31"
+            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="@+id/view31"
+            app:layout_constraintVertical_bias="0.07" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -17,7 +17,7 @@ class UserViewModel : ViewModel() {
             name = "",
             nickname = "",
             points = 0,
-            subDate = Date(),
+            subDate = "",
             dailyTime = 0,
             totalTime = 0
         )
@@ -35,4 +35,9 @@ class UserViewModel : ViewModel() {
     }
 
 
+    fun setUserMyPage(name: String, point: Int, subDate: String) {
+        _user.value?.name = name
+        _user.value?.points = point
+        _user.value?.subDate = subDate
+    }
 }

@@ -74,7 +74,6 @@ class LoginFragment : Fragment() {
                 try {
                     val response = apiService.loginUser(loginRequest)
 
-
                     if (response.isSuccessful) {
                         val loginResList = response.body()
                         if (loginResList != null && loginResList.isNotEmpty()) {

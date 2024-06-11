@@ -26,7 +26,7 @@ data class Respon (
 )
 
 data class mainInfo (
-    val nickname: String,
+    val Nickname: String,
     val dailyTime: Int,
     val totalTime: Int
 )

@@ -44,7 +44,7 @@ interface ApiInterface {
     suspend fun getHotPost(): Response<List<mainHotPost>>
 
     @POST("/user/main")
-    suspend fun userMainInfo(@Body id: ID): Response<mainInfo>
+    suspend fun userMainInfo(@Body id: ID): Response<List<mainInfo>>
 
     @POST("/post/write")
     suspend fun writePost(@Body writePost: WritePost): Response<Respon>

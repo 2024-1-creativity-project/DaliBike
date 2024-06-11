@@ -2,6 +2,7 @@ package com.example.dali_bike
 
 import UserViewModel
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,14 +62,15 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
                 val response = apiService.userMainInfo(id)
 
                 if (response.isSuccessful) {
-                    val mainRes = response.body()
+                    val mainResList = response.body()
 
                     withContext(Dispatchers.Main) {
-                        if (mainRes != null) {
-                            userViewModel.setUserMain(mainRes.nickname, mainRes.dailyTime, mainRes.totalTime)
+                        if (mainResList != null) {
+                            val mainRes = mainResList[0]
+                            userViewModel.setUserMain(mainRes.Nickname, mainRes.dailyTime, mainRes.totalTime)
 
                             //닉네임 보여주기
-                            riderTxt.text = mainRes.nickname
+                            riderTxt.text = mainRes.Nickname
 
                             //dailyTime 보여주기
                             var dailyTime = mainRes.dailyTime
@@ -104,9 +106,16 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
 
                 if (response.isSuccessful) {
                     val hotResList = response.body()
-
-                    if (hotResList != null && hotResList.isNotEmpty()) {
-                        hotPost1.text = hotResList[0].Title
+                    Log.d("가져오는 값", hotResList.toString())
+                    withContext(Dispatchers.Main) {
+                        if (hotResList != null && hotResList.isNotEmpty()) {
+                            hotPost1.text = hotResList[0].Title
+                            hotPost2.text = hotResList[1].Title
+                            hotPost3.text = hotResList[2].Title
+                            hotPost4.text = hotResList[3].Title
+                            hotPost5.text = hotResList[4].Title
+                            hotPost6.text = hotResList[5].Title
+                        }
                     }
                 }
             } catch (e: Exception) {

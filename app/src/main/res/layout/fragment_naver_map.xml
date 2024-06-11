@@ -477,13 +477,23 @@
                     android:id="@+id/report_img_detail"
                     android:layout_width="match_parent"
                     android:layout_height="127dp"
+                    android:layout_marginBottom="5dp"
                     app:srcCompat="@drawable/icon_xml_danger_report_camera_button" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/laundrygothicbold"
+                    android:gravity="center"
+                    android:text="위험요소가 없어졌나요?"
+                    android:textAlignment="center"
+                    android:textColor="@color/red" />
 
                 <ImageButton
                     android:id="@+id/report_cancel_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:background="#00ff0000"
                     app:srcCompat="@drawable/icon_xml_danger_report_cancel_button" />
 

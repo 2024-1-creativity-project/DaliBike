@@ -32,7 +32,7 @@
             app:layout_constraintHorizontal_bias="0.025"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/navermap"
-            app:layout_constraintVertical_bias="0.23"
+            app:layout_constraintVertical_bias="0.100000024"
             app:srcCompat="@drawable/icon_xml_danger_report_button" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -477,23 +477,13 @@
                     android:id="@+id/report_img_detail"
                     android:layout_width="match_parent"
                     android:layout_height="127dp"
-                    android:layout_marginBottom="5dp"
                     app:srcCompat="@drawable/icon_xml_danger_report_camera_button" />
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fontFamily="@font/laundrygothicbold"
-                    android:gravity="center"
-                    android:text="위험요소가 없어졌나요?"
-                    android:textAlignment="center"
-                    android:textColor="@color/red" />
 
                 <ImageButton
                     android:id="@+id/report_cancel_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:background="#00ff0000"
                     app:srcCompat="@drawable/icon_xml_danger_report_cancel_button" />
 
@@ -835,7 +825,7 @@
             app:layout_constraintHorizontal_bias="0.89"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="@+id/navermap"
-            app:layout_constraintVertical_bias="0.14"
+            app:layout_constraintVertical_bias="0.015"
             app:srcCompat="@drawable/icon_png_checkboxtool" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -849,15 +839,15 @@
             android:src="@drawable/icon_xml_menubutton"
             app:borderWidth="0dp"
             app:elevation="0dp"
-            app:fabCustomSize="40dp"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/navermap"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="@+id/navermap"
-            app:layout_constraintVertical_bias="0.128"
+            app:layout_constraintVertical_bias="0.0"
             app:maxImageSize="40dp"
+            app:fabCustomSize="40dp"
             app:tint="@null" />
 
         <CheckBox
@@ -873,7 +863,7 @@
             app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="@+id/navermap"
-            app:layout_constraintVertical_bias="0.145" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_store"
@@ -889,7 +879,7 @@
             app:layout_constraintHorizontal_bias="0.37"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.145" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_airinjector"
@@ -905,7 +895,7 @@
             app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.145" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_lodging"
@@ -921,7 +911,7 @@
             app:layout_constraintHorizontal_bias="0.67"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.145" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_rental"
@@ -937,7 +927,7 @@
             app:layout_constraintHorizontal_bias="0.82"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.145" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <CheckBox
             android:id="@+id/checkBox_storagefacility"
@@ -953,13 +943,12 @@
             app:layout_constraintHorizontal_bias="0.97"
             app:layout_constraintStart_toStartOf="@+id/navermap"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.145" />
+            app:layout_constraintVertical_bias="0.025" />
 
         <ImageButton
             android:id="@+id/imageButton_record_drivestart"
             android:layout_width="94dp"
             android:layout_height="45dp"
-            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/detailbox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.95"
@@ -997,7 +986,7 @@
                 android:layout_height="45dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintHorizontal_bias="0.93"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.98"
@@ -1043,106 +1032,6 @@
                 app:layout_constraintVertical_bias="0.74" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:id="@+id/menubar"
-            android:layout_width="393dp"
-            android:layout_height="95dp"
-            android:background="@color/ivory"
-            app:layout_constraintBottom_toBottomOf="@+id/navermap"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <View
-            android:id="@+id/menuStick1"
-            android:layout_width="70dp"
-            android:layout_height="10dp"
-            android:background="@drawable/dotted_line"
-            android:rotation="90"
-            app:layout_constraintBottom_toBottomOf="@+id/menubar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.190"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <View
-            android:id="@+id/menuStick2"
-            android:layout_width="70dp"
-            android:layout_height="10dp"
-            android:background="@drawable/dotted_line"
-            android:rotation="90"
-            app:layout_constraintBottom_toBottomOf="@+id/menubar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.50"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.50" />
-
-        <View
-            android:id="@+id/menuStick3"
-            android:layout_width="70dp"
-            android:layout_height="10dp"
-            android:background="@drawable/dotted_line"
-            android:rotation="90"
-            app:layout_constraintBottom_toBottomOf="@+id/menubar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.800"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.50" />
-
-        <ImageButton
-            android:id="@+id/homeBtn"
-            android:layout_width="81dp"
-            android:layout_height="86dp"
-            android:src="@drawable/home"
-            app:layout_constraintBottom_toBottomOf="@+id/menubar"
-            app:layout_constraintEnd_toEndOf="@+id/menubar"
-            app:layout_constraintHorizontal_bias="0.025"
-            app:layout_constraintStart_toStartOf="@+id/menubar"
-            app:layout_constraintTop_toTopOf="@+id/menubar" />
-
-        <ImageButton
-            android:id="@+id/postBtn"
-            android:layout_width="85dp"
-            android:layout_height="88dp"
-            android:src="@drawable/chat"
-            app:layout_constraintBottom_toBottomOf="@+id/menubar"
-            app:layout_constraintEnd_toEndOf="@+id/menubar"
-            app:layout_constraintHorizontal_bias="0.340"
-            app:layout_constraintStart_toStartOf="@+id/menubar"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.90999997" />
-
-        <ImageButton
-            android:id="@+id/mapBtn"
-            android:layout_width="75dp"
-            android:layout_height="84dp"
-            android:src="@drawable/location"
-            app:layout_constraintBottom_toBottomOf="@+id/menubar"
-            app:layout_constraintEnd_toEndOf="@+id/menubar"
-            app:layout_constraintHorizontal_bias="0.65"
-            app:layout_constraintStart_toStartOf="@+id/menubar"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.545" />
-
-        <ImageView
-            android:id="@+id/imgView"
-            android:layout_width="78dp"
-            android:layout_height="78dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="7dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/user" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

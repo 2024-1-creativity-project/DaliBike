@@ -1,11 +1,21 @@
 package com.example.dali_bike.ui
 
+import android.Manifest
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -13,16 +23,18 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.findViewTreeLifecycleOwner
-import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.R
 import com.example.dali_bike.model.Item
-import com.example.dali_bike.model.RecordUSERId
 import com.example.dali_bike.model.Record
+import com.example.dali_bike.model.RecordUSERId
+import com.example.dali_bike.model.Report
+import com.example.dali_bike.model.ReportCancel
 import com.example.dali_bike.repository.Repository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.naver.maps.geometry.LatLng
@@ -33,12 +45,29 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
-import java.util.Timer
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.util.*
 import kotlin.concurrent.timer
+import android.graphics.BitmapFactory
+import okhttp3.ResponseBody
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
+import kotlin.concurrent.thread
 
 data class MarkerWrapper(val marker: Marker, val itemNum: Int)
 
 class NaverMapFragment : Fragment(), OnMapReadyCallback {
+
+    lateinit var scroll: ScrollView
 
     // 지도 객체 변수
     private lateinit var mapView: MapView
@@ -55,7 +84,14 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var checkBox6: CheckBox
     lateinit var checkboxtool: ImageView
 
+    // 상세 정보
     lateinit var detailbox: ConstraintLayout
+
+    lateinit var report_detail:LinearLayout
+    lateinit var report_type_detail0: ImageView
+    lateinit var report_type_detail1: ImageView
+    lateinit var report_img_detail: ImageView
+    lateinit var report_cancel_button: ImageButton
 
     lateinit var lodging_detail:LinearLayout
     lateinit var lodgingName_detail: TextView
@@ -74,7 +110,6 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var storeStartTime_detail: TextView
     lateinit var storeEndTime_detail: TextView
 
-    lateinit var rental_detail_scroll: ScrollView
     lateinit var rental_detail:LinearLayout
     lateinit var rentalName_detail: TextView
     lateinit var rentalType_detail: TextView
@@ -87,14 +122,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var rentalIsFare_detail: TextView
     lateinit var rentalFare_detail: TextView
 
-    var isFabOpen = false
-    var isChecked1 = true
-    var isChecked2 = true
-    var isChecked3 = true
-    var isChecked4 = true
-    var isChecked5 = true
-    var isChecked6 = true
-
+    lateinit var userId : String
 
     // 기록
     lateinit var driveStart_button: ImageButton
@@ -105,12 +133,43 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var tv_minute: TextView
     lateinit var tv_second: TextView
 
-
-    lateinit var userId : String
-
     var isRunning = false
     var timer : Timer? = null // ❶ timer 변수 추가
     var time=0 // ❷ time 변수 추가
+
+    // 제보
+    lateinit var danger_report_button: ImageButton
+    lateinit var danger_report_detail: LinearLayout
+    lateinit var danger_report_pothole_button: ImageButton
+    lateinit var danger_report_construction_button: ImageButton
+    lateinit var danger_report_pothole_select_button: ImageButton
+    lateinit var danger_report_construction_select_button: ImageButton
+    lateinit var danger_report_camera_button: ImageButton
+    lateinit var danger_report_complete: ImageButton
+
+
+    lateinit var danger_cancel_report_detail: LinearLayout
+    lateinit var danger_cancel_report_camera_button: ImageButton
+    lateinit var danger_cancel_report_complete: ImageButton
+    private var bitmap: Bitmap? = null
+    var lat: Double = 0.0
+    var lon: Double = 0.0
+
+    val REQUEST_IMAGE_CAPTURE = 1
+    var isSelectDangerPothole = false
+    var isSelectDangerConstruction = false
+
+    private var isPhotoTaken = false // 사용자가 사진을 찍었는지 여부를 추적하는 변수 추가
+    private var dangerReportImage: Bitmap? = null
+
+    var isFabOpen = false
+    var isChecked1 = true
+    var isChecked2 = true
+    var isChecked3 = true
+    var isChecked4 = true
+    var isChecked5 = true
+    var isChecked6 = true
+
 
     // 마커 리스트를 MarkerWrapper로 변경
     private val markerList = mutableListOf<MarkerWrapper>()
@@ -130,6 +189,13 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
         detailbox = view.findViewById(R.id.detailbox)
 
+        report_detail = view.findViewById(R.id.report_detail)
+        report_type_detail0 = view.findViewById(R.id.report_type_detail0)
+        report_type_detail1 = view.findViewById(R.id.report_type_detail1)
+        report_img_detail = view.findViewById(R.id.report_img_detail)
+        report_cancel_button = view.findViewById(R.id.report_cancel_button)
+
+
         lodging_detail = view.findViewById(R.id.lodging_detail)
         lodgingName_detail = view.findViewById(R.id.text_lodgingName_detail)
         lodgingPhoneNumber_detail = view.findViewById(R.id.text_lodgingPhoneNumber_detail)
@@ -147,7 +213,6 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         storeStartTime_detail = view.findViewById(R.id.text_storeStartTime)
         storeEndTime_detail = view.findViewById(R.id.text_storeEndTime_detail)
 
-        rental_detail_scroll = view.findViewById(R.id.rental_detail_scroll)
         rental_detail = view.findViewById(R.id.rental_detail)
         rentalName_detail = view.findViewById(R.id.text_rentalName_detail)
         rentalType_detail = view.findViewById(R.id.text_rentalType_detail)
@@ -169,12 +234,19 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         tv_minute = view.findViewById(R.id.tv_minute)
         tv_second = view.findViewById(R.id.tv_second)
 
+        danger_report_button = view.findViewById(R.id.imageButton_danger_report)
+        danger_report_detail = view.findViewById(R.id.danger_report_detail)
+        danger_report_pothole_button = view.findViewById(R.id.imageButton_danger_report_pothole)
+        danger_report_construction_button = view.findViewById(R.id.imageButton_danger_report_construction)
+        danger_report_pothole_select_button = view.findViewById(R.id.imageButton_danger_report_pothole_select)
+        danger_report_construction_select_button = view.findViewById(R.id.imageButton_danger_report_construction_select)
+        danger_report_camera_button = view.findViewById(R.id.imageButton_danger_report_camera)
+        danger_report_complete = view.findViewById(R.id.imageButton_danger_report_complete)
 
-        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
-
-        homeBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_naverMapFragment_to_mainFragment)
-        }
+        scroll = view.findViewById(R.id.scroll)
+        danger_cancel_report_detail = view.findViewById(R.id.danger_cancel_report_detail)
+        danger_cancel_report_camera_button = view.findViewById(R.id.imageButton_cancel_danger_report_camera)
+        danger_cancel_report_complete = view.findViewById(R.id.imageButton_cancel_danger_report_complete)
 
         // FloatingActionButton 클릭 리스너 설정
         fab.setOnClickListener {
@@ -189,16 +261,291 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         driveStart_button.setOnClickListener {
             driveStart_button.visibility = View.GONE
             drive_constraintLayout.visibility = View.VISIBLE
-            fetchTodayRecord(RecordUSERId(id = "lwknk"))
+            fetchTodayRecord(RecordUSERId(id = "me0wning"))
             start()
         }
         driveEnd_button.setOnClickListener {
             pause()
-            fetchRecord(Record(id="lwknk",dailyTime=time))
+            fetchRecord(Record(id="me0wning",dailyTime=time))
             driveStart_button.visibility = View.VISIBLE
             drive_constraintLayout.visibility = View.GONE
         }
+
+        danger_report_button.setOnClickListener {
+            if (isFabOpen) {
+                closeDangerReport() // 숨김
+                closeItemDetail()
+            } else {ReportDetail()
+                showDangerReport() // 표시
+            }
+            isFabOpen = !isFabOpen // 상태를 반전시킴
+        }
+
     }
+    private fun showDangerReport() {
+        detailbox.visibility = View.VISIBLE
+        scroll.visibility = View.VISIBLE
+        danger_report_detail.visibility = View.VISIBLE
+        danger_report_construction_button.isEnabled = true
+        danger_report_pothole_button.isEnabled = true
+        danger_report_camera_button.isEnabled = true
+        danger_report_complete.isEnabled = true
+
+        // 페이드 인 애니메이션 설정
+        val fadeIn = AlphaAnimation(0.0f, 1.0f).apply {
+            duration = 300 // 애니메이션 지속 시간
+            fillAfter = true // 애니메이션 후 상태 유지
+        }
+
+        // CheckBox에 애니메이션 적용
+        detailbox.startAnimation(fadeIn)
+        scroll.startAnimation(fadeIn)
+        danger_report_detail.startAnimation(fadeIn)
+    }
+
+    private fun showDangerCancelReport() {
+        scroll.visibility = View.VISIBLE
+        danger_cancel_report_detail.visibility = View.VISIBLE
+        danger_cancel_report_camera_button.isEnabled = true
+        danger_cancel_report_complete.isEnabled = true
+        // 페이드 인 애니메이션 설정
+        val fadeIn = AlphaAnimation(0.0f, 1.0f).apply {
+            duration = 300 // 애니메이션 지속 시간
+            fillAfter = true // 애니메이션 후 상태 유지
+        }
+
+        // CheckBox에 애니메이션 적용
+        scroll.startAnimation(fadeIn)
+        danger_cancel_report_detail.startAnimation(fadeIn)
+
+    }
+
+    private fun closeDangerReport() {
+        // 페이드 아웃 애니메이션 설정
+        val fadeOut = AlphaAnimation(1.0f, 0.0f).apply {
+            duration = 300 // 애니메이션 지속 시간
+            fillAfter = true // 애니메이션 후 상태 유지
+        }
+
+        // CheckBox에 애니메이션 적용
+        detailbox.startAnimation(fadeOut)
+        scroll.startAnimation(fadeOut)
+        danger_report_detail.startAnimation(fadeOut)
+
+
+        // 애니메이션 리스너 설정
+        fadeOut.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {}
+
+            // 애니메이션 종료 후 CheckBox를 숨김
+            override fun onAnimationEnd(animation: Animation?) {
+                detailbox.visibility = View.GONE
+                scroll.visibility = View.GONE
+
+                danger_report_construction_button.visibility = View.VISIBLE
+                danger_report_pothole_button.visibility = View.VISIBLE
+                danger_report_construction_select_button.visibility = View.GONE
+                danger_report_pothole_select_button.visibility = View.GONE
+                danger_report_camera_button.isEnabled = false
+                danger_report_complete.isEnabled = false
+
+                isPhotoTaken = false
+                isSelectDangerPothole = false
+                isSelectDangerConstruction = false
+
+                danger_report_camera_button.setImageDrawable(resources.getDrawable(R.drawable.icon_xml_danger_report_camera_button))
+
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {}
+        })
+    }
+
+    private fun closeDangerCancelReport() {
+        // 페이드 아웃 애니메이션 설정
+        val fadeOut = AlphaAnimation(1.0f, 0.0f).apply {
+            duration = 300 // 애니메이션 지속 시간
+            fillAfter = true // 애니메이션 후 상태 유지
+        }
+
+        // CheckBox에 애니메이션 적용
+        detailbox.startAnimation(fadeOut)
+        scroll.startAnimation(fadeOut)
+        danger_cancel_report_detail.startAnimation(fadeOut)
+
+        // 애니메이션 리스너 설정
+        fadeOut.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {}
+
+            // 애니메이션 종료 후 CheckBox를 숨김
+            override fun onAnimationEnd(animation: Animation?) {
+                detailbox.visibility = View.GONE
+                scroll.visibility = View.GONE
+                danger_cancel_report_detail.visibility = View.GONE
+                danger_cancel_report_camera_button.isEnabled = false
+                danger_cancel_report_complete.isEnabled = false
+
+                isPhotoTaken = false
+
+                danger_cancel_report_camera_button.setImageDrawable(resources.getDrawable(R.drawable.icon_xml_danger_report_camera_button))
+
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {}
+        })
+    }
+    private fun ReportDetail() {
+
+        danger_report_pothole_button.setOnClickListener {
+            isSelectDangerPothole = true
+            danger_report_pothole_button.visibility = View.GONE
+            danger_report_pothole_select_button.visibility = View.VISIBLE
+            // 비활성화
+            danger_report_construction_button.isEnabled = false
+        }
+        danger_report_pothole_select_button.setOnClickListener {
+            isSelectDangerPothole = false
+            danger_report_pothole_button.visibility = View.VISIBLE
+            danger_report_pothole_select_button.visibility = View.GONE
+            // 비활성화
+            danger_report_construction_button.isEnabled = true
+        }
+
+        danger_report_construction_button.setOnClickListener {
+            isSelectDangerConstruction = true
+            danger_report_construction_button.visibility = View.GONE
+            danger_report_construction_select_button.visibility = View.VISIBLE
+            // 비활성화
+            danger_report_pothole_button.isEnabled = false
+        }
+        danger_report_construction_select_button.setOnClickListener {
+            isSelectDangerConstruction = false
+            danger_report_construction_button.visibility = View.VISIBLE
+            danger_report_construction_select_button.visibility = View.GONE
+            // 비활성화
+            danger_report_pothole_button.isEnabled = true
+
+        }
+
+        checkPermission()
+        danger_report_camera_button.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (hasCameraPermission()) {
+                    startCamera()
+                } else {
+                    requestCameraPermission()
+                }
+            }
+        }
+
+        danger_report_complete.setOnClickListener {
+            if (isPhotoTaken && (isSelectDangerPothole || isSelectDangerConstruction)) {
+                // 사진을 찍고 포트홀 또는 공사정보 중 하나를 선택했을 때만 작동
+                val type = if (isSelectDangerPothole) 0 else 1
+                val report = Report(userId = "me0wning", type = type, latitude = lat, longitude = lon)
+
+                // Bitmap을 파일로 변환
+                val imageFile = bitmapToFile(dangerReportImage!!)
+
+                // 보고서와 파일을 서버로 전송
+                fetchReport(imageFile, report)
+                Toast.makeText(requireContext(), "위험 전송 완료.", Toast.LENGTH_LONG).show()
+
+                closeDangerReport()
+
+            } else {
+                // 사진을 찍거나 포트홀 또는 공사정보 중 하나를 선택하지 않았을 때 경고 또는 작업 구현
+                Toast.makeText(requireContext(), "위험 정보 종류와 사진을 찍으세요.", Toast.LENGTH_LONG).show()
+            }
+        }
+
+    }
+
+    // 카메라 권한을 확인하는 함수
+    private fun checkPermission() {
+        // 카메라 권한이 없고 안드로이드 버전이 M 이상인 경우
+        if (!hasCameraPermission() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // 카메라 권한 요청
+            requestCameraPermission()
+        }
+    }
+
+    // 카메라 권한이 있는지 확인하는 함수
+    private fun hasCameraPermission(): Boolean {
+        // 카메라 권한이 허용되어 있는지를 반환
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+    }
+
+    // 카메라 권한을 요청하는 함수
+    private fun requestCameraPermission() {
+        // 카메라 권한 요청
+        val permissions = arrayOf(Manifest.permission.CAMERA)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions, REQUEST_IMAGE_CAPTURE)
+        }
+    }
+
+    // 카메라 앱을 실행하는 함수
+    private fun startCamera() {
+        // 카메라 앱 실행을 위한 인텐트 생성
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // 카메라 앱이 있는지 확인하고 실행
+            takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+
+    // 카메라로부터 이미지를 받아오는 결과를 처리하는 함수
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // 요청 코드가 카메라로부터 이미지를 받아오는 요청이고 결과가 성공적인 경우
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
+            // 받아온 이미지를 ImageView에 설정
+            dangerReportImage  = data?.extras?.get("data") as Bitmap
+            danger_report_camera_button.setImageBitmap(dangerReportImage)
+            danger_cancel_report_camera_button.setImageBitmap(dangerReportImage)
+
+            isPhotoTaken = true
+        }
+    }
+
+    // 1. Bitmap을 파일로 변환
+    private fun bitmapToFile(bitmap: Bitmap): File {
+        // 새 파일 생성
+        val file = File(requireContext().cacheDir, "temp_image.jpg")
+        file.createNewFile()
+
+        // 파일에 비트맵 저장
+        val outputStream = FileOutputStream(file)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+
+        return file
+    }
+
+
+    private fun fetchReport(imageFile: File, report: Report) {
+        val repository = Repository()
+
+        // 파일을 RequestBody로 변환
+        val requestFile = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+
+        // MultipartBody.Part 생성
+        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+
+        repository.postReport(requireContext(),{ reportResult ->
+            reportResult?.let {
+                // 성공 처리
+                Toast.makeText(requireContext(), "Report submitted successfully", Toast.LENGTH_LONG).show()
+            }
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchReport: ${error.message}", Toast.LENGTH_LONG).show()
+        }, report, imagePart)
+    }
+
 
     private fun fetchTodayRecord(recordUSERId: RecordUSERId) {
         val repository = Repository()
@@ -262,6 +609,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         isRunning = false // ❷ 멈춤 상태로 전환
         timer?.cancel() // ❸ 타이머 멈추기
     }
+
     private fun showFabMenu() {
         checkBox1.visibility = View.VISIBLE
         checkBox2.visibility = View.VISIBLE
@@ -370,6 +718,12 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         // 현재 위치 나타내는 마커 설정
         naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
+        // 위치 변경이 인식되는 경우
+        naverMap.addOnLocationChangeListener { location ->
+            lat = location.latitude
+            lon = location.longitude
+        }
+
         // 지도 레이어 띄우기
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BUILDING, true)
         naverMap.setLayerGroupEnabled(NaverMap.LAYER_GROUP_BICYCLE, true)
@@ -456,6 +810,13 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         for ((index, item) in items.withIndex()) {
             val latitude = item.Latitude
             val longitude = item.Longitude
+            val id: Int
+            if (itemNum == 1){
+                id = item.ReportId
+            }
+            else{
+                id = item.Id
+            }
 
             val marker = Marker()
             marker.position = LatLng(latitude, longitude)
@@ -463,8 +824,8 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             getItemService(itemNum, marker)
 
             marker.setOnClickListener {
-                Toast.makeText(requireContext(), "${itemNum} 마커 ${index + 1} 클릭", Toast.LENGTH_SHORT).show()
-                getItemDetailService(itemNum, index + 1)
+                Toast.makeText(requireContext(), "${itemNum} 마커 ${id }클릭", Toast.LENGTH_SHORT).show()
+                getItemDetailService(itemNum, id)
                 isFabOpen = !isFabOpen // 상태를 반전시킴
                 true
             }
@@ -475,8 +836,15 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         detailbox.visibility = View.VISIBLE
         detailItem.visibility = View.VISIBLE
         if(detailItem == rental_detail){
-            rental_detail_scroll.visibility = View.VISIBLE
+            scroll.visibility = View.VISIBLE
         }
+
+        if(detailItem == report_detail){
+            report_cancel_button.visibility = View.VISIBLE
+            report_cancel_button.isEnabled = true
+        }
+
+        val constraintSet = ConstraintSet()
 
         // 페이드 인 애니메이션 설정
         val fadeIn = AlphaAnimation(0.0f, 1.0f).apply {
@@ -488,7 +856,10 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         detailItem.startAnimation(fadeIn)
         detailbox.startAnimation(fadeIn)
         if(detailItem == rental_detail){
-            rental_detail_scroll.startAnimation(fadeIn)
+            scroll.startAnimation(fadeIn)
+        }
+        if(detailItem == report_detail){
+            report_cancel_button.startAnimation(fadeIn)
         }
     }
 
@@ -500,10 +871,14 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         }
 
         // lodging_detail 애니메이션 적용
+        report_detail.startAnimation(fadeOut)
+        report_cancel_button.startAnimation(fadeOut)
         lodging_detail.startAnimation(fadeOut)
         store_detail.startAnimation(fadeOut)
         rental_detail.startAnimation(fadeOut)
-        rental_detail_scroll.startAnimation(fadeOut)
+        scroll.startAnimation(fadeOut)
+        danger_report_detail.startAnimation(fadeOut)
+        danger_cancel_report_detail.startAnimation(fadeOut)
         detailbox.startAnimation(fadeOut)
 
         // 애니메이션 리스너 설정
@@ -512,11 +887,20 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
             // 애니메이션 종료 후 CheckBox를 숨김
             override fun onAnimationEnd(animation: Animation?) {
+                report_detail.visibility = View.GONE
+                report_cancel_button.visibility = View.GONE
                 lodging_detail.visibility = View.GONE
                 store_detail.visibility = View.GONE
                 rental_detail.visibility = View.GONE
-                rental_detail_scroll.visibility = View.GONE
+                scroll.visibility = View.GONE
+                danger_report_detail.visibility = View.GONE
+                danger_cancel_report_detail.visibility = View.GONE
                 detailbox.visibility = View.GONE
+                danger_cancel_report_camera_button.isEnabled = false
+                danger_cancel_report_complete.isEnabled = false
+                danger_report_camera_button.isEnabled = false
+                danger_report_complete.isEnabled = false
+                report_cancel_button.isEnabled = false
             }
 
             override fun onAnimationRepeat(animation: Animation?) {}
@@ -525,6 +909,44 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
     private fun getItemDetailService(itemNum: Int, indexNum: Int){
         when (itemNum) {
+            1 -> {
+                if (isFabOpen) {
+                    closeItemDetail()  // CheckBox를 숨김
+                    closeDangerCancelReport()
+                } else {
+                    DangerReportCancel(indexNum)
+                    fetchReportDetail(indexNum)
+                    fetchReportImg(indexNum)
+                    showItemDetail(report_detail) // CheckBox를 표시
+                    report_cancel_button.setOnClickListener {
+                        // 페이드 아웃 애니메이션 설정
+                        val fadeOut = AlphaAnimation(1.0f, 0.0f).apply {
+                            duration = 1 // 애니메이션 지속 시간
+                            fillAfter = true // 애니메이션 후 상태 유지
+                        }
+
+                        // lodging_detail 애니메이션 적용
+                        report_detail.startAnimation(fadeOut)
+                        report_cancel_button.startAnimation(fadeOut)
+
+                        // 애니메이션 리스너 설정
+                        fadeOut.setAnimationListener(object : Animation.AnimationListener {
+                            override fun onAnimationStart(animation: Animation?) {}
+
+                            // 애니메이션 종료 후 CheckBox를 숨김
+                            override fun onAnimationEnd(animation: Animation?) {
+                                report_detail.visibility = View.GONE
+                                report_cancel_button.visibility = View.GONE
+                                report_cancel_button.isEnabled = false
+                            }
+
+                            override fun onAnimationRepeat(animation: Animation?) {}
+                        })
+                        showDangerCancelReport()
+                    }
+                }
+            }
+
             2 -> {
                 if (isFabOpen) {fetchStoreDetail(indexNum)
                     closeItemDetail()  // CheckBox를 숨김
@@ -550,6 +972,114 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
                 }
             }
         }
+    }
+
+
+    private fun DangerReportCancel (indexNum: Int){
+        danger_cancel_report_camera_button.isEnabled = true
+        danger_cancel_report_complete.isEnabled = true
+        checkPermission()
+        danger_cancel_report_camera_button.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (hasCameraPermission()) {
+                    startCamera()
+                } else {
+                    requestCameraPermission()
+                }
+            }
+        }
+
+
+        danger_cancel_report_complete.setOnClickListener {
+            if (isPhotoTaken) {
+                // 사진을 찍고 포트홀 또는 공사정보 중 하나를 선택했을 때만 작동
+                val reportCancel =
+                    ReportCancel(userId = "me0wning", reportId = indexNum)
+
+                // Bitmap을 파일로 변환
+                val imageFile = bitmapToFile(dangerReportImage!!)
+
+                // 보고서와 파일을 서버로 전송
+                fetchReportCancel(imageFile, reportCancel)
+                Toast.makeText(requireContext(), "위험 취소 전송 완료.", Toast.LENGTH_LONG)
+                    .show()
+
+                closeItemDetail()
+                closeDangerCancelReport()
+
+            } else {
+                // 사진을 찍거나 포트홀 또는 공사정보 중 하나를 선택하지 않았을 때 경고 또는 작업 구현
+                Toast.makeText(
+                    requireContext(),
+                    "위험 취소 정보 사진을 찍으세요.",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+        }
+
+    }
+
+
+    private fun fetchReportCancel(imageFile: File, reportCancel: ReportCancel) {
+        val repository = Repository()
+
+        // 파일을 RequestBody로 변환
+        val requestFile = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+
+        // MultipartBody.Part 생성
+        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
+
+        repository.postReportCancel(requireContext(),{ reportResult ->
+            reportResult?.let {
+                // 성공 처리
+                Toast.makeText(requireContext(), "ReportCancel submitted successfully", Toast.LENGTH_LONG).show()
+            }
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchReportCancel: ${error.message}", Toast.LENGTH_LONG).show()
+        }, reportCancel, imagePart)
+    }
+
+    private fun fetchReportDetail(indexNum: Int) {
+        val repository = Repository()
+
+        repository.getReportDetail({ report ->
+            report?.let {
+
+                if(it.type == 0){
+                    report_type_detail0.visibility = View.VISIBLE
+                    report_type_detail1.visibility = View.GONE
+                }
+                else if(it.type == 1){
+                    report_type_detail0.visibility = View.GONE
+                    report_type_detail1.visibility = View.VISIBLE
+                }
+
+                Toast.makeText(requireContext(), "fetchReportDetail success", Toast.LENGTH_LONG).show()
+
+            }
+
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchReportDetail: ${error.message}", Toast.LENGTH_LONG).show()
+        }, indexNum)
+    }
+
+    private fun fetchReportImg(indexNum : Int) {
+        val repository = Repository()
+
+        repository.getReportImg({ img ->
+            img?.let {
+                val inputStream = it.byteStream()
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                report_img_detail.setImageBitmap(bitmap)
+            }
+
+        }, { error ->
+            // 오류 처리
+            Toast.makeText(requireContext(), "fetchReportImg: ${error.message}", Toast.LENGTH_LONG).show()
+        }, indexNum)
     }
 
     private fun fetchLodgingDetail(indexNum: Int) {

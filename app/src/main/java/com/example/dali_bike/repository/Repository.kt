@@ -1,14 +1,23 @@
 package com.example.dali_bike.repository
 
+import android.content.Context
 import android.widget.Toast
 import com.example.dali_bike.model.Item
 import com.example.dali_bike.RetrofitClient
-import com.example.dali_bike.model.RecordResult
 import com.example.dali_bike.model.Record
+import com.example.dali_bike.model.RecordResult
 import com.example.dali_bike.model.RecordUSERId
+import com.example.dali_bike.model.Report
+import com.example.dali_bike.model.ReportCancel
+import com.example.dali_bike.model.ReportFileResult
+import com.example.dali_bike.model.ReportResult
 import com.example.dali_bike.model.lodgingDetailItem
 import com.example.dali_bike.model.rentalDetailItem
+import com.example.dali_bike.model.reportDetailItem
 import com.example.dali_bike.model.storeDetailItem
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +44,8 @@ class Repository {
         })
     }
 
+
+
     private fun getItemService(itemNum : Int) {
         when(itemNum){
             1 -> callItem = RetrofitClient.apiService.getReports()
@@ -46,8 +57,42 @@ class Repository {
         }
     }
 
+    fun getReportDetail(onResult: (reportDetailItem?) -> Unit, onError: (Throwable) -> Unit, reportId : Int) {
+        val call =RetrofitClient.apiService.getReportDetail(reportId)
+        call.enqueue(object : Callback<reportDetailItem> {
+            override fun onResponse(call: Call<reportDetailItem>, response: Response<reportDetailItem>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
 
-    fun getLodgingDetailItem(onResult: (List<lodgingDetailItem>?) -> Unit, onError: (Throwable) -> Unit, lodgingId : Int) {
+            override fun onFailure(call: Call<reportDetailItem>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+    fun getReportImg(onResult: (ResponseBody?) -> Unit, onError: (Throwable) -> Unit, reportId : Int) {
+        val call =RetrofitClient.apiService.getReportImg(reportId)
+
+        call.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+    fun getLodgingDetailItem(onResult: (List<lodgingDetailItem>?) -> Unit, onError: (Throwable) -> Unit,  lodgingId : Int) {
         val call =RetrofitClient.apiService.getLodgingDetail(lodgingId)
         call.enqueue(object : Callback<List<lodgingDetailItem>> {
             override fun onResponse(call: Call<List<lodgingDetailItem>>, response: Response<List<lodgingDetailItem>>) {
@@ -97,7 +142,6 @@ class Repository {
             }
         })
     }
-
     fun postViewToday(onResult: (List<Record>?) -> Unit, onError: (Throwable) -> Unit, recordUSERId: RecordUSERId) {
         val call =RetrofitClient.apiService.postViewToday(recordUSERId)
         call.enqueue(object : Callback<List<Record>> {
@@ -128,6 +172,45 @@ class Repository {
             }
 
             override fun onFailure(call: Call<RecordResult>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+    fun postReport(context:Context,onResult: (ReportResult?) -> Unit, onError: (Throwable) -> Unit,report: Report, imageFile: MultipartBody.Part) {
+        val id = report.userId.toRequestBody()
+        Toast.makeText(context, "Report submitted successfully", Toast.LENGTH_LONG).show()
+        val call =RetrofitClient.apiService.postReport(imageFile,id,report.type,report.latitude,report.longitude)
+        call.enqueue(object : Callback<ReportResult> {
+            override fun onResponse(call: Call<ReportResult>, response: Response<ReportResult>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<ReportResult>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+    fun postReportCancel(context:Context, onResult: (ReportResult?) -> Unit, onError: (Throwable) -> Unit, reportCancel: ReportCancel, imageFile: MultipartBody.Part) {
+        val userId = reportCancel.userId.toRequestBody()
+
+        Toast.makeText(context, "ReportCancel submitted successfully", Toast.LENGTH_LONG).show()
+        val call =RetrofitClient.apiService.postReportCancel(imageFile,reportCancel.reportId, userId)
+        call.enqueue(object : Callback<ReportResult> {
+            override fun onResponse(call: Call<ReportResult>, response: Response<ReportResult>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<ReportResult>, t: Throwable) {
                 onError(t)
             }
         })

@@ -100,9 +100,9 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
                 e.printStackTrace()
             }
         }
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = apiService.getHotPost()
+    CoroutineScope(Dispatchers.IO).launch {
+        try {
+            val response = apiService.getHotPost()
 
                 if (response.isSuccessful) {
                     val hotResList = response.body()
@@ -165,7 +165,7 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
             findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
         }
 
-        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
         postBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_postFragment)
         }

@@ -130,10 +130,17 @@
         <action
             android:id="@+id/action_postFragment_to_myPageFragment"
             app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_postFragment_to_writePost"
+            app:destination="@id/writePost" />
     </fragment>
     <fragment
         android:id="@+id/writePost"
         android:name="com.example.dali_bike.WritePostFragment"
         android:label="fragment_write_post"
-        tools:layout="@layout/fragment_writepost" />
+        tools:layout="@layout/fragment_writepost" >
+        <action
+            android:id="@+id/action_writePost_to_postFragment"
+            app:destination="@id/postFragment" />
+    </fragment>
 </navigation>

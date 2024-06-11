@@ -23,7 +23,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://192.168.45.242:3000"
+private const val BASE_URL = "http://localhost:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -37,8 +37,8 @@ interface ApiInterface {
     @POST("/user/register")
     suspend fun register(@Body register: Register): Response<Respon>
 
-    @GET("/post/hot/{hot}")
-    suspend fun viewHtPost(@Path("hot") hot: Int):Response<List<Respon>>
+    @GET("/post/hot")
+    suspend fun viewHotPost():Response<List<Respon>>
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: ID): Response<mainInfo>

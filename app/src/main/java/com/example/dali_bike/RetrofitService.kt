@@ -5,6 +5,7 @@ import com.example.dali_bike.model.Record
 import com.example.dali_bike.model.RecordResult
 import com.example.dali_bike.model.RecordUSERId
 import com.example.dali_bike.model.lodgingDetailItem
+import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.model.storeDetailItem
 import retrofit2.Call
@@ -50,6 +51,6 @@ interface RetrofitService {
     fun postRecord(@Body record: Record): Call<RecordResult>
 
 
-    @GET("post/hot")
-    fun getHotPost(): Call<List<Item>>
+    @GET("post/view/hot")
+    fun getHotPost(): Call<List<mainHotPost>>
 }

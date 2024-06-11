@@ -79,7 +79,7 @@ class WritePostFragment : Fragment() {
                         withContext(Dispatchers.Main) {
                             if (wriRes?.result == "true") {
                                 Toast.makeText(context, "게시글 등록이 완료되었습니다", Toast.LENGTH_LONG).show()
-                                findNavController().navigate(R.id.action_joinFragment_to_loginFragment)
+                                findNavController().navigate(R.id.action_writePost_to_postFragment)
                             } else {
                                 Toast.makeText(context, "게시글 등록을 할 수 없습니다", Toast.LENGTH_LONG)
                                     .show()

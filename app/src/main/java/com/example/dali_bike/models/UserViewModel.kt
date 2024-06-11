@@ -34,4 +34,5 @@ class UserViewModel : ViewModel() {
         _user.value?.totalTime = totalTime
     }
 
+
 }

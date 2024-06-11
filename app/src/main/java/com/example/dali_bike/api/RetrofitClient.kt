@@ -1,14 +1,17 @@
 package com.example.dali_bike.api
 
+import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.models.ID
 import com.example.dali_bike.models.LoginRequest
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
 import com.example.dali_bike.models.WritePost
 import com.example.dali_bike.models.mainInfo
+import com.example.dali_bike.models.myInfo
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -23,7 +26,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://localhost:3000"
+private const val BASE_URL = "http://192.168.0.10:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -37,14 +40,17 @@ interface ApiInterface {
     @POST("/user/register")
     suspend fun register(@Body register: Register): Response<Respon>
 
-    @GET("/post/hot")
-    suspend fun viewHotPost():Response<List<Respon>>
+    @GET("post/view/hot")
+    suspend fun getHotPost(): Response<List<mainHotPost>>
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: ID): Response<mainInfo>
 
     @POST("/post/write")
     suspend fun writePost(@Body writePost: WritePost): Response<Respon>
+
+    @POST("/user/mypage")
+    suspend fun myInfo(@Body id: ID): Response<List<myInfo>>
 
 }
 

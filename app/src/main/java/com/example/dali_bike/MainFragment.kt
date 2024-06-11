@@ -48,12 +48,12 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         val dailyTimeTxt: TextView = view.findViewById(R.id.ridingCalanderTime)
         val totalTimeTxt: TextView = view.findViewById(R.id.totalTime_txt)
 
-    val hotPost1: TextView = view.findViewById(R.id.hotPost1)
-    val hotPost2: TextView = view.findViewById(R.id.hotPost2)
-    val hotPost3: TextView = view.findViewById(R.id.hotPost3)
-    val hotPost4: TextView = view.findViewById(R.id.hotPost4)
-    val hotPost5: TextView = view.findViewById(R.id.hotPost5)
-    val hotPost6: TextView = view.findViewById(R.id.hotPost6)
+        val hotPost1: TextView = view.findViewById(R.id.hotPost1)
+        val hotPost2: TextView = view.findViewById(R.id.hotPost2)
+        val hotPost3: TextView = view.findViewById(R.id.hotPost3)
+        val hotPost4: TextView = view.findViewById(R.id.hotPost4)
+        val hotPost5: TextView = view.findViewById(R.id.hotPost5)
+        val hotPost6: TextView = view.findViewById(R.id.hotPost6)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -77,16 +77,20 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
                             val dailyM = dailyTime / 60
                             dailyTime -= dailyM * 60
                             val dailyS = dailyTime
-                            //dailyTimeTxt.text = mainRes.dailyTime.toString() 약간 00h 00m 00s 형식으로 정해놓을 수 있게 해서 toString() 쓰면 될 듯
+
+                            val timeFormat = "${dailyH}h ${dailyM}m ${dailyS}s"
+                            dailyTimeTxt.text = timeFormat
 
                             //totalTime 보여주기
                             var totalTime = mainRes.totalTime
                             val totalH = totalTime / 3600
                             totalTime -= totalH * 3600
                             val totalM = totalTime / 60
-                            totalTime -= totalM * 50
+                            totalTime -= totalM * 60
                             val totalS = totalTime
-                            //totalTimeTxt.text = mainRes.totalTime.toString() 얘도 00h 00m 00s (이제 h가 두글자 이하면 0x 이렇게 뜨고 그 이상이면 그냥 xxxh 이런 식으로 뜨게 하면 될 듯
+
+                            val formatTime = "${totalH}h ${totalM}m ${totalS}s"
+                            totalTimeTxt.text = formatTime
                         }
                     }
                 }
@@ -94,48 +98,27 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
                 e.printStackTrace()
             }
         }
-    fun viewHotPost(onResult: (List<mainHotPost>?) -> Unit, onError: (Throwable) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
-            val call = RetrofitClient.apiService.getHotPost()
-            call.enqueue(object : Callback<List<mainHotPost>> {
-                override fun onResponse(call: Call<List<mainHotPost>>, response: Response<List<mainHotPost>>) {
-                    if (response.isSuccessful) {
-                        onResult(response.body())
-                    } else {
-                        onError(Exception("Code: ${response.code()}"))
-                    }
-                }
+            try {
+                val response = apiService.getHotPost()
+                val posts = ArrayList<mainHotPost>()
 
-                override fun onFailure(call: Call<List<mainHotPost>>, t: Throwable) {
-                    onError(t)
-                }
-            })
-        }
-    }
-    CoroutineScope(Dispatchers.Main).launch {
-        viewHotPost(
-            onResult = { hotPosts ->
-                hotPosts?.let {
-                    if (it.size >= 6) {
-                        hotPost1.text = "ddd"
-                        hotPost2.text = "${it[1].title} - Likes: ${it[1].like}"
-                        hotPost3.text = "${it[2].title} - Likes: ${it[2].like}"
-                        hotPost4.text = "${it[3].title} - Likes: ${it[3].like}"
-                        hotPost5.text = "${it[4].title} - Likes: ${it[4].like}"
-                        hotPost6.text = "${it[5].title} - Likes: ${it[5].like}"
+                if (response.isSuccessful) {
+                    val hotResList = response.body()
+
+                    if (hotResList != null && hotResList.isNotEmpty()) {
+                        for (i in 0 until hotResList.size) {
+                            posts[i] = hotResList[i]
+                        }
                     }
                 }
-            },
-            onError = { error ->
-                // 에러 처리
-                error.printStackTrace()
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
-        )
-    }
-    hotPost1.text = "ddd"
-    return view
-    }
+        }
 
+        return view
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

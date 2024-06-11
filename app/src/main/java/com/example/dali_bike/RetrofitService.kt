@@ -74,8 +74,6 @@ interface RetrofitService {
                     @Part("latitude") latitude: Double,
                     @Part("longitude") longitude: Double): Call<ReportResult>
 
-    @GET("post/view/hot")
-    fun getHotPost(): Call<List<mainHotPost>>
     @Multipart
     @POST("report/addRemoval")
     fun postReportCancel( @Part imageFile: MultipartBody.Part,

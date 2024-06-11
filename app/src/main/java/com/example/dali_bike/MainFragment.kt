@@ -13,6 +13,8 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
+import com.example.dali_bike.model.mainHotPost
+import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.models.ID
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
@@ -23,6 +25,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainFragment : Fragment(), OnMapReadyCallback  {
     private lateinit var locationSource: FusedLocationSource
@@ -42,6 +47,13 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         val riderTxt: TextView = view.findViewById(R.id.rider_txt)
         val dailyTimeTxt: TextView = view.findViewById(R.id.ridingCalanderTime)
         val totalTimeTxt: TextView = view.findViewById(R.id.totalTime_txt)
+
+    val hotPost1: TextView = view.findViewById(R.id.hotPost1)
+    val hotPost2: TextView = view.findViewById(R.id.hotPost2)
+    val hotPost3: TextView = view.findViewById(R.id.hotPost3)
+    val hotPost4: TextView = view.findViewById(R.id.hotPost4)
+    val hotPost5: TextView = view.findViewById(R.id.hotPost5)
+    val hotPost6: TextView = view.findViewById(R.id.hotPost6)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -82,6 +94,45 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
                 e.printStackTrace()
             }
         }
+    fun viewHotPost(onResult: (List<mainHotPost>?) -> Unit, onError: (Throwable) -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val call = RetrofitClient.apiService.getHotPost()
+            call.enqueue(object : Callback<List<mainHotPost>> {
+                override fun onResponse(call: Call<List<mainHotPost>>, response: Response<List<mainHotPost>>) {
+                    if (response.isSuccessful) {
+                        onResult(response.body())
+                    } else {
+                        onError(Exception("Code: ${response.code()}"))
+                    }
+                }
+
+                override fun onFailure(call: Call<List<mainHotPost>>, t: Throwable) {
+                    onError(t)
+                }
+            })
+        }
+    }
+    CoroutineScope(Dispatchers.Main).launch {
+        viewHotPost(
+            onResult = { hotPosts ->
+                hotPosts?.let {
+                    if (it.size >= 6) {
+                        hotPost1.text = "ddd"
+                        hotPost2.text = "${it[1].title} - Likes: ${it[1].like}"
+                        hotPost3.text = "${it[2].title} - Likes: ${it[2].like}"
+                        hotPost4.text = "${it[3].title} - Likes: ${it[3].like}"
+                        hotPost5.text = "${it[4].title} - Likes: ${it[4].like}"
+                        hotPost6.text = "${it[5].title} - Likes: ${it[5].like}"
+                    }
+                }
+            },
+            onError = { error ->
+                // 에러 처리
+                error.printStackTrace()
+            }
+        )
+    }
+    hotPost1.text = "ddd"
     return view
     }
 

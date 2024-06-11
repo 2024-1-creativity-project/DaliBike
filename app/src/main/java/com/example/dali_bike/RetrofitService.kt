@@ -8,8 +8,8 @@ import com.example.dali_bike.model.Report
 import com.example.dali_bike.model.ReportFileResult
 import com.example.dali_bike.model.ReportResult
 import com.example.dali_bike.model.lodgingDetailItem
+import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.model.rentalDetailItem
-import com.example.dali_bike.model.reportDetailItem
 import com.example.dali_bike.model.storeDetailItem
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -73,6 +73,8 @@ interface RetrofitService {
                     @Part("latitude") latitude: Double,
                     @Part("longitude") longitude: Double): Call<ReportResult>
 
+    @GET("post/view/hot")
+    fun getHotPost(): Call<List<mainHotPost>>
     @Multipart
     @POST("report/addRemoval")
     fun postReportCancel( @Part imageFile: MultipartBody.Part,

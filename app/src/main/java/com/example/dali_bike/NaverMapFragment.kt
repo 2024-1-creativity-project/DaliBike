@@ -1,5 +1,6 @@
 package com.example.dali_bike.ui
 
+import UserViewModel
 import android.Manifest
 import android.content.Context
 import android.content.Intent
@@ -56,6 +57,8 @@ import java.io.IOException
 import java.util.*
 import kotlin.concurrent.timer
 import android.graphics.BitmapFactory
+import androidx.fragment.app.activityViewModels
+import com.example.dali_bike.models.ID
 import okhttp3.ResponseBody
 import java.io.InputStream
 import java.net.HttpURLConnection
@@ -122,7 +125,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var rentalIsFare_detail: TextView
     lateinit var rentalFare_detail: TextView
 
-    lateinit var userId : String
+    private var userId : String = ""
 
     // 기록
     lateinit var driveStart_button: ImageButton
@@ -170,6 +173,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     var isChecked5 = true
     var isChecked6 = true
 
+    private val userViewModel: UserViewModel by activityViewModels()
 
     // 마커 리스트를 MarkerWrapper로 변경
     private val markerList = mutableListOf<MarkerWrapper>()
@@ -248,6 +252,8 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         danger_cancel_report_camera_button = view.findViewById(R.id.imageButton_cancel_danger_report_camera)
         danger_cancel_report_complete = view.findViewById(R.id.imageButton_cancel_danger_report_complete)
 
+        userId = userViewModel.user.value?.userId.toString()
+
         // FloatingActionButton 클릭 리스너 설정
         fab.setOnClickListener {
             if (isFabOpen) {
@@ -261,12 +267,12 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         driveStart_button.setOnClickListener {
             driveStart_button.visibility = View.GONE
             drive_constraintLayout.visibility = View.VISIBLE
-            fetchTodayRecord(RecordUSERId(id = "me0wning"))
+            fetchTodayRecord(RecordUSERId(id = userId))
             start()
         }
         driveEnd_button.setOnClickListener {
             pause()
-            fetchRecord(Record(id="me0wning",dailyTime=time))
+            fetchRecord(Record(id=userId,dailyTime=time))
             driveStart_button.visibility = View.VISIBLE
             drive_constraintLayout.visibility = View.GONE
         }
@@ -442,7 +448,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             if (isPhotoTaken && (isSelectDangerPothole || isSelectDangerConstruction)) {
                 // 사진을 찍고 포트홀 또는 공사정보 중 하나를 선택했을 때만 작동
                 val type = if (isSelectDangerPothole) 0 else 1
-                val report = Report(userId = "me0wning", type = type, latitude = lat, longitude = lon)
+                val report = Report(userId = userId, type = type, latitude = lat, longitude = lon)
 
                 // Bitmap을 파일로 변환
                 val imageFile = bitmapToFile(dangerReportImage!!)
@@ -994,7 +1000,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             if (isPhotoTaken) {
                 // 사진을 찍고 포트홀 또는 공사정보 중 하나를 선택했을 때만 작동
                 val reportCancel =
-                    ReportCancel(userId = "me0wning", reportId = indexNum)
+                    ReportCancel(userId = userId, reportId = indexNum)
 
                 // Bitmap을 파일로 변환
                 val imageFile = bitmapToFile(dangerReportImage!!)

@@ -48,7 +48,7 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         val dailyTimeTxt: TextView = view.findViewById(R.id.ridingCalanderTime)
         val totalTimeTxt: TextView = view.findViewById(R.id.totalTime_txt)
 
-        val hotPost1: TextView = view.findViewById(R.id.hotPost1)
+        var hotPost1: TextView = view.findViewById(R.id.hotPost1)
         val hotPost2: TextView = view.findViewById(R.id.hotPost2)
         val hotPost3: TextView = view.findViewById(R.id.hotPost3)
         val hotPost4: TextView = view.findViewById(R.id.hotPost4)
@@ -101,15 +101,12 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = apiService.getHotPost()
-                val posts = ArrayList<mainHotPost>()
 
                 if (response.isSuccessful) {
                     val hotResList = response.body()
 
                     if (hotResList != null && hotResList.isNotEmpty()) {
-                        for (i in 0 until hotResList.size) {
-                            posts[i] = hotResList[i]
-                        }
+                        hotPost1.text = hotResList[0].Title
                     }
                 }
             } catch (e: Exception) {

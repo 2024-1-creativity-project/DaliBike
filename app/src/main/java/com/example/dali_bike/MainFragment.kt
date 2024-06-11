@@ -59,6 +59,7 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val id = ID(userViewModel.user.value?.userId.toString())
+
                 val response = apiService.userMainInfo(id)
 
                 if (response.isSuccessful) {

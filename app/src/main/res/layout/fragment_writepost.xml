@@ -324,6 +324,19 @@
 <!--            app:layout_constraintTop_toTopOf="@+id/contents_input"-->
 <!--            app:layout_constraintVertical_bias="1.0" />-->
 
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginBottom="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/categorySelectBackground"
+            app:layout_constraintEnd_toEndOf="@+id/categorySelectBackground"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView25"
+            app:layout_constraintTop_toTopOf="@+id/categorySelectBackground"
+            app:layout_constraintVertical_bias="0.0" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

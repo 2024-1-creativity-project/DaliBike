@@ -644,15 +644,19 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/writePostBtn"
             android:layout_width="95dp"
             android:layout_height="95dp"
             android:background="@android:color/transparent"
             android:padding="1dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/writepost"
-            tools:layout_editor_absoluteX="284dp"
-            tools:layout_editor_absoluteY="718dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.963"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.978"
+            app:srcCompat="@drawable/writepost" />
         <!--        카테고리 선택 창-->
 
 <!--        <ImageView-->

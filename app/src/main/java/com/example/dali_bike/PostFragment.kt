@@ -36,6 +36,11 @@ class PostFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        val writePostBtn: AppCompatImageButton = view.findViewById(R.id.writePostBtn)
+        writePostBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_writePost)
+        }
+
 
 
     }

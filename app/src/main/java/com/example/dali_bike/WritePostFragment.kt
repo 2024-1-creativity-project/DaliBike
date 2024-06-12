@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -25,6 +27,7 @@ import kotlinx.coroutines.withContext
 class WritePostFragment : Fragment() {
     private lateinit var _binding: FragmentWritepostBinding
     private val userViewModel: UserViewModel by activityViewModels()
+    private var selectedCategory: String? = null // 선택한 카테고리를 저장할 변수
 
 
     override fun onCreateView(
@@ -38,6 +41,8 @@ class WritePostFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initSpinner()
+
         super.onViewCreated(view, savedInstanceState)
 
         val userId = userViewModel.user.value?.userId.toString()
@@ -57,14 +62,14 @@ class WritePostFragment : Fragment() {
             val content = editContents.text.toString()
 
             //유효성 검사
-            if(category.isEmpty()) {
+            if(selectedCategory.toString().isEmpty()) {
                 editCategory.error = "카테고리를 입력하세요"
                 return@setOnClickListener
             }
-            if(category!="자유게시판" && category!="만남의광장" && category!="공유게시판" && category!="hello") {
-                editCategory.error = "잘못된 카테고리입니다."
-                return@setOnClickListener
-            }
+//            if(category!="자유게시판" && category!="만남의광장" && category!="공유게시판" && category!="hello") {
+//                editCategory.error = "잘못된 카테고리입니다."
+//                return@setOnClickListener
+//            }
             if(title.isEmpty()) {
                 editTitle.error = "제목을 입력하세요"
                 return@setOnClickListener
@@ -73,7 +78,7 @@ class WritePostFragment : Fragment() {
                 editContents.error = "내용을 입력하세요"
                 return@setOnClickListener
             }
-            val writePost = WritePost(userId = userId, categoryId = category, title = title, content = content)
+            val writePost = WritePost(userId = userId, categoryId = selectedCategory.toString(), title = title, content = content)
 
 //            Log.d("category",writePost.Category)
 //            Log.d("title",writePost.Title)
@@ -111,7 +116,43 @@ class WritePostFragment : Fragment() {
             }
 
         }
+    }
 
+
+    private fun initSpinner() {
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.post_category,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            _binding.categorySpinner.adapter = adapter
+        }
+
+        _binding.categorySpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    p0: AdapterView<*>?,
+                    p1: View?,
+                    p2: Int,
+                    p3: Long
+                ) {
+                    if (p0 != null) {
+                        // 선택한 항목의 위치를 가져옴
+                        val selectedItemPosition = p2
+                        // 선택한 항목의 값을 가져옴
+                        val selectedItemValue = p0.getItemAtPosition(p2).toString()
+
+                        // 선택한 항목을 변수에 저장
+                        selectedCategory = selectedItemValue
+
+                    }
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    // Do nothing
+                }
+            }
     }
 
 }

@@ -2,12 +2,14 @@ package com.example.dali_bike
 
 import UserViewModel
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -45,18 +47,21 @@ class WritePostFragment : Fragment() {
         val editContents: EditText = view.findViewById(R.id.contentsInput)
         //backBtn 만들기
 
-        val finishBtn: Button = view.findViewById(R.id.write_finishBtn)
+        val finishBtn: ImageButton = view.findViewById(R.id.write_finishBtn)
 
+        //작성완료 버튼 클릭 시
         finishBtn.setOnClickListener{
+            //입력 값 가져옴
             val category = editCategory.text.toString()
             val title = editTitle.text.toString()
             val content = editContents.text.toString()
 
+            //유효성 검사
             if(category.isEmpty()) {
                 editCategory.error = "카테고리를 입력하세요"
                 return@setOnClickListener
             }
-            if(category!=="자유게시판" && category!=="만남의광장" && category!=="공유게시판") {
+            if(category!="자유게시판" && category!="만남의광장" && category!="공유게시판" && category!="hello") {
                 editCategory.error = "잘못된 카테고리입니다."
                 return@setOnClickListener
             }
@@ -68,7 +73,12 @@ class WritePostFragment : Fragment() {
                 editContents.error = "내용을 입력하세요"
                 return@setOnClickListener
             }
-            val writePost = WritePost(category = category, title = title, content = content, userId = "1111")
+            val writePost = WritePost(userId = userId, categoryId = category, title = title, content = content)
+
+//            Log.d("category",writePost.Category)
+//            Log.d("title",writePost.Title)
+//            Log.d("content",writePost.Content)
+//            Log.d("userId",writePost.USERId)
 
             CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -76,14 +86,16 @@ class WritePostFragment : Fragment() {
 
                     if (response.isSuccessful) {
                         val wriRes = response.body()
-                        withContext(Dispatchers.Main) {
+                        withContext(Dispatchers.Main){
                             if (wriRes?.result == "true") {
-                                Toast.makeText(context, "게시글 등록이 완료되었습니다", Toast.LENGTH_LONG).show()
-                                findNavController().navigate(R.id.action_writePost_to_postFragment)
-                            } else {
-                                Toast.makeText(context, "게시글 등록을 할 수 없습니다", Toast.LENGTH_LONG)
-                                    .show()
-                            }
+                                    Toast.makeText(context, "게시글 등록이 완료되었습니다", Toast.LENGTH_LONG).show()
+                                    findNavController().navigate(R.id.action_writePost_to_postFragment)
+                                } else {
+                                    Toast.makeText(context, "게시글 등록을 할 수 없습니다", Toast.LENGTH_LONG).show()
+                                    editCategory.error = "카테고리를 확인해주세요"
+                                    editTitle.error = "제목을 확인해주세요"
+                                    editContents.error = "내용을 확인해주세요"
+                                }
                         }
                     } else {
                         withContext(Dispatchers.Main) {

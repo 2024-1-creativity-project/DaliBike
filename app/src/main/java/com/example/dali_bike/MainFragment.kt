@@ -104,18 +104,22 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
     CoroutineScope(Dispatchers.IO).launch {
         try {
             val response = apiService.getHotPost()
+            val maxlength = 10
 
-                if (response.isSuccessful) {
+
+            if (response.isSuccessful) {
                     val hotResList = response.body()
                     Log.d("가져오는 값", hotResList.toString())
                     withContext(Dispatchers.Main) {
                         if (hotResList != null && hotResList.isNotEmpty()) {
-                            hotPost1.text = hotResList[0].Title
-                            hotPost2.text = hotResList[1].Title
-                            hotPost3.text = hotResList[2].Title
-                            hotPost4.text = hotResList[3].Title
-                            hotPost5.text = hotResList[4].Title
-                            hotPost6.text = hotResList[5].Title
+
+
+                            hotPost1.text = hotResList[0].Title.truncateWithEllipsis(maxlength)
+                            hotPost2.text = hotResList[1].Title.truncateWithEllipsis(maxlength)
+                            hotPost3.text = hotResList[2].Title.truncateWithEllipsis(maxlength)
+                            hotPost4.text = hotResList[3].Title.truncateWithEllipsis(maxlength)
+                            hotPost5.text = hotResList[4].Title.truncateWithEllipsis(maxlength)
+                            hotPost6.text = hotResList[5].Title.truncateWithEllipsis(maxlength)
                         }
                     }
                 }
@@ -194,3 +198,10 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
     }
 }
 
+fun String.truncateWithEllipsis(maxLength: Int): String {
+    return if (this.length > maxLength) {
+        this.substring(0, maxLength) + "..."
+    } else {
+        this
+    }
+}

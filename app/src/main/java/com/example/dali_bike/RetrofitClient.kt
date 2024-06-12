@@ -6,11 +6,10 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+
 
 object RetrofitClient {
-    private const val BASE_URL = "http://192.168.0.10:3000"
+    private const val BASE_URL = "http://192.168.45.242:3000"
     val httpClient = OkHttpClient.Builder()
     val gson : Gson = GsonBuilder()
         .setLenient()

@@ -88,7 +88,18 @@ class PostFragment : Fragment() {
             }
         }
     }
+        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
+        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
 
+        mapBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_naverMapFragment)
+        }
+
+        homeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_mainFragment)
+        }
     private fun initSpinner() {
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -116,6 +127,15 @@ class PostFragment : Fragment() {
                         // 선택한 항목을 변수에 저장
                         selectedCategory = selectedItemValue
 
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_self)
+        }
+
+        myPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_myPageFragment)
+        }
+    }
+}
                     }
                 }
 

@@ -57,6 +57,15 @@ interface ApiInterface {
     @POST("/user/mypage")
     suspend fun myInfo(@Body id: ID): Response<List<myInfo>>
 
+    @POST("/record/my/monthly")
+    suspend fun myMonthly(@Body info: InquiryMonthlyInfo): Response<List<MonthlyInfo>>
+
+    @POST("/record/rank")
+    suspend fun rank(@Body info: InquiryRank): Response<List<RankInfo>>
+
+    @POST("/record/my/rank")
+    suspend fun myRank(@Body info: InquiryMonthlyInfo): Response<MyRank>
+
 }
 
 private val moshi = Moshi.Builder()

@@ -57,7 +57,9 @@ import java.io.IOException
 import java.util.*
 import kotlin.concurrent.timer
 import android.graphics.BitmapFactory
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.models.ID
 import okhttp3.ResponseBody
 import java.io.InputStream
@@ -180,6 +182,29 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //메뉴BAR
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
+
+        myPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_naverMapFragment_to_myPageFragment)
+        }
+
+        homeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_naverMapFragment_to_mainFragment)
+        }
+
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_naverMapFragment_to_postFragment)
+        }
+
+        mapBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_naverMapFragment_self)
+        }
+
 
         // FloatingActionButton과 CheckBox들을 초기화
         fab = view.findViewById(R.id.fab)

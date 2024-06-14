@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellowGreen"
+        tools:context=".CalendarFragment" >
+
+        <View
+            android:id="@+id/menubar"
+            android:layout_width="393dp"
+            android:layout_height="95dp"
+            android:background="@color/ivory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/menuStick1"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.190"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <View
+            android:id="@+id/menuStick2"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <View
+            android:id="@+id/menuStick3"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <ImageButton
+            android:id="@+id/homeBtn"
+            android:layout_width="80dp"
+            android:layout_height="85dp"
+            android:src="@drawable/home"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar" />
+
+        <ImageButton
+            android:id="@+id/postBtn"
+            android:layout_width="85dp"
+            android:layout_height="88dp"
+            android:src="@drawable/chat"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.340"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.90999997" />
+
+        <ImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="74dp"
+            android:layout_height="83dp"
+            android:src="@drawable/location"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.64"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar" />
+
+        <ImageButton
+            android:id="@+id/myPageBtn"
+            android:layout_width="86dp"
+            android:layout_height="85dp"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.98"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.444"
+            app:srcCompat="@drawable/user1" />
+
+        <View
+            android:id="@+id/view32"
+            android:layout_width="362dp"
+            android:layout_height="337dp"
+            android:background="@drawable/view_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.095" />
+
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/view32"
+            app:layout_constraintEnd_toEndOf="@+id/view32"
+            app:layout_constraintStart_toStartOf="@+id/view32"
+            app:layout_constraintTop_toTopOf="@+id/view32"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/view33"
+            android:layout_width="367dp"
+            android:layout_height="290dp"
+            android:background="@drawable/view_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/month"
+            app:layout_constraintVertical_bias="0.073" />
+
+        <TextView
+            android:id="@+id/month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="n월 랭킹"
+            android:textColor="@color/khaki"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view32"
+            app:layout_constraintVertical_bias="0.024" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="1등"
+            android:textColor="@color/green"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.078" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="2등"
+            android:textColor="@color/green"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="3등"
+            android:textColor="@color/green"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.070"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.53" />
+
+        <TextView
+            android:id="@+id/first_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.21"
+            app:layout_constraintStart_toEndOf="@+id/textView32"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.09" />
+
+        <TextView
+            android:id="@+id/second_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.305" />
+
+        <TextView
+            android:id="@+id/third_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toEndOf="@+id/textView34"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.525" />
+
+        <TextView
+            android:id="@+id/first_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="18h 30m 19s"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintStart_toEndOf="@+id/textView32"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <TextView
+            android:id="@+id/second_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="12h 28m 48s"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.31" />
+
+        <TextView
+            android:id="@+id/third_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="9h 41m 22s"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintStart_toEndOf="@+id/textView34"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.515" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="내 랭킹"
+            android:textColor="@color/khaki"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.733" />
+
+        <TextView
+            android:id="@+id/my_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chab"
+            android:text="N등"
+            android:textColor="@color/red"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.921" />
+
+        <TextView
+            android:id="@+id/my_nickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="내닉네임"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.90999997" />
+
+        <View
+            android:id="@+id/view34"
+            android:layout_width="131dp"
+            android:layout_height="22dp"
+            android:background="@drawable/dotted_line"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toStartOf="@+id/textView35"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.72" />
+
+        <View
+            android:id="@+id/view35"
+            android:layout_width="135dp"
+            android:layout_height="21dp"
+            android:background="@drawable/dotted_line"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.72" />
+
+        <TextView
+            android:id="@+id/my_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothicbold"
+            android:text="내시간이나올거여"
+            app:layout_constraintBottom_toBottomOf="@+id/view33"
+            app:layout_constraintEnd_toEndOf="@+id/view33"
+            app:layout_constraintHorizontal_bias="0.927"
+            app:layout_constraintStart_toStartOf="@+id/view33"
+            app:layout_constraintTop_toTopOf="@+id/view33"
+            app:layout_constraintVertical_bias="0.895" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

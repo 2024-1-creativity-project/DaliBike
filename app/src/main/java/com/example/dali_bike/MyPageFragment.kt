@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.models.ID
 import kotlinx.coroutines.CoroutineScope
@@ -70,5 +73,33 @@ class MyPageFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
+        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+        val logoutBtn: Button = view.findViewById(R.id.logoutBtn)
+
+        mapBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPageFragment_to_naverMapFragment)
+        }
+
+        homeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPageFragment_to_mainFragment)
+        }
+
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPageFragment_to_postFragment)
+        }
+
+        myPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPageFragment_self)
+        }
+
+        logoutBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPageFragment_to_loginFragment)
+        }
+    }
 }

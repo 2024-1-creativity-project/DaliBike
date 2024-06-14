@@ -8,4 +8,12 @@
     </string-array>
 
 
+    <string-array name="view_post_category">
+        <item>전체게시판</item>
+        <item>HOT게시판</item>
+        <item>자유게시판</item>
+        <item>공유게시판</item>
+        <item>만남의광장</item>
+    </string-array>
+
 </resources>

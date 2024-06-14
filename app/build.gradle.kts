@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -89,5 +90,8 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-scalars:2.5.0")
     implementation ("com.squareup.retrofit2:adapter-rxjava:2.1.0")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
+
+    //glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
 
 }

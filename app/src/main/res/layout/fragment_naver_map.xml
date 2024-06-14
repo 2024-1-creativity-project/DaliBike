@@ -1131,7 +1131,7 @@
             app:layout_constraintVertical_bias="0.545" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/writePostBtn"
             android:layout_width="85dp"
             android:layout_height="87dp"
             app:layout_constraintBottom_toBottomOf="@+id/menubar"

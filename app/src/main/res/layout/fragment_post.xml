@@ -3,17 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/postTitile5"
+        android:id="@+id/postMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/yellowGreen"
         tools:context=".MainActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="395dp"
+            android:layout_height="655dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <View
             android:id="@+id/menubar"
@@ -33,7 +44,7 @@
             android:layout_height="10dp"
             android:background="@drawable/dotted_line"
             android:rotation="90"
-            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.190"
             app:layout_constraintStart_toStartOf="parent"
@@ -128,15 +139,10 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.126" />
 
-        <ImageView
-            android:id="@+id/postCategory_all"
-            android:layout_width="254dp"
-            android:layout_height="49dp"
-            android:src="@drawable/allpost_yellow"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menubar" />
+
+
+
+
 
         <ImageView
             android:id="@+id/categprySelected"
@@ -150,6 +156,9 @@
             app:layout_constraintStart_toEndOf="@+id/postCategory_all"
             app:layout_constraintTop_toBottomOf="@+id/menubar"
             app:layout_constraintVertical_bias="0.51" />
+
+
+
 
         <ImageButton
             android:id="@+id/imageButton4"
@@ -186,7 +195,7 @@
             app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.61" />
+            app:layout_constraintVertical_bias="0.609" />
 
         <ImageButton
             android:id="@+id/imageButton7"
@@ -659,46 +668,68 @@
             app:srcCompat="@drawable/writepost" />
         <!--        카테고리 선택 창-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView21"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/dotline_brown"-->
-<!--            tools:layout_editor_absoluteX="0dp"-->
-<!--            tools:layout_editor_absoluteY="166dp" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView21"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/dotline_brown"-->
+        <!--            tools:layout_editor_absoluteX="0dp"-->
+        <!--            tools:layout_editor_absoluteY="166dp" />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView22"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/dotline_brown"-->
-<!--            tools:layout_editor_absoluteX="0dp"-->
-<!--            tools:layout_editor_absoluteY="247dp" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView22"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/dotline_brown"-->
+        <!--            tools:layout_editor_absoluteX="0dp"-->
+        <!--            tools:layout_editor_absoluteY="247dp" />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView27"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/dotline_brown"-->
-<!--            tools:layout_editor_absoluteX="0dp"-->
-<!--            tools:layout_editor_absoluteY="322dp" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView27"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/dotline_brown"-->
+        <!--            tools:layout_editor_absoluteX="0dp"-->
+        <!--            tools:layout_editor_absoluteY="322dp" />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView28"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/dotline_brown"-->
-<!--            tools:layout_editor_absoluteX="1dp"-->
-<!--            tools:layout_editor_absoluteY="400dp" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView28"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/dotline_brown"-->
+        <!--            tools:layout_editor_absoluteX="1dp"-->
+        <!--            tools:layout_editor_absoluteY="400dp" />-->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView29"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/dotline_brown"-->
-<!--            tools:layout_editor_absoluteX="0dp"-->
-<!--            tools:layout_editor_absoluteY="483dp" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView29"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/dotline_brown"-->
+        <!--            tools:layout_editor_absoluteX="0dp"-->
+        <!--            tools:layout_editor_absoluteY="483dp" />-->
 
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="230dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="26dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageButton2"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/postCategory_all"
+            android:layout_width="254dp"
+            android:layout_height="49dp"
+            android:src="@drawable/allpost_yellow"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menubar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

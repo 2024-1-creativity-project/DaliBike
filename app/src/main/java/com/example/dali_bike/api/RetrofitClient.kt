@@ -5,6 +5,7 @@ import com.example.dali_bike.models.ID
 import com.example.dali_bike.models.LoginRequest
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
+import com.example.dali_bike.models.ResponseListPost
 import com.example.dali_bike.models.WritePost
 import com.example.dali_bike.models.mainInfo
 import com.example.dali_bike.models.myInfo
@@ -22,11 +23,12 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.Locale.Category
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://192.168.45.242:3000"
+private const val BASE_URL = "http://192.168.45.22:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -42,6 +44,9 @@ interface ApiInterface {
 
     @GET("post/view/hot")
     suspend fun getHotPost(): Response<List<mainHotPost>>
+
+    @GET("post/list/{category}")
+    suspend fun viewCategoryPost(@Path("category") category: String): ResponseListPost
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: ID): Response<List<mainInfo>>
@@ -88,3 +93,8 @@ val retrofit: Retrofit = Retrofit.Builder()
     .build()
 
 val apiService: ApiInterface = retrofit.create(ApiInterface::class.java)
+
+object MyApi {
+    val retrofitService: ApiInterface by lazy {
+        retrofit.create(ApiInterface::class.java) }
+}

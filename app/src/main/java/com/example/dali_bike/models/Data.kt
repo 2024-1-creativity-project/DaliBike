@@ -66,3 +66,15 @@ data class WritePost(
     val title: String,
     val content: String,
 )
+
+data class PostList(
+    val avatar: String,
+    val Title: String,
+    val Content: String,
+    val Like: Int,
+    val CommentCount: Int
+)
+
+data class ResponseListPost(
+    val data: List<PostList>
+)

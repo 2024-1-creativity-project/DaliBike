@@ -11,13 +11,13 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.dali_bike.models.PostList
+import com.example.dali_bike.model.PostData
 
 
 
 // TODO: Rename parameter arguments, choose names that match
 
-class PostListFragment (val context: Context, var list: MutableList<PostList>) :
+class PostListFragment (val context: Context, var list: MutableList<PostData>) :
     RecyclerView.Adapter<PostListFragment.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)

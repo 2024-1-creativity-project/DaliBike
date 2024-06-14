@@ -17,13 +17,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dali_bike.api.MyApi
 import com.example.dali_bike.databinding.FragmentPostBinding
 
-import com.example.dali_bike.models.PostList
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.databinding.FragmentWritepostBinding
+import com.example.dali_bike.model.PostData
 import com.example.dali_bike.models.WritePost
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +34,7 @@ class PostFragment : Fragment() {
     private lateinit var _binding: FragmentPostBinding
     //private lateinit var txtData: TextView
     private lateinit var postList: RecyclerView
-    private var listPost: MutableList<PostList> = mutableListOf<PostList>()
+    private var listPost: MutableList<PostData> = mutableListOf<PostData>()
     private var adapterrr: PostListFragment? = null
     private var selectedCategory: String? = null // 선택한 카테고리를 저장할 변수
 
@@ -78,7 +78,7 @@ class PostFragment : Fragment() {
                 //Log.e("%%%%", response.toString())
                 //txtData.text = response.toString()
                 listPost.clear()
-                response.data?.let {
+                response.body()?.let {
                     listPost.addAll(it)
                 }
                 adapterrr?.notifyDataSetChanged()

@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +24,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.databinding.FragmentWritepostBinding
-import com.example.dali_bike.model.PostData
+import com.example.dali_bike.models.PostList
 import com.example.dali_bike.models.WritePost
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +35,7 @@ class PostFragment : Fragment() {
     private lateinit var _binding: FragmentPostBinding
     //private lateinit var txtData: TextView
     private lateinit var postList: RecyclerView
-    private var listPost: MutableList<PostData> = mutableListOf<PostData>()
+    private var listPost: MutableList<PostList> = mutableListOf<PostList>()
     private var adapterrr: PostListFragment? = null
     private var selectedCategory: String? = null // 선택한 카테고리를 저장할 변수
 
@@ -78,7 +79,7 @@ class PostFragment : Fragment() {
                 //Log.e("%%%%", response.toString())
                 //txtData.text = response.toString()
                 listPost.clear()
-                response.body()?.let {
+                response.data.let {
                     listPost.addAll(it)
                 }
                 adapterrr?.notifyDataSetChanged()
@@ -93,13 +94,13 @@ class PostFragment : Fragment() {
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
 
-        mapBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_postFragment_to_naverMapFragment)
-        }
-
-        homeBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_postFragment_to_mainFragment)
-        }
+//        mapBtn.setOnClickListener {
+//            findNavController().navigate(R.id.action_postFragment_to_naverMapFragment)
+//        }
+//
+//        homeBtn.setOnClickListener {
+//            findNavController().navigate(R.id.action_postFragment_to_mainFragment)
+//        }
     private fun initSpinner() {
         ArrayAdapter.createFromResource(
             requireContext(),

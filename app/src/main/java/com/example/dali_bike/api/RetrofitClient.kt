@@ -2,7 +2,12 @@ package com.example.dali_bike.api
 
 import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.models.ID
+import com.example.dali_bike.models.InquiryMonthlyInfo
+import com.example.dali_bike.models.InquiryRank
 import com.example.dali_bike.models.LoginRequest
+import com.example.dali_bike.models.MonthlyInfo
+import com.example.dali_bike.models.MyRank
+import com.example.dali_bike.models.RankInfo
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
 import com.example.dali_bike.models.ResponseListPost

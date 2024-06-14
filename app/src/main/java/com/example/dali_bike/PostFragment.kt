@@ -41,8 +41,26 @@ class PostFragment : Fragment() {
             findNavController().navigate(R.id.action_postFragment_to_writePost)
         }
 
+        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
+        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
 
+        mapBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_naverMapFragment)
+        }
 
+        homeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_mainFragment)
+        }
+
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_self)
+        }
+
+        myPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_myPageFragment)
+        }
     }
 }
 

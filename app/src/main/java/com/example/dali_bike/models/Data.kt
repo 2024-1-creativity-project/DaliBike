@@ -66,3 +66,32 @@ data class WritePost(
     val title: String,
     val content: String,
 )
+
+data class InquiryMonthlyInfo (
+    val id: String,
+    val year: Int,
+    val month: Int
+)
+
+data class MonthlyInfo (
+    val recordId: Int,
+    val USERId: String,
+    val date: String,
+    val dailyTime: Int
+)
+
+data class InquiryRank (
+    val year: Int,
+    val month: Int
+)
+
+data class RankInfo (
+    val Nickname: String,
+    val totalTime: Int
+)
+
+data class MyRank (
+    val Nickname: String,
+    val totalTime: Int,
+    val rank: Int
+)

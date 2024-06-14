@@ -2,7 +2,12 @@ package com.example.dali_bike.api
 
 import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.models.ID
+import com.example.dali_bike.models.InquiryMonthlyInfo
+import com.example.dali_bike.models.InquiryRank
 import com.example.dali_bike.models.LoginRequest
+import com.example.dali_bike.models.MonthlyInfo
+import com.example.dali_bike.models.MyRank
+import com.example.dali_bike.models.RankInfo
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
 import com.example.dali_bike.models.WritePost
@@ -26,7 +31,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://192.168.45.242:3000"
+private const val BASE_URL = "http://172.30.101.87:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -51,6 +56,15 @@ interface ApiInterface {
 
     @POST("/user/mypage")
     suspend fun myInfo(@Body id: ID): Response<List<myInfo>>
+
+    @POST("/record/my/monthly")
+    suspend fun myMonthly(@Body info: InquiryMonthlyInfo): Response<List<MonthlyInfo>>
+
+    @POST("/record/rank")
+    suspend fun rank(@Body info: InquiryRank): Response<List<RankInfo>>
+
+    @POST("/record/my/rank")
+    suspend fun myRank(@Body info: InquiryMonthlyInfo): Response<MyRank>
 
 }
 

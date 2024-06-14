@@ -91,8 +91,8 @@
 
         <ImageButton
             android:id="@+id/mapBtn"
-            android:layout_width="75dp"
-            android:layout_height="84dp"
+            android:layout_width="74dp"
+            android:layout_height="83dp"
             android:src="@drawable/location"
             app:layout_constraintBottom_toBottomOf="@+id/menubar"
             app:layout_constraintEnd_toEndOf="@+id/menubar"

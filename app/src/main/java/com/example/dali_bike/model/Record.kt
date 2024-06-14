@@ -12,3 +12,7 @@ data class RecordUSERId (
 data class RecordResult (
     val result: String
 )
+
+data class isRecordClicked (
+    var startRecording: Boolean
+)

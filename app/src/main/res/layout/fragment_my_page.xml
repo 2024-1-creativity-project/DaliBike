@@ -150,12 +150,12 @@
             app:layout_constraintTop_toTopOf="@+id/view11" />
 
         <Button
-            android:id="@+id/nickChangeBtn"
+            android:id="@+id/logoutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/green"
             android:fontFamily="@font/laundrygothic"
-            android:text="닉네임 변경"
+            android:text="로그아웃"
             android:textColor="@color/beige"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -174,7 +174,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nickChangeBtn"
+            app:layout_constraintTop_toBottomOf="@+id/logoutBtn"
             app:layout_constraintVertical_bias="0.077" />
 
         <TextView
@@ -212,7 +212,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/laundrygothicbold"
-            android:text="아이디가나옴"
             android:textColor="@color/green"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/view30"
@@ -227,7 +226,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/laundrygothicbold"
-            android:text="포인트 얼마 ㅎㅎ"
             android:textColor="@color/green"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/view30"

@@ -29,6 +29,9 @@ import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MainFragment : Fragment(), OnMapReadyCallback  {
     private lateinit var locationSource: FusedLocationSource
@@ -48,8 +51,9 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         val riderTxt: TextView = view.findViewById(R.id.rider_txt)
         val dailyTimeTxt: TextView = view.findViewById(R.id.ridingCalanderTime)
         val totalTimeTxt: TextView = view.findViewById(R.id.totalTime_txt)
+        val today: TextView = view.findViewById(R.id.ridingCalanderToday)
 
-        var hotPost1: TextView = view.findViewById(R.id.hotPost1)
+        val hotPost1: TextView = view.findViewById(R.id.hotPost1)
         val hotPost2: TextView = view.findViewById(R.id.hotPost2)
         val hotPost3: TextView = view.findViewById(R.id.hotPost3)
         val hotPost4: TextView = view.findViewById(R.id.hotPost4)
@@ -75,25 +79,27 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
 
                             //dailyTime 보여주기
                             var dailyTime = mainRes.dailyTime
-                            val dailyH = dailyTime / 3600
-                            dailyTime -= dailyH * 3600
-                            val dailyM = dailyTime / 60
-                            dailyTime -= dailyM * 60
-                            val dailyS = dailyTime
+                            val dailyH = dailyTime / 360000
+                            val dailyM = (dailyTime / 6000) % 60
+                            val dailyS = dailyTime / 100 % 60
 
                             val timeFormat = "${dailyH}h ${dailyM}m ${dailyS}s"
                             dailyTimeTxt.text = timeFormat
 
                             //totalTime 보여주기
                             var totalTime = mainRes.totalTime
-                            val totalH = totalTime / 3600
-                            totalTime -= totalH * 3600
-                            val totalM = totalTime / 60
-                            totalTime -= totalM * 60
-                            val totalS = totalTime
+                            val totalH = totalTime / 360000
+                            val totalM = (totalTime / 6000) % 60
+                            val totalS = totalTime / 100 % 60
 
                             val formatTime = "${totalH}h ${totalM}m ${totalS}s"
                             totalTimeTxt.text = formatTime
+
+                            val calendar = Calendar.getInstance()
+                            val dateFormat = SimpleDateFormat("M월 d일", Locale.getDefault())
+                            val todayDate = dateFormat.format(calendar.time)
+
+                            today.text = todayDate
                         }
                     }
                 }
@@ -112,8 +118,6 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
                     Log.d("가져오는 값", hotResList.toString())
                     withContext(Dispatchers.Main) {
                         if (hotResList != null && hotResList.isNotEmpty()) {
-
-
                             hotPost1.text = hotResList[0].Title.truncateWithEllipsis(maxlength)
                             hotPost2.text = hotResList[1].Title.truncateWithEllipsis(maxlength)
                             hotPost3.text = hotResList[2].Title.truncateWithEllipsis(maxlength)
@@ -156,7 +160,11 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
 
-        //val postBtn: ImageButton = view.findViewById()
+        val mainBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+
+        mainBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_self)
+        }
 
         val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapImg_btn)
 
@@ -164,15 +172,22 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
 
-        val myPageBtn: AppCompatImageView = view.findViewById(R.id.imgView)
-        //이거 ImageView니까 Button으로 고치기
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
         myPageBtn.setOnClickListener{
             findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
         }
 
-        val postBtn: AppCompatImageButton = view.findViewById(R.id.hotpost_btn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         postBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_postFragment)
+        }
+
+        ridingCalBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_calendarFragment)
+        }
+
+        ridingTimerBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
 
     }

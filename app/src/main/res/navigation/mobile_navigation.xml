@@ -79,6 +79,18 @@
         <action
             android:id="@+id/action_myPageFragment_to_postFragment"
             app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_self"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_naverMapFragment"
+            app:destination="@id/naverMapFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -94,8 +106,14 @@
             android:id="@+id/action_mainFragment_to_postFragment"
             app:destination="@id/postFragment" />
         <action
+            android:id="@+id/action_mainFragment_self"
+            app:destination="@id/mainFragment" />
+        <action
             android:id="@+id/action_mainFragment_to_writePost"
             app:destination="@id/writePost" />
+        <action
+            android:id="@+id/action_mainFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
     </fragment>
     <fragment
         android:id="@+id/naverMapFragment"
@@ -110,6 +128,9 @@
         <action
             android:id="@+id/action_naverMapFragment_to_myPageFragment"
             app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_naverMapFragment_self"
+            app:destination="@id/naverMapFragment" />
     </fragment>
     <navigation android:id="@+id/navigation"
         app:startDestination="@id/timerFragment">
@@ -136,6 +157,9 @@
         <action
             android:id="@+id/action_postFragment_to_writePost"
             app:destination="@id/writePost" />
+        <action
+            android:id="@+id/action_postFragment_self"
+            app:destination="@id/postFragment" />
     </fragment>
     <fragment
         android:id="@+id/writePost"
@@ -145,5 +169,23 @@
         <action
             android:id="@+id/action_writePost_to_postFragment"
             app:destination="@id/postFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.example.dali_bike.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendarFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_calendarFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_calendarFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_calendarFragment_to_naverMapFragment"
+            app:destination="@id/naverMapFragment" />
     </fragment>
 </navigation>

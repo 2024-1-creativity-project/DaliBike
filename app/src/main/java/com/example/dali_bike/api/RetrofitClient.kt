@@ -51,10 +51,13 @@ interface ApiInterface {
     suspend fun register(@Body register: Register): Response<Respon>
 
     @GET("post/view/hot")
-    suspend fun getHotPost(): Response<List<mainHotPost>>
+    suspend fun getHotPost(): Response<List<viewCategoryPost>>
 
     @GET("post/list/{category}")
     suspend fun viewCategoryPost(@Path("category") category: String): Response<List<viewCategoryPost>>
+
+    @GET("post/list/all")
+    suspend fun viewAllPost(): Response<List<viewCategoryPost>>
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: ID): Response<List<mainInfo>>

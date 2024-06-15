@@ -308,6 +308,8 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
         if(isStartRecord){
             driveStart_button.performClick()
+            recordViewModel.setIsRecordClicked(false)
+            isStartRecord = false
         }
 
         danger_report_button.setOnClickListener {

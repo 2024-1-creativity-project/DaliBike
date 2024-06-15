@@ -36,7 +36,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://172.30.101.87:3000"
+private const val BASE_URL = "http://172.30.101.89:3000"
 
 interface ApiInterface {
     @POST("/user/login")

@@ -15,6 +15,7 @@ import com.example.dali_bike.models.PostList
 
 class PostListFragment (val context: Context, var list: MutableList<PostList>) :
     RecyclerView.Adapter<PostListFragment.MyViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)
         //val view: View = inflater.inflate(R.layout.user_row,parent,false)
@@ -32,7 +33,6 @@ class PostListFragment (val context: Context, var list: MutableList<PostList>) :
         holder.title?.text = postList?.Title
         holder.content?.text = postList.Content
         holder.like?.text = postList?.Like.toString()
-        holder.comment?.text = postList?.CommentCount.toString()
 
 //        val imgUri = postList.avatar.toUri().buildUpon().scheme("https").build()
 //        holder.title?.let {
@@ -54,9 +54,9 @@ class PostListFragment (val context: Context, var list: MutableList<PostList>) :
 
         init {
             //name = view.findViewById(R.id.txt_avatar)
-            title = view.findViewById(R.id.post_title)
-            content = view.findViewById(R.id.post_content)
-            like = view.findViewById(R.id.post_like)
+            title = view.findViewById(R.id.postTitle)
+            content = view.findViewById(R.id.postContent)
+            like = view.findViewById(R.id.postLike)
 //            comment = view.findViewById(R.id.commentCount1)
         }
 

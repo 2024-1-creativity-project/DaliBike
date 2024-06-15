@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/post_title"
+            android:id="@+id/postTitle"
             android:layout_width="257dp"
             android:layout_height="25dp"
             android:fontFamily="@font/laundrygothic"
@@ -40,7 +40,7 @@
             app:layout_constraintVertical_bias="0.2" />
 
         <TextView
-            android:id="@+id/post_content"
+            android:id="@+id/postContent"
             android:layout_width="233dp"
             android:layout_height="40dp"
             android:fontFamily="@font/laundrygothic"
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="@+id/view31"
             app:layout_constraintHorizontal_bias="0.165"
             app:layout_constraintStart_toStartOf="@+id/view31"
-            app:layout_constraintTop_toBottomOf="@+id/post_title"
+            app:layout_constraintTop_toBottomOf="@+id/postTitle"
             app:layout_constraintVertical_bias="0.4" />
 
         <ImageView
@@ -61,13 +61,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.463"
-            app:layout_constraintStart_toEndOf="@+id/post_content"
+            app:layout_constraintStart_toEndOf="@+id/postContent"
             app:layout_constraintTop_toTopOf="@+id/view31"
             app:layout_constraintVertical_bias="0.927"
             app:srcCompat="@drawable/hearts" />
 
         <TextView
-            android:id="@+id/post_like"
+            android:id="@+id/postLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/laundrygothic"

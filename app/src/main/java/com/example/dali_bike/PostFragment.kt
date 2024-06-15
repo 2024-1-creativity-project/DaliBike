@@ -1,5 +1,6 @@
 package com.example.dali_bike
 
+import androidx.recyclerview.widget.RecyclerView
 import UserViewModel
 import android.os.Bundle
 import android.util.Log
@@ -8,41 +9,47 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.recyclerview.widget.RecyclerView
-import com.example.dali_bike.databinding.FragmentPostBinding
-import com.example.dali_bike.models.MyPost
-import kotlinx.coroutines.launch
-import java.lang.Exception
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
+import com.example.dali_bike.databinding.FragmentPostBinding
+import com.example.dali_bike.model.viewCategoryPost
+import com.example.dali_bike.models.MyPost
+import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class PostFragment : Fragment() {
-    private lateinit var _binding: FragmentPostBinding
+    private var _binding: FragmentPostBinding? = null
+    private val binding get() = _binding!!
     private lateinit var recycler_main: RecyclerView
-    private var listPost: MutableList<MyPost> = mutableListOf()
-    private var adapter: PostsAdapter? = null
+    private var listPost: MutableList<viewCategoryPost> = mutableListOf() // 타입 변경
+    private var adapter: PostListAdapter? = null
     private val userViewModel: UserViewModel by activityViewModels()
 
-    private var selectedCategory: String? = null // 선택한 카테고리를 저장할 변수
+    private var viewSelectedCategory: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // view binding을 사용하여 레이아웃 인플레이트
         _binding = FragmentPostBinding.inflate(inflater, container, false)
-        val rootView = _binding.root
+        val rootView = binding.root
 
-        // rootView를 사용하여 recycler_main 초기화
         recycler_main = rootView.findViewById(R.id.recyclerView)
-        adapter = PostsAdapter(requireContext(), listPost)
+        adapter = PostListAdapter(requireContext(), listPost)
         recycler_main.adapter = adapter
 
+        val writePost_Btn: ImageButton = binding.writePostBtn
+        writePost_Btn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_writePost)
+        }
+
+        initSpinner()
         getPostList()
 
         return rootView
@@ -55,10 +62,10 @@ class PostFragment : Fragment() {
             android.R.layout.simple_spinner_item
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            _binding.categorySpinner.adapter = adapter
+            binding.categorySpinner.adapter = adapter
         }
 
-        _binding.categorySpinner.onItemSelectedListener =
+        binding.categorySpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     p0: AdapterView<*>?,
@@ -67,34 +74,33 @@ class PostFragment : Fragment() {
                     p3: Long
                 ) {
                     if (p0 != null) {
-                        // 선택한 항목의 위치를 가져옴
-                        val selectedItemPosition = p2
-                        // 선택한 항목의 값을 가져옴
                         val selectedItemValue = p0.getItemAtPosition(p2).toString()
-
-                        // 선택한 항목을 변수에 저장
-                        selectedCategory = selectedItemValue
+                        viewSelectedCategory = selectedItemValue
+                        binding.postCategory.text = viewSelectedCategory ?: ""
+                        getPostList()
                     }
                 }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) {
-                    // 아무것도 하지 않음
-                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {}
             }
     }
 
     private fun getPostList() {
         lifecycleScope.launch {
             try {
-                val id = userViewModel.user.value?.userId
-                val response: Response<List<MyPost>> = apiService.myPost(id.toString())
+                if (viewSelectedCategory.isNullOrEmpty()) {
+                    Log.e("Error", "No category selected")
+                    return@launch
+                }
+
+                val response: Response<List<viewCategoryPost>> = apiService.viewCategoryPost(viewSelectedCategory.toString())
 
                 if (response.isSuccessful) {
                     response.body()?.let { postList ->
                         listPost.clear()
                         listPost.addAll(postList)
                         adapter?.notifyDataSetChanged()
-                        Log.d("MyPostFragment", "Posts loaded: ${postList.size}")
+                        Log.d("PostFragment", "Posts loaded: ${postList.size}")
                     }
                 } else {
                     Log.e("Error", "Failed to fetch posts: ${response.errorBody()?.string()}")
@@ -106,13 +112,12 @@ class PostFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initSpinner()
         super.onViewCreated(view, savedInstanceState)
 
-        val mapBtn : AppCompatImageButton = view.findViewById(R.id.mapBtn)
-        val postBtn : AppCompatImageButton = view.findViewById(R.id.postBtn)
-        val mainBtn : AppCompatImageButton = view.findViewById(R.id.homeBtn)
-        val myPageBtn : AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val mainBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
 
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_myPostFragment_to_naverMapFragment)
@@ -131,27 +136,8 @@ class PostFragment : Fragment() {
         }
     }
 
-    companion object {
-        private fun getPostList(postFragment: PostFragment) {
-            postFragment.lifecycleScope.launch {
-                try {
-                    val id = postFragment.userViewModel.user.value?.userId
-                    val response: Response<List<MyPost>> = apiService.myPost(id.toString())
-
-                    if (response.isSuccessful) {
-                        response.body()?.let { postList ->
-                            postFragment.listPost.clear()
-                            postFragment.listPost.addAll(postList)
-                            postFragment.adapter?.notifyDataSetChanged()
-                            Log.d("MyPostFragment", "Posts loaded: ${postList.size}")
-                        }
-                    } else {
-                        Log.e("Error", "Failed to fetch posts: ${response.errorBody()?.string()}")
-                    }
-                } catch (e: Exception) {
-                    Log.e("Error", e.localizedMessage)
-                }
-            }
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

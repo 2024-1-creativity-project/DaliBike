@@ -8,6 +8,5 @@ data class mainHotPost(
 data class viewCategoryPost(
     val Title: String,
     val Content: String,
-    val Like: Int,
-    val CommentCount: Int
+    val Like: Int
 )

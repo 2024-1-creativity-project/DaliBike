@@ -1131,7 +1131,7 @@
 
         <ImageButton
 
-            android:id="@+id/writePostBtn"
+            android:id="@+id/writePost_Btn"
             android:layout_width="85dp"
             android:layout_height="86dp"
             app:layout_constraintBottom_toBottomOf="@+id/menubar"

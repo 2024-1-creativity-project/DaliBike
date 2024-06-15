@@ -2,21 +2,17 @@ package com.example.dali_bike.ui
 
 import UserViewModel
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -28,7 +24,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
-import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.example.dali_bike.R
 import com.example.dali_bike.model.Item
@@ -46,14 +41,11 @@ import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 import java.util.*
 import kotlin.concurrent.timer
 import android.graphics.BitmapFactory
@@ -61,13 +53,6 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.model.RecordViewModel
-import com.example.dali_bike.models.ID
-import okhttp3.ResponseBody
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.MalformedURLException
-import java.net.URL
-import kotlin.concurrent.thread
 
 data class MarkerWrapper(val marker: Marker, val itemNum: Int)
 
@@ -187,7 +172,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         //메뉴BAR
-        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.writePostBtn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.writePost_Btn)
         val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)

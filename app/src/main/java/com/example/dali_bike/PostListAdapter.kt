@@ -7,22 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dali_bike.model.viewCategoryPost
 import com.example.dali_bike.models.MyPost
 
-class PostsAdapter(val context: Context, var list: MutableList<MyPost>) :
+class PostListAdapter(val context: Context, var list: MutableList<viewCategoryPost>) :
     RecyclerView.Adapter<PostsAdapter.MyViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsAdapter.MyViewHolder {
         val inflater = LayoutInflater.from(context)
         val view: View = inflater.inflate(R.layout.postlist, parent, false)
-        return MyViewHolder(view)
+        return PostsAdapter.MyViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return list.size
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PostsAdapter.MyViewHolder, position: Int) {
         val post = list[position]
 
         // Log the data being bound to the ViewHolder
@@ -33,9 +30,9 @@ class PostsAdapter(val context: Context, var list: MutableList<MyPost>) :
         holder.like.text = post.Like.toString()
     }
 
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var title: TextView = view.findViewById(R.id.postTitle)
-        var content: TextView = view.findViewById(R.id.postContent)
-        var like: TextView = view.findViewById(R.id.postLike)
+    override fun getItemCount(): Int {
+        return list.size
     }
+
+
 }

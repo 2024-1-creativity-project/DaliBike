@@ -15,7 +15,7 @@ data class User(
 
 data class Post(
     var postId: Int,
-    val Title: String,
+    val title: String,
     val content: String,
     val like: Int,
     val category: String,

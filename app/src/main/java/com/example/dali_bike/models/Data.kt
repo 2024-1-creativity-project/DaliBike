@@ -14,15 +14,12 @@ data class User(
 
 
 data class Post(
-    var userId: String,
-    var password: String,
-    var phoneNumber: String,
-    var name: String,
-    var nickname: String,
-    var points: Int,
-    var subDate: String,
-    var dailyTime: Int,
-    var totalTime: Int
+    var postId: Int,
+    val Title: String,
+    val content: String,
+    val like: Int,
+    val category: String,
+    val userId: String
 )
 
 data class ID(
@@ -117,6 +114,7 @@ data class PostList(
     val Like: Int,
     val CommentCount: Int
 )
+
 
 data class ResponseListPost(
     val data: List<PostList>

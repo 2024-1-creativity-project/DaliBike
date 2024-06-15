@@ -189,6 +189,9 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         ridingTimerBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
         }
+        hotPostBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_postFragment)
+        }
 
     }
 

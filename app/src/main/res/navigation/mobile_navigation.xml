@@ -117,6 +117,9 @@
         <action
             android:id="@+id/action_mainFragment_to_calendarFragment"
             app:destination="@id/calendarFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_myPostFragment"
+            app:destination="@id/myPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/naverMapFragment"

@@ -1,23 +1,19 @@
 package com.example.dali_bike
 
 import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.dali_bike.model.PostData
+import com.example.dali_bike.models.PostList
 
 
 
 // TODO: Rename parameter arguments, choose names that match
 
-class PostListFragment (val context: Context, var list: MutableList<PostData>) :
+class PostListFragment (val context: Context, var list: MutableList<PostList>) :
     RecyclerView.Adapter<PostListFragment.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -58,10 +54,10 @@ class PostListFragment (val context: Context, var list: MutableList<PostData>) :
 
         init {
             //name = view.findViewById(R.id.txt_avatar)
-            title = view.findViewById(R.id.postTitile1)
-            content = view.findViewById(R.id.postContents1)
-            like = view.findViewById(R.id.likeCount1)
-            comment = view.findViewById(R.id.commentCount1)
+            title = view.findViewById(R.id.post_title)
+            content = view.findViewById(R.id.post_content)
+            like = view.findViewById(R.id.post_like)
+//            comment = view.findViewById(R.id.commentCount1)
         }
 
     }

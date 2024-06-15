@@ -1,6 +1,7 @@
 package com.example.dali_bike.api
 
 import com.example.dali_bike.model.mainHotPost
+import com.example.dali_bike.model.viewCategoryPost
 import com.example.dali_bike.models.ID
 import com.example.dali_bike.models.InquiryMonthlyInfo
 import com.example.dali_bike.models.InquiryMyRank
@@ -35,7 +36,7 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-private const val BASE_URL = "http://192.168.0.10:3000"
+private const val BASE_URL = "http://172.30.101.87:3000"
 
 interface ApiInterface {
     @POST("/user/login")
@@ -53,7 +54,7 @@ interface ApiInterface {
     suspend fun getHotPost(): Response<List<mainHotPost>>
 
     @GET("post/list/{category}")
-    suspend fun viewCategoryPost(@Path("category") category: String): ResponseListPost
+    suspend fun viewCategoryPost(@Path("category") category: String): Response<List<viewCategoryPost>>
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: ID): Response<List<mainInfo>>

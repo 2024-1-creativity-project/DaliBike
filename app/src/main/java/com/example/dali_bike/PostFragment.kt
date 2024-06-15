@@ -1,5 +1,6 @@
 package com.example.dali_bike
 
+import UserViewModel
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,100 +8,46 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageButton
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dali_bike.api.MyApi
 import com.example.dali_bike.databinding.FragmentPostBinding
-
+import com.example.dali_bike.models.MyPost
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
-import com.example.dali_bike.databinding.FragmentWritepostBinding
-import com.example.dali_bike.models.PostList
-import com.example.dali_bike.models.WritePost
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
+import retrofit2.Response
 
 class PostFragment : Fragment() {
     private lateinit var _binding: FragmentPostBinding
-    //private lateinit var txtData: TextView
-    private lateinit var postList: RecyclerView
-    private var listPost: MutableList<PostList> = mutableListOf<PostList>()
-    private var adapterrr: PostListFragment? = null
+    private lateinit var recycler_main: RecyclerView
+    private var listPost: MutableList<MyPost> = mutableListOf()
+    private var adapter: PostsAdapter? = null
+    private val userViewModel: UserViewModel by activityViewModels()
+
     private var selectedCategory: String? = null // 선택한 카테고리를 저장할 변수
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        _binding =  FragmentPostBinding.inflate(inflater, container, false)
+        // view binding을 사용하여 레이아웃 인플레이트
+        _binding = FragmentPostBinding.inflate(inflater, container, false)
         val rootView = _binding.root
+
+        // rootView를 사용하여 recycler_main 초기화
+        recycler_main = rootView.findViewById(R.id.recyclerView)
+        adapter = PostsAdapter(requireContext(), listPost)
+        recycler_main.adapter = adapter
+
+        getPostList()
+
         return rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initSpinner()
-
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.fragment_post_list)
-//
-//        //txtData = findViewById(R.id.txtData)
-////        postList = findViewById(R.id.post)
-//
-//        adapterrr = PostListFragment(
-//            this,
-//            listPost
-//        )
-//        postList.adapter = adapterrr
-//
-//        getUserList()
-//    }
-
-    private fun getUserList() {
-
-        lifecycleScope.launch {
-            try {
-                val response = MyApi.retrofitService.viewCategoryPost(category = selectedCategory.toString())
-                //Log.e("%%%%", response.toString())
-                //txtData.text = response.toString()
-                listPost.clear()
-                response.data.let {
-                    listPost.addAll(it)
-                }
-                adapterrr?.notifyDataSetChanged()
-
-            }catch (Ex: Exception){
-                Log.e("@@@@Error", Ex.localizedMessage)
-            }
-        }
-    }
-        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
-        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
-        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
-        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
-
-//        mapBtn.setOnClickListener {
-//            findNavController().navigate(R.id.action_postFragment_to_naverMapFragment)
-//        }
-//
-//        homeBtn.setOnClickListener {
-//            findNavController().navigate(R.id.action_postFragment_to_mainFragment)
-//        }
     private fun initSpinner() {
         ArrayAdapter.createFromResource(
             requireContext(),
@@ -127,22 +74,84 @@ class PostFragment : Fragment() {
 
                         // 선택한 항목을 변수에 저장
                         selectedCategory = selectedItemValue
-
-        postBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_postFragment_self)
-        }
-
-        myPageBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_postFragment_to_myPageFragment)
-        }
-    }
-}
                     }
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
-                    // Do nothing
+                    // 아무것도 하지 않음
                 }
             }
+    }
+
+    private fun getPostList() {
+        lifecycleScope.launch {
+            try {
+                val id = userViewModel.user.value?.userId
+                val response: Response<List<MyPost>> = apiService.myPost(id.toString())
+
+                if (response.isSuccessful) {
+                    response.body()?.let { postList ->
+                        listPost.clear()
+                        listPost.addAll(postList)
+                        adapter?.notifyDataSetChanged()
+                        Log.d("MyPostFragment", "Posts loaded: ${postList.size}")
+                    }
+                } else {
+                    Log.e("Error", "Failed to fetch posts: ${response.errorBody()?.string()}")
+                }
+            } catch (e: Exception) {
+                Log.e("Error", e.localizedMessage)
+            }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initSpinner()
+        super.onViewCreated(view, savedInstanceState)
+
+        val mapBtn : AppCompatImageButton = view.findViewById(R.id.mapBtn)
+        val postBtn : AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val mainBtn : AppCompatImageButton = view.findViewById(R.id.homeBtn)
+        val myPageBtn : AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+
+        mapBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPostFragment_to_naverMapFragment)
+        }
+
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPostFragment_to_postFragment)
+        }
+
+        mainBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPostFragment_to_mainFragment)
+        }
+
+        myPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPostFragment_to_myPageFragment)
+        }
+    }
+
+    companion object {
+        private fun getPostList(postFragment: PostFragment) {
+            postFragment.lifecycleScope.launch {
+                try {
+                    val id = postFragment.userViewModel.user.value?.userId
+                    val response: Response<List<MyPost>> = apiService.myPost(id.toString())
+
+                    if (response.isSuccessful) {
+                        response.body()?.let { postList ->
+                            postFragment.listPost.clear()
+                            postFragment.listPost.addAll(postList)
+                            postFragment.adapter?.notifyDataSetChanged()
+                            Log.d("MyPostFragment", "Posts loaded: ${postList.size}")
+                        }
+                    } else {
+                        Log.e("Error", "Failed to fetch posts: ${response.errorBody()?.string()}")
+                    }
+                } catch (e: Exception) {
+                    Log.e("Error", e.localizedMessage)
+                }
+            }
+        }
     }
 }

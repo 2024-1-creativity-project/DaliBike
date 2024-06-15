@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dalibike_ic_launcher_background"
+    tools:context=".PostDetailFragment" >
+
+    <View
+        android:id="@+id/menubar"
+        android:layout_width="393dp"
+        android:layout_height="95dp"
+        android:background="@color/ivory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/menuStick1"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:background="@drawable/dotted_line"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.190"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/menubar"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <View
+        android:id="@+id/menuStick2"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:background="@drawable/dotted_line"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/menubar"
+        app:layout_constraintVertical_bias="0.50" />
+
+    <View
+        android:id="@+id/menuStick3"
+        android:layout_width="70dp"
+        android:layout_height="10dp"
+        android:background="@drawable/dotted_line"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/menubar"
+        app:layout_constraintVertical_bias="0.505" />
+
+    <ImageButton
+        android:id="@+id/homeBtn"
+        android:layout_width="80dp"
+        android:layout_height="86dp"
+        android:src="@drawable/home"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toEndOf="@+id/menubar"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="@+id/menubar"
+        app:layout_constraintTop_toTopOf="@+id/menubar" />
+
+    <ImageButton
+        android:id="@+id/postBtn"
+        android:layout_width="85dp"
+        android:layout_height="88dp"
+        android:src="@drawable/chat"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toEndOf="@+id/menubar"
+        app:layout_constraintHorizontal_bias="0.340"
+        app:layout_constraintStart_toStartOf="@+id/menubar"
+        app:layout_constraintTop_toTopOf="@+id/menubar"
+        app:layout_constraintVertical_bias="0.90999997" />
+
+    <ImageButton
+        android:id="@+id/mapBtn"
+        android:layout_width="74dp"
+        android:layout_height="83dp"
+        android:src="@drawable/location"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toEndOf="@+id/menubar"
+        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintStart_toStartOf="@+id/menubar"
+        app:layout_constraintTop_toTopOf="@+id/menubar" />
+
+    <ImageButton
+        android:id="@+id/myPageBtn"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toEndOf="@+id/menubar"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="@+id/menubar"
+        app:layout_constraintTop_toTopOf="@+id/menubar"
+        app:layout_constraintVertical_bias="0.444"
+        app:srcCompat="@drawable/user1" />
+
+    <View
+        android:id="@+id/view38"
+        android:layout_width="335dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/view_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menubar"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <TextView
+        android:id="@+id/title_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/laundrygothicbold"
+        android:text="제목이 나올것인디"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view38"
+        app:layout_constraintEnd_toEndOf="@+id/view38"
+        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintStart_toStartOf="@+id/view38"
+        app:layout_constraintTop_toTopOf="@+id/view38"
+        app:layout_constraintVertical_bias="0.473" />
+
+    <View
+        android:id="@+id/view39"
+        android:layout_width="335dp"
+        android:layout_height="463dp"
+        android:background="@drawable/view_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view38"
+        app:layout_constraintVertical_bias="0.071" />
+
+    <TextView
+        android:id="@+id/content_txt"
+        android:layout_width="305dp"
+        android:layout_height="357dp"
+        android:fontFamily="@font/laundrygothic"
+        android:text="내용이 나올것인디 ㅎㅎ"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view39"
+        app:layout_constraintStart_toStartOf="@+id/view39"
+        app:layout_constraintTop_toTopOf="@+id/view39"
+        app:layout_constraintVertical_bias="0.094" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="344dp"
+        android:layout_height="137dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view39" />
+
+    <ImageView
+        android:id="@+id/imageView28"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/comment"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view39"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toEndOf="@+id/like_num"
+        app:layout_constraintTop_toBottomOf="@+id/content_txt"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <ImageView
+        android:id="@+id/imageView29"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/hearts"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view39"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="@+id/view39"
+        app:layout_constraintTop_toBottomOf="@+id/content_txt"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/like_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/laundrygothic"
+        android:text="+999"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view39"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintStart_toEndOf="@+id/imageView29"
+        app:layout_constraintTop_toBottomOf="@+id/content_txt"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/comment_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/laundrygothic"
+        android:text="+999"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view39"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/imageView28"
+        app:layout_constraintTop_toBottomOf="@+id/content_txt"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <Button
+        android:id="@+id/plus_comment_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/lightYellow"
+        android:fontFamily="@font/chab"
+        android:text="댓글 작성"
+        android:textColor="#FFC721"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view39"
+        app:layout_constraintStart_toEndOf="@+id/comment_num"
+        app:layout_constraintTop_toBottomOf="@+id/content_txt"
+        app:layout_constraintVertical_bias="0.8" />
+
+    <TextView
+        android:id="@+id/post_nick_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/laundrygothicbold"
+        android:text="작성자: 누군가."
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view39"
+        app:layout_constraintEnd_toEndOf="@+id/view39"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="@+id/view39"
+        app:layout_constraintTop_toBottomOf="@+id/content_txt"
+        app:layout_constraintVertical_bias="0.191" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

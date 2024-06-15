@@ -29,5 +29,15 @@ class StartFragment : Fragment() {
 
         return rootView
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val skipBtn: Button = view.findViewById(R.id.skipBtn)
+
+        skipBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_startFragment_to_loginFragment)
+        }
+    }
 }
 

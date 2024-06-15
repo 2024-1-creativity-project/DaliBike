@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_startFragment_to_start2Fragment"
             app:destination="@id/start2Fragment" />
+        <action
+            android:id="@+id/action_startFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/start2Fragment"
@@ -135,14 +138,6 @@
             android:id="@+id/action_naverMapFragment_self"
             app:destination="@id/naverMapFragment" />
     </fragment>
-    <navigation android:id="@+id/navigation"
-        app:startDestination="@id/timerFragment">
-        <fragment
-            android:id="@+id/timerFragment"
-            android:name="com.example.dali_bike.TimerFragment"
-            android:label="fragment_timer2"
-            tools:layout="@layout/fragment_timer" />
-    </navigation>
     <fragment
         android:id="@+id/postFragment"
         android:name="com.example.dali_bike.PostFragment"
@@ -163,6 +158,9 @@
         <action
             android:id="@+id/action_postFragment_self"
             app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_postFragment_to_postDetailFragment"
+            app:destination="@id/postDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/writePost"
@@ -208,10 +206,31 @@
         <action
             android:id="@+id/action_myPostFragment_to_naverMapFragment"
             app:destination="@id/naverMapFragment" />
+        <action
+            android:id="@+id/action_myPostFragment_to_postDetailFragment"
+            app:destination="@id/postDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/postListFragment"
         android:name="com.example.dali_bike.PostListFragment"
         android:label="fragment_post_list"
         tools:layout="@layout/fragment_post_list" />
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.example.dali_bike.PostDetailFragment"
+        android:label="fragment_post_detail"
+        tools:layout="@layout/fragment_post_detail" >
+        <action
+            android:id="@+id/action_postDetailFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_naverMapFragment"
+            app:destination="@id/naverMapFragment" />
+    </fragment>
 </navigation>

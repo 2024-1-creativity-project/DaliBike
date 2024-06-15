@@ -83,15 +83,17 @@ class MyPageFragment : Fragment() {
             try {
                 val id = userViewModel.user.value?.userId.toString()
                 val response = apiService.myPost(id)
+                val titleMax = 10
+                val contentMax= 15
 
                 if  (response.isSuccessful) {
                     val postList = response.body()
                     if(postList != null) {
                         withContext(Dispatchers.Main) {
-                            postName1.text = postList[0].Title
-                            postName2.text = postList[1].Title
-                            post1.text = postList[0].Content
-                            post2.text = postList[1].Content
+                            postName1.text = postList[0].Title.truncateWithEllipsis(titleMax)
+                            postName2.text = postList[1].Title.truncateWithEllipsis(titleMax)
+                            post1.text = postList[0].Content.truncateWithEllipsis(contentMax)
+                            post2.text = postList[1].Content.truncateWithEllipsis(contentMax)
                             if (postList[0].Like >= 1000) {
                                 like1.text = "999+"
                             }

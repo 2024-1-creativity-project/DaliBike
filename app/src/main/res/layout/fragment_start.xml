@@ -28,7 +28,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.903" />
+            app:layout_constraintVertical_bias="0.876" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -176,6 +176,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.04"
             app:srcCompat="@drawable/warning" />
+
+        <Button
+            android:id="@+id/skipBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellowGreen"
+            android:fontFamily="@font/chab"
+            android:text="스킵"
+            android:textColor="#AFBD61"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/next_btn"
+            app:layout_constraintVertical_bias="0.217" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

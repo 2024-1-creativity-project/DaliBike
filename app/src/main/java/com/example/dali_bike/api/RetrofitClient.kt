@@ -4,6 +4,7 @@ import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.models.ID
 import com.example.dali_bike.models.InquiryMonthlyInfo
 import com.example.dali_bike.models.InquiryMyRank
+import com.example.dali_bike.models.InquiryPost
 import com.example.dali_bike.models.InquiryRank
 import com.example.dali_bike.models.LoginRequest
 import com.example.dali_bike.models.MonthlyInfo
@@ -75,6 +76,9 @@ interface ApiInterface {
 
     @GET("/post/view/my/{userId}")
     suspend fun myPost(@Path("userId") userId: String): Response<List<MyPost>>
+
+    @GET("/post/view/{postId}")
+    suspend fun postInfo(@Path("postId") postId: String): Response<List<InquiryPost>>
 
 }
 

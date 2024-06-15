@@ -60,6 +60,7 @@ import android.graphics.BitmapFactory
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.dali_bike.model.RecordViewModel
 import com.example.dali_bike.models.ID
 import okhttp3.ResponseBody
 import java.io.InputStream
@@ -71,6 +72,7 @@ import kotlin.concurrent.thread
 data class MarkerWrapper(val marker: Marker, val itemNum: Int)
 
 class NaverMapFragment : Fragment(), OnMapReadyCallback {
+    private val recordViewModel: RecordViewModel by activityViewModels()
 
     lateinit var scroll: ScrollView
 
@@ -128,6 +130,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     lateinit var rentalFare_detail: TextView
 
     private var userId : String = ""
+    private var isStartRecord : Boolean = false
 
     // 기록
     lateinit var driveStart_button: ImageButton
@@ -184,7 +187,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         //메뉴BAR
-        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.writePostBtn)
         val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
@@ -278,6 +281,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         danger_cancel_report_complete = view.findViewById(R.id.imageButton_cancel_danger_report_complete)
 
         userId = userViewModel.user.value?.userId.toString()
+        isStartRecord = recordViewModel.record.value?.startRecording ?: false
 
         // FloatingActionButton 클릭 리스너 설정
         fab.setOnClickListener {
@@ -300,6 +304,12 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             fetchRecord(Record(id=userId,dailyTime=time))
             driveStart_button.visibility = View.VISIBLE
             drive_constraintLayout.visibility = View.GONE
+        }
+
+        if(isStartRecord){
+            driveStart_button.performClick()
+            recordViewModel.setIsRecordClicked(false)
+            isStartRecord = false
         }
 
         danger_report_button.setOnClickListener {
@@ -1239,6 +1249,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     override fun onStop() {
         super.onStop()
         mapView.onStop()
+        fetchRecord(Record(id = userId, dailyTime = time))
     }
 
     override fun onDestroyView() {

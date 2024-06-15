@@ -1,11 +1,15 @@
 package com.example.dali_bike
 
 import android.content.Context
+import android.os.Bundle
+import android.provider.Settings.Global.putString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dali_bike.models.MyPost
 
@@ -40,9 +44,9 @@ class PostsAdapter(val context: Context, var list: MutableList<MyPost>) :
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var title: TextView = view.findViewById(R.id.post_title)
-        var content: TextView = view.findViewById(R.id.post_content)
-        var like: TextView = view.findViewById(R.id.post_like)
+        var title: TextView = view.findViewById(R.id.postTitle)
+        var content: TextView = view.findViewById(R.id.postContent)
+        var like: TextView = view.findViewById(R.id.postLike)
         var showBtn: ImageButton = view.findViewById(R.id.show_btn)
     }
 }

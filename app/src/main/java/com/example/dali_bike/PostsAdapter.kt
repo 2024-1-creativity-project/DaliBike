@@ -24,18 +24,25 @@ class PostsAdapter(val context: Context, var list: MutableList<MyPost>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val post = list[position]
+        val titleMax = 10
+        val contentMax = 15
 
-        // Log the data being bound to the ViewHolder
-        Log.d("PostsAdapter", "Binding post at position $position: Title=${post.Title}, Content=${post.Content}, Like=${post.Like}")
-
-        holder.title.text = post.Title
-        holder.content.text = post.Content
+        holder.title.text = post.Title.truncateWithEllipsis(titleMax)
+        holder.content.text = post.Content.truncateWithEllipsis(contentMax)
         holder.like.text = post.Like.toString()
+
+        holder.showBtn.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("postId", post.PostId.toString())
+            }
+            holder.itemView.findNavController().navigate(R.id.action_myPostFragment_to_postDetailFragment, bundle)
+        }
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var title: TextView = view.findViewById(R.id.postTitle)
-        var content: TextView = view.findViewById(R.id.postContent)
-        var like: TextView = view.findViewById(R.id.postLike)
+        var title: TextView = view.findViewById(R.id.post_title)
+        var content: TextView = view.findViewById(R.id.post_content)
+        var like: TextView = view.findViewById(R.id.post_like)
+        var showBtn: ImageButton = view.findViewById(R.id.show_btn)
     }
 }

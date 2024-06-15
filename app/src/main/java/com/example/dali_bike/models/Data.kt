@@ -1,5 +1,7 @@
 package com.example.dali_bike.models
 
+import androidx.resourceinspection.annotation.Attribute.IntMap
+
 data class User(
     var userId: String,
     var password: String,
@@ -88,6 +90,7 @@ data class RankInfo (
 )
 
 data class MyRank (
+    val USERId: String,
     val Nickname: String,
     val totalTime: Int,
     val rank: Int
@@ -118,4 +121,21 @@ data class PostList(
 
 data class ResponseListPost(
     val data: List<PostList>
+)
+
+data class Comments(
+    val CommentId: Int,
+    val PostId: Int,
+    val USERId: String,
+    val Comment: String
+)
+
+data class InquiryPost (
+    val PostId: Int,
+    val Title: String,
+    val Content: String,
+    val Like: Int,
+    val Category: String,
+    val NickName: String,
+    val comments: MutableList<Comments>
 )

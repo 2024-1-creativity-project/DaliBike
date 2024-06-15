@@ -91,6 +91,9 @@
         <action
             android:id="@+id/action_myPageFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_myPageFragment_to_myPostFragment"
+            app:destination="@id/myPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -186,6 +189,24 @@
             app:destination="@id/postFragment" />
         <action
             android:id="@+id/action_calendarFragment_to_naverMapFragment"
+            app:destination="@id/naverMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myPostFragment"
+        android:name="com.example.dali_bike.MyPostFragment"
+        android:label="fragment_my_post"
+        tools:layout="@layout/fragment_my_post" >
+        <action
+            android:id="@+id/action_myPostFragment_to_myPageFragment"
+            app:destination="@id/myPageFragment" />
+        <action
+            android:id="@+id/action_myPostFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_myPostFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_myPostFragment_to_naverMapFragment"
             app:destination="@id/naverMapFragment" />
     </fragment>
 </navigation>

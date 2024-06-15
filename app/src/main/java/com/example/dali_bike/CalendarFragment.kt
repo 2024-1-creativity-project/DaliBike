@@ -13,8 +13,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.models.InquiryMonthlyInfo
+import com.example.dali_bike.models.InquiryMyRank
 import com.example.dali_bike.models.InquiryRank
-import com.example.dali_bike.models.MonthlyInfoViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,8 +23,6 @@ import java.util.Calendar
 
 class CalendarFragment : Fragment() {
     private val userViewModel: UserViewModel by activityViewModels()
-    private val monthlyInfoViewModel: MonthlyInfoViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +49,10 @@ class CalendarFragment : Fragment() {
         val my_nick: TextView = view.findViewById(R.id.my_nickName)
         val my_time: TextView = view.findViewById(R.id.my_time)
 
+        val dayRecord: TextView = view.findViewById(R.id.dayRecord)
+
+        val month_txt: TextView = view.findViewById(R.id.month_txt)
+
         val id = userViewModel.user.value?.userId.toString()
 
         val calendar: CalendarView = view.findViewById(R.id.calendar)
@@ -71,7 +73,21 @@ class CalendarFragment : Fragment() {
 
                         withContext(Dispatchers.Main) {
                             if (monthlyInfo != null) {
-                                monthlyInfoViewModel.updateMonthlyInfoList(monthlyInfo)
+                                val dayStr = String.format("%02d", day)
+                                for (monthInfo in monthlyInfo) {
+                                    val datePart = monthInfo.date.substring(8, 10)
+
+                                    if (datePart == dayStr) {
+                                        val dayTime = monthInfo.dailyTime
+                                        val dayTimeH = dayTime / 360000
+                                        val dayTimeM = (dayTime / 6000) % 60
+                                        val dayTimeS = dayTime / 100 % 60
+                                        dayRecord.text = "${dayTimeH}h ${dayTimeM}m ${dayTimeS}s"
+                                        break
+                                    } else {
+                                        dayRecord.text = "00h 00m 00s"
+                                    }
+                                }
                             }
                         }
                     }
@@ -181,7 +197,7 @@ class CalendarFragment : Fragment() {
             // 선택된 월에 대한 사용자의 순위를 가져오고 표시하는 코루틴
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val monthlyInfo = InquiryMonthlyInfo(id, month, year)
+                    val monthlyInfo = InquiryMyRank(id, year, month)
                     val response = apiService.myRank(monthlyInfo)
 
                     if (response.isSuccessful) {
@@ -189,7 +205,13 @@ class CalendarFragment : Fragment() {
 
                         withContext(Dispatchers.Main) {
                             if (myMonthInfo != null) {
-                                my_rank.text = myMonthInfo.rank.toString()
+                                if (myMonthInfo.rank == 0) {
+                                    my_rank.text = "-"
+                                }
+                                else {
+                                    val rank = myMonthInfo.rank.toString()
+                                    my_rank.text = "${rank}등"
+                                }
                                 my_nick.text = myMonthInfo.Nickname
 
                                 val time = myMonthInfo.totalTime
@@ -199,6 +221,8 @@ class CalendarFragment : Fragment() {
 
                                 val formatTime = "${timeH}h ${timeM}m ${timeS}s"
                                 my_time.text = formatTime
+
+                                month_txt.text = "${month}월 랭킹"
                             }
                         }
                     }
@@ -216,8 +240,6 @@ class CalendarFragment : Fragment() {
         // 현재 날짜에 대한 초기 데이터 가져오기
         val day = date.get(Calendar.DAY_OF_MONTH)
         fetchDataForDate(year, month, day)
-
-        //date가져와서.. 어쩌고 저쩌고.. 잘 해가지고 잘.. 잘.. 잘..
 
         homeBtn.setOnClickListener {
             findNavController().navigate(R.id.action_calendarFragment_to_mainFragment)

@@ -23,6 +23,10 @@ class UserViewModel : ViewModel() {
         )
     }
 
+    fun setUser(user: User) {
+        _user.value = user
+    }
+
     fun setUserLogin(id: String, pw: String) {
         _user.value?.userId = id
         _user.value?.password = pw

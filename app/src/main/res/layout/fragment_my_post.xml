@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/yellowGreen"
+        tools:context=".MyPostFragment">
+
+        <View
+            android:id="@+id/menubar"
+            android:layout_width="393dp"
+            android:layout_height="95dp"
+            android:background="@color/ivory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/menuStick1"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.190"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <View
+            android:id="@+id/menuStick2"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <View
+            android:id="@+id/menuStick3"
+            android:layout_width="70dp"
+            android:layout_height="10dp"
+            android:background="@drawable/dotted_line"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.800"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <ImageButton
+            android:id="@+id/homeBtn"
+            android:layout_width="81dp"
+            android:layout_height="86dp"
+            android:src="@drawable/home"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar" />
+
+        <ImageButton
+            android:id="@+id/postBtn"
+            android:layout_width="85dp"
+            android:layout_height="88dp"
+            android:src="@drawable/chat"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.340"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.90999997" />
+
+        <ImageButton
+            android:id="@+id/mapBtn"
+            android:layout_width="74.5dp"
+            android:layout_height="83.5dp"
+            android:src="@drawable/location"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.641"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.363" />
+
+        <ImageButton
+            android:id="@+id/myPageBtn"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.98"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.444"
+            app:srcCompat="@drawable/user1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layoutManager="LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.031" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

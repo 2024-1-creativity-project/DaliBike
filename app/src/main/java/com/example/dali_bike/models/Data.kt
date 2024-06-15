@@ -95,3 +95,18 @@ data class MyRank (
     val totalTime: Int,
     val rank: Int
 )
+
+data class InquiryMyRank (
+    val USERId: String,
+    val year: Int,
+    val month: Int
+)
+
+data class MyPost (
+    val PostId: Int,
+    val Title: String,
+    val Content: String,
+    val Like: Int,
+    val Category: String,
+    val Nickname: String
+)

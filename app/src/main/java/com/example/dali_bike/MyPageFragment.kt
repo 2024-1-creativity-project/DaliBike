@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
 import com.example.dali_bike.models.ID
+import com.example.dali_bike.models.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +35,13 @@ class MyPageFragment : Fragment() {
         val idTxt: TextView = view.findViewById(R.id.idTxt)
         val regDateTxt: TextView = view.findViewById(R.id.regDateTxt)
         val pointTxt: TextView = view.findViewById(R.id.pointTxt)
+
+        val postName1: TextView = view.findViewById(R.id.myPostName1)
+        val postName2: TextView = view.findViewById(R.id.myPostName2)
+        val post1: TextView = view.findViewById(R.id.myPost1)
+        val post2: TextView = view.findViewById(R.id.myPost2)
+        val like1: TextView = view.findViewById(R.id.myLike1)
+        val like2: TextView = view.findViewById(R.id.myLike2)
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -70,6 +79,40 @@ class MyPageFragment : Fragment() {
             }
         }
 
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val id = userViewModel.user.value?.userId.toString()
+                val response = apiService.myPost(id)
+
+                if  (response.isSuccessful) {
+                    val postList = response.body()
+                    if(postList != null) {
+                        withContext(Dispatchers.Main) {
+                            postName1.text = postList[0].Title
+                            postName2.text = postList[1].Title
+                            post1.text = postList[0].Content
+                            post2.text = postList[1].Content
+                            if (postList[0].Like >= 1000) {
+                                like1.text = "999+"
+                            }
+                            else {
+                                like1.text = postList[0].Like.toString()
+                            }
+
+                            if (postList[1].Like >= 1000) {
+                                like2.text = "999+"
+                            }
+                            else {
+                                like2.text = postList[1].Like.toString()
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+
         return view
     }
 
@@ -81,6 +124,7 @@ class MyPageFragment : Fragment() {
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
         val logoutBtn: Button = view.findViewById(R.id.logoutBtn)
+        val moreBtn: Button = view.findViewById(R.id.moreBtn)
 
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_myPageFragment_to_naverMapFragment)
@@ -99,7 +143,24 @@ class MyPageFragment : Fragment() {
         }
 
         logoutBtn.setOnClickListener {
+            val user = User(
+                userId = "",
+                password = "",
+                phoneNumber = "",
+                name = "",
+                nickname = "",
+                points = 0,
+                subDate = "",
+                dailyTime = 0,
+                totalTime = 0
+            )
+            userViewModel.setUser(user)
+            Toast.makeText(context, "로그아웃 되었습니다.", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_myPageFragment_to_loginFragment)
+        }
+
+        moreBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_myPageFragment_to_myPostFragment)
         }
     }
 }

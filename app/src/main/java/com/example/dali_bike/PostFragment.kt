@@ -86,18 +86,18 @@ class PostFragment : Fragment() {
     }
 
     private fun getPostList() {
-        lifecycleScope.launch {
-            try {
-                var response: Response<List<viewCategoryPost>>? = null
-                if (viewSelectedCategory.isNullOrEmpty()) {
-                    Log.e("Error", "No category selected")
-                    return@launch
-                }
-                if(viewSelectedCategory.toString() == "전체게시판") {
-                    response = apiService.viewAllPost()
-                    Log.d("전체", "ㅅㅂ")
-                }
-                else if(viewSelectedCategory.toString() == "HOT게시판") {
+                        lifecycleScope.launch {
+                            try {
+                                var response: Response<List<viewCategoryPost>>? = null
+                                if (viewSelectedCategory.isNullOrEmpty()) {
+                                    Log.e("Error", "No category selected")
+                                    return@launch
+                                }
+                                if(viewSelectedCategory.toString() == "전체게시판") {
+                                    response = apiService.viewAllPost()
+                                    Log.d("전체", "ㅅㅂ")
+                                }
+                                else if(viewSelectedCategory.toString() == "HOT게시판") {
                     response = apiService.getHotPost()
                     Log.d("인기", "ㅅㅂ")
                 }
@@ -127,6 +127,7 @@ class PostFragment : Fragment() {
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val mainBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
         val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+        val writePostBtn: AppCompatImageButton = view.findViewById(R.id.writePost_Btn)
 
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_postFragment_to_naverMapFragment)
@@ -142,6 +143,9 @@ class PostFragment : Fragment() {
 
         myPageBtn.setOnClickListener {
             findNavController().navigate(R.id.action_postFragment_to_myPageFragment)
+        }
+        writePostBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_writePost)
         }
     }
 

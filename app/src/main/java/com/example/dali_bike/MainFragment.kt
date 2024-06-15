@@ -14,6 +14,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
+import com.example.dali_bike.model.RecordViewModel
 import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.models.ID
@@ -38,8 +39,9 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
     private lateinit var naverMap: NaverMap
     private val userViewModel: UserViewModel by activityViewModels()
     private val viewHotPost: UserViewModel by activityViewModels()
+    private val recordViewModel: RecordViewModel by activityViewModels()
 
-//    fun viewHotPost(searchView: String?, completion: (String) -> Unit) {
+    //    fun viewHotPost(searchView: String?, completion: (String) -> Unit) {
 //        val call: Call<JsonElement>? = apiService?.hotPost( )
 //    }
     override fun onCreateView(
@@ -188,6 +190,7 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
 
         ridingTimerBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_naverMapFragment)
+            recordViewModel.setIsRecordClicked(true)
         }
 
     }

@@ -1130,7 +1130,8 @@
             app:layout_constraintTop_toTopOf="@+id/menubar" />
 
         <ImageButton
-            android:id="@+id/myPageBtn"
+
+            android:id="@+id/writePostBtn"
             android:layout_width="85dp"
             android:layout_height="86dp"
             app:layout_constraintBottom_toBottomOf="@+id/menubar"
@@ -1139,6 +1140,6 @@
             app:layout_constraintStart_toStartOf="@+id/menubar"
             app:layout_constraintTop_toTopOf="@+id/navermap"
             app:srcCompat="@drawable/user1" />
-
+<!--        android:id="@+id/myPageBtn"-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

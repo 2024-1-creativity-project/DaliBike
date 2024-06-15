@@ -110,3 +110,14 @@ data class MyPost (
     val Category: String,
     val Nickname: String
 )
+data class PostList(
+    val avatar: String,
+    val Title: String,
+    val Content: String,
+    val Like: Int,
+    val CommentCount: Int
+)
+
+data class ResponseListPost(
+    val data: List<PostList>
+)

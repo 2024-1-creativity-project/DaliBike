@@ -12,6 +12,7 @@ import com.example.dali_bike.models.MyRank
 import com.example.dali_bike.models.RankInfo
 import com.example.dali_bike.models.Register
 import com.example.dali_bike.models.Respon
+import com.example.dali_bike.models.ResponseListPost
 import com.example.dali_bike.models.WritePost
 import com.example.dali_bike.models.mainInfo
 import com.example.dali_bike.models.myInfo
@@ -29,6 +30,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.Locale.Category
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -49,6 +51,9 @@ interface ApiInterface {
 
     @GET("post/view/hot")
     suspend fun getHotPost(): Response<List<mainHotPost>>
+
+    @GET("post/list/{category}")
+    suspend fun viewCategoryPost(@Path("category") category: String): ResponseListPost
 
     @POST("/user/main")
     suspend fun userMainInfo(@Body id: ID): Response<List<mainInfo>>
@@ -107,3 +112,8 @@ val retrofit: Retrofit = Retrofit.Builder()
     .build()
 
 val apiService: ApiInterface = retrofit.create(ApiInterface::class.java)
+
+object MyApi {
+    val retrofitService: ApiInterface by lazy {
+        retrofit.create(ApiInterface::class.java) }
+}

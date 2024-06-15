@@ -209,4 +209,9 @@
             android:id="@+id/action_myPostFragment_to_naverMapFragment"
             app:destination="@id/naverMapFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/postListFragment"
+        android:name="com.example.dali_bike.PostListFragment"
+        android:label="fragment_post_list"
+        tools:layout="@layout/fragment_post_list" />
 </navigation>

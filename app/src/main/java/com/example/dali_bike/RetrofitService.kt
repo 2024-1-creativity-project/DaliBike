@@ -1,5 +1,6 @@
 package com.example.dali_bike
 
+import com.example.dali_bike.model.Comment
 import com.example.dali_bike.model.Item
 import com.example.dali_bike.model.Record
 import com.example.dali_bike.model.RecordResult
@@ -7,6 +8,11 @@ import com.example.dali_bike.model.RecordUSERId
 import com.example.dali_bike.model.Report
 import com.example.dali_bike.model.ReportFileResult
 import com.example.dali_bike.model.ReportResult
+import com.example.dali_bike.model.count
+import com.example.dali_bike.model.getComment
+import com.example.dali_bike.model.getPostId
+import com.example.dali_bike.model.getResult
+import com.example.dali_bike.model.like
 import com.example.dali_bike.model.lodgingDetailItem
 import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.model.rentalDetailItem
@@ -79,5 +85,14 @@ interface RetrofitService {
     fun postReportCancel( @Part imageFile: MultipartBody.Part,
                           @Part("reportId") reportId: Int,
                           @Part("userId") userId: RequestBody): Call<ReportResult>
+    @POST("comment/writeComment")
+    fun postComment(@Body comment: Comment): Call<getResult>
+    @POST("comment/getComment")
+    fun getComment(@Body postId: getPostId): Call<List<getComment>>
+
+    @POST("post/like")
+    fun postLike(@Body like: like): Call<getResult>
+    @POST("post/get/likeCommentAmount")
+    fun postCount(@Body postId: getPostId): Call<List<count>>
 
 }

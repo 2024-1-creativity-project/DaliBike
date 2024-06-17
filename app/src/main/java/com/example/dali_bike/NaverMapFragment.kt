@@ -561,10 +561,9 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         // MultipartBody.Part 생성
         val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
 
-        repository.postReport(requireContext(),{ reportResult ->
+        repository.postReport({ reportResult ->
             reportResult?.let {
                 // 성공 처리
-                Toast.makeText(requireContext(), "Report submitted successfully", Toast.LENGTH_LONG).show()
             }
         }, { error ->
             // 오류 처리
@@ -850,7 +849,6 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
             getItemService(itemNum, marker)
 
             marker.setOnClickListener {
-                Toast.makeText(requireContext(), "${itemNum} 마커 ${id }클릭", Toast.LENGTH_SHORT).show()
                 getItemDetailService(itemNum, id)
                 isFabOpen = !isFabOpen // 상태를 반전시킴
                 true
@@ -1056,10 +1054,9 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
         // MultipartBody.Part 생성
         val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
 
-        repository.postReportCancel(requireContext(),{ reportResult ->
+        repository.postReportCancel({ reportResult ->
             reportResult?.let {
                 // 성공 처리
-                Toast.makeText(requireContext(), "ReportCancel submitted successfully", Toast.LENGTH_LONG).show()
             }
         }, { error ->
             // 오류 처리
@@ -1081,9 +1078,6 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
                     report_type_detail0.visibility = View.GONE
                     report_type_detail1.visibility = View.VISIBLE
                 }
-
-                Toast.makeText(requireContext(), "fetchReportDetail success", Toast.LENGTH_LONG).show()
-
             }
 
         }, { error ->

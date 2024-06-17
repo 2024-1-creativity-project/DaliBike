@@ -183,9 +183,8 @@ class Repository {
         })
     }
 
-    fun postReport(context:Context,onResult: (ReportResult?) -> Unit, onError: (Throwable) -> Unit,report: Report, imageFile: MultipartBody.Part) {
+    fun postReport(onResult: (ReportResult?) -> Unit, onError: (Throwable) -> Unit,report: Report, imageFile: MultipartBody.Part) {
         val id = report.userId.toRequestBody()
-        Toast.makeText(context, "Report submitted successfully", Toast.LENGTH_LONG).show()
         val call =RetrofitClient.apiService.postReport(imageFile,id,report.type,report.latitude,report.longitude)
         call.enqueue(object : Callback<ReportResult> {
             override fun onResponse(call: Call<ReportResult>, response: Response<ReportResult>) {
@@ -202,10 +201,9 @@ class Repository {
         })
     }
 
-    fun postReportCancel(context:Context, onResult: (ReportResult?) -> Unit, onError: (Throwable) -> Unit, reportCancel: ReportCancel, imageFile: MultipartBody.Part) {
+    fun postReportCancel(onResult: (ReportResult?) -> Unit, onError: (Throwable) -> Unit, reportCancel: ReportCancel, imageFile: MultipartBody.Part) {
         val userId = reportCancel.userId.toRequestBody()
 
-        Toast.makeText(context, "ReportCancel submitted successfully", Toast.LENGTH_LONG).show()
         val call =RetrofitClient.apiService.postReportCancel(imageFile,reportCancel.reportId, userId)
         call.enqueue(object : Callback<ReportResult> {
             override fun onResponse(call: Call<ReportResult>, response: Response<ReportResult>) {

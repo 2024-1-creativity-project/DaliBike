@@ -155,7 +155,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/laundrygothicbold"
-                    android:text="제목이 나올것인디"
                     android:textSize="20sp" />
 
                 <TextView
@@ -164,7 +163,6 @@
                     android:layout_height="353dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/laundrygothic"
-                    android:text="내용이 나올것인디 ㅎㅎ"
                     android:textSize="14sp" />
 
                 <TextView
@@ -173,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/laundrygothicbold"
-                    android:text="작성자: 누군가."
+                    android:text="작성자:"
                     android:textSize="14sp" />
 
                 <LinearLayout
@@ -194,9 +192,9 @@
                         android:id="@+id/like_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="-"
                         android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/laundrygothic"
-                        android:text="+999" />
+                        android:fontFamily="@font/laundrygothic" />
 
                     <ImageView
                         android:id="@+id/imageView_Comment"
@@ -210,9 +208,9 @@
                         android:id="@+id/comment_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="-"
                         android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/laundrygothic"
-                        android:text="+999" />
+                        android:fontFamily="@font/laundrygothic" />
 
                 </LinearLayout>
 

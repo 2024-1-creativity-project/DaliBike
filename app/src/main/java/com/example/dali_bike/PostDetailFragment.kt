@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
@@ -76,13 +77,10 @@ class PostDetailFragment : Fragment() {
 
                             title_txt.text = main.Title
                             content_txt.text = main.Content
-                            post_nick.text = main.NickName
-
-
+                            post_nick.text = "작성자: ${main.NickName}"
                         }
                     }
                 }
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -222,7 +220,7 @@ class PostDetailFragment : Fragment() {
         val mainBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
-        val backBtn: AppCompatImageButton =view.findViewById(R.id.back_btn)
+        val backBtn: Button =view.findViewById(R.id.back_btn)
 
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_postDetailFragment_to_myPageFragment)
@@ -241,7 +239,7 @@ class PostDetailFragment : Fragment() {
         }
 
         backBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_postDetailFragment_to_postFragment2)
+            findNavController().navigate(R.id.action_postDetailFragment_to_myPostFragment)
         }
     }
 }

@@ -34,6 +34,7 @@ class PostsAdapter(val context: Context, var list: MutableList<MyPost>) :
         holder.title.text = post.Title.truncateWithEllipsis(titleMax)
         holder.content.text = post.Content.truncateWithEllipsis(contentMax)
         holder.like.text = post.Like.toString()
+        holder.comment.text = post.CommentCount.toString()
 
         holder.showBtn.setOnClickListener {
             val bundle = Bundle().apply {

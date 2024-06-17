@@ -92,6 +92,7 @@ interface RetrofitService {
 
     @POST("post/like")
     fun postLike(@Body like: like): Call<getResult>
+
     @POST("post/get/likeCommentAmount")
     fun postCount(@Body postId: getPostId): Call<List<count>>
 

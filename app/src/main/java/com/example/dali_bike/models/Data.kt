@@ -108,7 +108,8 @@ data class MyPost (
     val Content: String,
     val Like: Int,
     val Category: String,
-    val Nickname: String
+    val Nickname: String,
+    val CommentCount: Int
 )
 data class PostList(
     val avatar: String,

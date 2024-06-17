@@ -18,6 +18,7 @@ import com.example.dali_bike.model.RecordViewModel
 import com.example.dali_bike.model.mainHotPost
 import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.models.ID
+import com.example.dali_bike.models.myInfo
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
@@ -194,6 +195,12 @@ class MainFragment : Fragment(), OnMapReadyCallback  {
         }
         hotPostBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_postFragment)
+        }
+
+        val myInfoBtn: AppCompatImageButton = view.findViewById(R.id.myInfoBtn)
+
+        myInfoBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_myPageFragment)
         }
 
     }

@@ -475,7 +475,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
                 // 보고서와 파일을 서버로 전송
                 fetchReport(imageFile, report)
-                Toast.makeText(requireContext(), "위험 전송 완료.", Toast.LENGTH_LONG).show()
+
 
                 closeDangerReport()
 
@@ -563,6 +563,17 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
 
         repository.postReport({ reportResult ->
             reportResult?.let {
+
+                if (it.result == "can't report twice"){
+                    Toast.makeText(requireContext(), "한 유저가 같은 위치의 요소를 두 번 이상 신고할 수 없습니다.", Toast.LENGTH_LONG).show()
+                }
+                else if(it.result == "approved report exists"){
+                    Toast.makeText(requireContext(), "주변에 이미 승인된 제보가 있습니다.", Toast.LENGTH_LONG).show()
+                }
+                else if(it.result == "success"){
+                    Toast.makeText(requireContext(), "위험 전송 완료.", Toast.LENGTH_LONG).show()
+                }
+
                 // 성공 처리
             }
         }, { error ->

@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import com.example.dali_bike.model.Item
 import com.example.dali_bike.RetrofitClient
+import com.example.dali_bike.model.Comment
 import com.example.dali_bike.model.Record
 import com.example.dali_bike.model.RecordResult
 import com.example.dali_bike.model.RecordUSERId
@@ -11,6 +12,11 @@ import com.example.dali_bike.model.Report
 import com.example.dali_bike.model.ReportCancel
 import com.example.dali_bike.model.ReportFileResult
 import com.example.dali_bike.model.ReportResult
+import com.example.dali_bike.model.count
+import com.example.dali_bike.model.getComment
+import com.example.dali_bike.model.getPostId
+import com.example.dali_bike.model.getResult
+import com.example.dali_bike.model.like
 import com.example.dali_bike.model.lodgingDetailItem
 import com.example.dali_bike.model.rentalDetailItem
 import com.example.dali_bike.model.reportDetailItem
@@ -211,6 +217,73 @@ class Repository {
             }
 
             override fun onFailure(call: Call<ReportResult>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+    fun postComment(onResult: (getResult?) -> Unit, onError: (Throwable) -> Unit, comment: Comment) {
+        val call =RetrofitClient.apiService.postComment(comment)
+        call.enqueue(object : Callback<getResult> {
+            override fun onResponse(call: Call<getResult>, response: Response<getResult>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<getResult>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+    fun getComment(onResult: (List<getComment>?) -> Unit, onError: (Throwable) -> Unit, postId: getPostId) {
+        val call =RetrofitClient.apiService.getComment(postId)
+        call.enqueue(object : Callback<List<getComment>> {
+            override fun onResponse(call: Call<List<getComment>>, response: Response<List<getComment>>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<List<getComment>>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+    fun postLike(onResult: (getResult?) -> Unit, onError: (Throwable) -> Unit, like: like) {
+        val call =RetrofitClient.apiService.postLike(like)
+        call.enqueue(object : Callback<getResult> {
+            override fun onResponse(call: Call<getResult>, response: Response<getResult>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<getResult>, t: Throwable) {
+                onError(t)
+            }
+        })
+    }
+
+    fun postCount(onResult: (List<count>?) -> Unit, onError: (Throwable) -> Unit, postId: getPostId) {
+        val call =RetrofitClient.apiService.postCount(postId)
+        call.enqueue(object : Callback<List<count>> {
+            override fun onResponse(call: Call<List<count>>, response: Response<List<count>>) {
+                if (response.isSuccessful) {
+                    onResult(response.body())
+                } else {
+                    onError(Exception("Code: ${response.code()}"))
+                }
+            }
+
+            override fun onFailure(call: Call<List<count>>, t: Throwable) {
                 onError(t)
             }
         })

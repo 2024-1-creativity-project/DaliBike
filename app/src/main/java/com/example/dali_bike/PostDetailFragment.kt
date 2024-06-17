@@ -222,6 +222,7 @@ class PostDetailFragment : Fragment() {
         val mainBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+        val backBtn: AppCompatImageButton =view.findViewById(R.id.back_btn)
 
         mapBtn.setOnClickListener {
             findNavController().navigate(R.id.action_postDetailFragment_to_myPageFragment)
@@ -237,6 +238,10 @@ class PostDetailFragment : Fragment() {
 
         myPageBtn.setOnClickListener {
             findNavController().navigate(R.id.action_postDetailFragment_to_myPageFragment)
+        }
+
+        backBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postDetailFragment_to_postFragment2)
         }
     }
 }

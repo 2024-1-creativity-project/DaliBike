@@ -57,6 +57,7 @@ class WritePostFragment : Fragment() {
         val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
         val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
         val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+        val backBtn: AppCompatImageButton = view.findViewById(R.id.back_btn)
 
         val finishBtn: ImageButton = view.findViewById(R.id.write_finishBtn)
 
@@ -74,6 +75,10 @@ class WritePostFragment : Fragment() {
 
         homeBtn.setOnClickListener {
             findNavController().navigate(R.id.action_writePost_to_mainFragment)
+        }
+
+        homeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_writePost_to_postFragment)
         }
 
         //작성완료 버튼 클릭 시

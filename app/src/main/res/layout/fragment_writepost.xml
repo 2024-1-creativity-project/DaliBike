@@ -271,21 +271,7 @@
             app:layout_constraintVertical_bias="0.53" />
 
 
-        <ImageButton
-            android:id="@+id/write_finishBtn"
-            android:layout_width="175dp"
-            android:layout_height="60dp"
-            android:background="@android:color/transparent"
-            android:padding="1dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/write_finish_btn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView32"
-            app:layout_constraintVertical_bias="0.25" />
-
-<!--        <LinearLayout-->
+        <!--        <LinearLayout-->
 <!--            android:layout_width="115dp"-->
 <!--            android:layout_height="23dp"-->
 <!--            android:orientation="horizontal"-->
@@ -321,6 +307,37 @@
 <!--            app:layout_constraintStart_toStartOf="@+id/imageView32"-->
 <!--            app:layout_constraintTop_toTopOf="@+id/contents_input"-->
 <!--            app:layout_constraintVertical_bias="1.0" />-->
+
+        <ImageButton
+            android:id="@+id/write_finishBtn"
+            android:layout_width="175dp"
+            android:layout_height="60dp"
+            android:background="@android:color/transparent"
+            android:padding="1dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/write_finish_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.926"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView32"
+            app:layout_constraintVertical_bias="0.297" />
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/ivory"
+            android:fontFamily="@font/chab"
+            android:text="@string/back"
+            android:textColor="@color/khaki"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.979" />
 
         <Spinner
             android:id="@+id/categorySpinner"

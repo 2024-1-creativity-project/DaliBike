@@ -185,6 +185,9 @@
         <action
             android:id="@+id/action_writePost_to_naverMapFragment"
             app:destination="@id/naverMapFragment" />
+        <action
+            android:id="@+id/action_writePost_to_postFragment2"
+            app:destination="@id/postFragment" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -247,6 +250,9 @@
         <action
             android:id="@+id/action_postDetailFragment_to_naverMapFragment"
             app:destination="@id/naverMapFragment" />
+        <action
+            android:id="@+id/action_postDetailFragment_to_postFragment2"
+            app:destination="@id/postFragment" />
     </fragment>
     <fragment
         android:id="@+id/testFragment"

@@ -31,6 +31,7 @@ class PostListAdapter(val context: Context, var list: MutableList<viewCategoryPo
         holder.title.text = post.Title.truncateWithEllipsis(titleMax)
         holder.content.text = post.Content.truncateWithEllipsis(contentMax)
         holder.like.text = post.Like.toString()
+        holder.comment.text = post.CommentCount.toString()
 
         holder.showBtn.setOnClickListener {
             val bundle = Bundle().apply {
@@ -42,13 +43,6 @@ class PostListAdapter(val context: Context, var list: MutableList<viewCategoryPo
 
     override fun getItemCount(): Int {
         return list.size
-    }
-
-    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var title: TextView = view.findViewById(R.id.postTitle)
-        var content: TextView = view.findViewById(R.id.postContent)
-        var like: TextView = view.findViewById(R.id.postLike)
-        var showBtn: ImageButton = view.findViewById(R.id.show_btn)
     }
 
 

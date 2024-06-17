@@ -48,5 +48,6 @@ class PostsAdapter(val context: Context, var list: MutableList<MyPost>) :
         var content: TextView = view.findViewById(R.id.postContent)
         var like: TextView = view.findViewById(R.id.postLike)
         var showBtn: ImageButton = view.findViewById(R.id.show_btn)
+        var comment: TextView = view.findViewById(R.id.postComment)
     }
 }

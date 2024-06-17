@@ -9,5 +9,6 @@ data class viewCategoryPost(
     val PostId: Int,
     val Title: String,
     val Content: String,
-    val Like: Int
+    val Like: Int,
+    val CommentCount: Int
 )

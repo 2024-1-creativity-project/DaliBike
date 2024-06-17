@@ -15,6 +15,33 @@
         android:layout_height="109dp"
         android:padding="10dp">
 
+        <ImageView
+            android:id="@+id/comment"
+            android:layout_width="22dp"
+            android:layout_height="21dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.583"
+            app:layout_constraintStart_toEndOf="@+id/imageView27"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.911"
+            app:srcCompat="@drawable/comment" />
+
+        <TextView
+            android:id="@+id/postComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/laundrygothic"
+            android:text="888"
+            android:textColor="#757575"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/comment"
+            app:layout_constraintTop_toTopOf="@+id/view31"
+            app:layout_constraintVertical_bias="0.931" />
+
         <View
             android:id="@+id/view31"
             android:layout_width="371dp"
@@ -61,7 +88,7 @@
             android:layout_height="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.463"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/postContent"
             app:layout_constraintTop_toTopOf="@+id/view31"
             app:layout_constraintVertical_bias="0.927"
@@ -77,10 +104,10 @@
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.63"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView27"
             app:layout_constraintTop_toTopOf="@+id/view31"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="0.931" />
 
         <ImageButton
             android:id="@+id/show_btn"

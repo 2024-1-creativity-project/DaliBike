@@ -100,7 +100,7 @@
             app:layout_constraintTop_toTopOf="@+id/menubar" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/myInfoBtn"
             android:layout_width="345dp"
             android:layout_height="90dp"
             android:background="@android:color/transparent"
@@ -135,11 +135,11 @@
             android:gravity="center|center"
             android:textColor="@color/khaki"
             android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+            app:layout_constraintBottom_toBottomOf="@+id/myInfoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/myInfoBtn"
             app:layout_constraintHorizontal_bias="0.409"
-            app:layout_constraintStart_toStartOf="@+id/imageButton3"
-            app:layout_constraintTop_toTopOf="@+id/imageButton3"
+            app:layout_constraintStart_toStartOf="@+id/myInfoBtn"
+            app:layout_constraintTop_toTopOf="@+id/myInfoBtn"
             app:layout_constraintVertical_bias="0.196" />
 
         <TextView
@@ -152,11 +152,11 @@
             android:text="총 주행시간:"
             android:textColor="@color/green"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+            app:layout_constraintBottom_toBottomOf="@+id/myInfoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/myInfoBtn"
             app:layout_constraintHorizontal_bias="0.335"
-            app:layout_constraintStart_toStartOf="@+id/imageButton3"
-            app:layout_constraintTop_toTopOf="@+id/imageButton3"
+            app:layout_constraintStart_toStartOf="@+id/myInfoBtn"
+            app:layout_constraintTop_toTopOf="@+id/myInfoBtn"
             app:layout_constraintVertical_bias="0.726" />
 
         <TextView
@@ -169,11 +169,11 @@
             android:text="27h 16m 45s"
             android:textColor="@color/green"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+            app:layout_constraintBottom_toBottomOf="@+id/myInfoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/myInfoBtn"
             app:layout_constraintHorizontal_bias="0.034"
             app:layout_constraintStart_toEndOf="@+id/postTitle3"
-            app:layout_constraintTop_toTopOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/myInfoBtn"
             app:layout_constraintVertical_bias="0.73" />
 
         <TextView
@@ -186,11 +186,11 @@
             android:text="라이더님!"
             android:textColor="#B7C889"
             android:textSize="17sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+            app:layout_constraintBottom_toBottomOf="@+id/myInfoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/myInfoBtn"
             app:layout_constraintHorizontal_bias="0.442"
             app:layout_constraintStart_toEndOf="@+id/postTitle3"
-            app:layout_constraintTop_toTopOf="@+id/imageButton3"
+            app:layout_constraintTop_toTopOf="@+id/myInfoBtn"
             app:layout_constraintVertical_bias="0.18" />
 
         <ImageView
@@ -198,11 +198,11 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/user"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton3"
+            app:layout_constraintBottom_toBottomOf="@+id/myInfoBtn"
+            app:layout_constraintEnd_toEndOf="@+id/myInfoBtn"
             app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="@+id/imageButton3"
-            app:layout_constraintTop_toTopOf="@+id/imageButton3"
+            app:layout_constraintStart_toStartOf="@+id/myInfoBtn"
+            app:layout_constraintTop_toTopOf="@+id/myInfoBtn"
             app:layout_constraintVertical_bias="0.4" />
 
         <ImageButton
@@ -346,7 +346,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+            app:layout_constraintTop_toBottomOf="@+id/myInfoBtn"
             app:layout_constraintVertical_bias="0.023" />
 
         <com.naver.maps.map.MapView

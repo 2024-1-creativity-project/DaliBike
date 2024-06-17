@@ -85,11 +85,13 @@ class CalendarFragment : Fragment() {
                                         dayRecord.text = "${dayTimeH}h ${dayTimeM}m ${dayTimeS}s"
                                         break
                                     } else {
-                                        dayRecord.text = "00h 00m 00s"
+                                        dayRecord.text = "0h 0m 0s"
                                     }
                                 }
                             }
                         }
+                    } else {
+                        dayRecord.text = "0h 0m 0s"
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()

@@ -366,7 +366,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/laundrygothicbold"
-            android:text="TextView"
+            android:text="0h 0m 0s"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/view32"
             app:layout_constraintEnd_toEndOf="@+id/view32"

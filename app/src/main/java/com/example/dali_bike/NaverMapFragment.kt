@@ -1234,7 +1234,6 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback {
     override fun onStop() {
         super.onStop()
         mapView.onStop()
-        fetchRecord(Record(id = userId, dailyTime = time))
     }
 
     override fun onDestroyView() {

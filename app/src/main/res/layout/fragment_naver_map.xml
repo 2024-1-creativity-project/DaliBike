@@ -63,8 +63,8 @@
 
                     <LinearLayout
                         android:id="@+id/rental_detail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="366dp"
+                        android:layout_height="377dp"
                         android:orientation="vertical"
                         android:rotationX="0"
                         android:visibility="gone"

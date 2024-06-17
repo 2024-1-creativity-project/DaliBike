@@ -86,20 +86,18 @@ class PostFragment : Fragment() {
     }
 
     private fun getPostList() {
-                        lifecycleScope.launch {
-                            try {
-                                var response: Response<List<viewCategoryPost>>? = null
-                                if (viewSelectedCategory.isNullOrEmpty()) {
-                                    Log.e("Error", "No category selected")
-                                    return@launch
-                                }
-                                if(viewSelectedCategory.toString() == "전체게시판") {
-                                    response = apiService.viewAllPost()
-                                    Log.d("전체", "ㅅㅂ")
-                                }
-                                else if(viewSelectedCategory.toString() == "HOT게시판") {
+        lifecycleScope.launch {
+            try {
+                var response: Response<List<viewCategoryPost>>? = null
+                if (viewSelectedCategory.isNullOrEmpty()) {
+                    Log.e("Error", "No category selected")
+                    return@launch
+                }
+                if(viewSelectedCategory.toString() == "전체게시판") {
+                    response = apiService.viewAllPost()
+                }
+                else if(viewSelectedCategory.toString() == "HOT게시판") {
                     response = apiService.getHotPost()
-                    Log.d("인기", "ㅅㅂ")
                 }
                 else {
                     response = apiService.viewCategoryPost(viewSelectedCategory.toString())

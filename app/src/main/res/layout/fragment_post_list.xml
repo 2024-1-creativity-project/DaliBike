@@ -81,5 +81,15 @@
             app:layout_constraintStart_toEndOf="@+id/imageView27"
             app:layout_constraintTop_toTopOf="@+id/view31"
             app:layout_constraintVertical_bias="0.91" />
+
+        <ImageButton
+            android:id="@+id/show_btn"
+            android:layout_width="375dp"
+            android:layout_height="116dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="@+id/view31"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view31" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

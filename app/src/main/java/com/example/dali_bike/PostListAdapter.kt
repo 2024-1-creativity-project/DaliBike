@@ -1,11 +1,15 @@
 package com.example.dali_bike
 
 import android.content.Context
+import android.os.Bundle
+import android.provider.Settings.Global.putString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dali_bike.model.viewCategoryPost
 import com.example.dali_bike.models.MyPost
@@ -21,17 +25,30 @@ class PostListAdapter(val context: Context, var list: MutableList<viewCategoryPo
 
     override fun onBindViewHolder(holder: PostsAdapter.MyViewHolder, position: Int) {
         val post = list[position]
+        val titleMax = 10
+        val contentMax = 15
 
-        // Log the data being bound to the ViewHolder
-        Log.d("PostsAdapter", "Binding post at position $position: Title=${post.Title}, Content=${post.Content}, Like=${post.Like}")
-
-        holder.title.text = post.Title
-        holder.content.text = post.Content
+        holder.title.text = post.Title.truncateWithEllipsis(titleMax)
+        holder.content.text = post.Content.truncateWithEllipsis(contentMax)
         holder.like.text = post.Like.toString()
+
+        holder.showBtn.setOnClickListener {
+            val bundle = Bundle().apply {
+                putString("postId", post.PostId.toString())
+            }
+            holder.itemView.findNavController().navigate(R.id.action_postFragment_to_postDetailFragment, bundle)
+        }
     }
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var title: TextView = view.findViewById(R.id.postTitle)
+        var content: TextView = view.findViewById(R.id.postContent)
+        var like: TextView = view.findViewById(R.id.postLike)
+        var showBtn: ImageButton = view.findViewById(R.id.show_btn)
     }
 
 

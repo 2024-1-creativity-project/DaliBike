@@ -133,7 +133,6 @@
             android:layout_marginTop="5dp"
             android:fontFamily="@font/chab"
             android:gravity="center|center"
-            android:text="마동석"
             android:textColor="@color/khaki"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageButton3"

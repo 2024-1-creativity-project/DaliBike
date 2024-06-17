@@ -100,21 +100,19 @@
             app:layout_constraintTop_toTopOf="@+id/menubar"
             app:layout_constraintVertical_bias="0.545" />
 
-        <ImageView
-            android:id="@+id/imgView"
-            android:layout_width="78dp"
-            android:layout_height="78dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="7dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menubar"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/user" />
-        
         --------------------------------------------------------
+
+        <ImageButton
+            android:id="@+id/myPageBtn"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            app:layout_constraintBottom_toBottomOf="@+id/menubar"
+            app:layout_constraintEnd_toEndOf="@+id/menubar"
+            app:layout_constraintHorizontal_bias="0.97"
+            app:layout_constraintStart_toStartOf="@+id/menubar"
+            app:layout_constraintTop_toTopOf="@+id/menubar"
+            app:layout_constraintVertical_bias="0.666"
+            app:srcCompat="@drawable/user1" />
 
         <ImageButton
             android:id="@+id/imageButton2"

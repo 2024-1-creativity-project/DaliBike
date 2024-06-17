@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.dali_bike.api.apiService
@@ -52,7 +53,28 @@ class WritePostFragment : Fragment() {
         val editContents: EditText = view.findViewById(R.id.contentsInput)
         //backBtn 만들기
 
+        val mapBtn: AppCompatImageButton = view.findViewById(R.id.mapBtn)
+        val postBtn: AppCompatImageButton = view.findViewById(R.id.postBtn)
+        val myPageBtn: AppCompatImageButton = view.findViewById(R.id.myPageBtn)
+        val homeBtn: AppCompatImageButton = view.findViewById(R.id.homeBtn)
+
         val finishBtn: ImageButton = view.findViewById(R.id.write_finishBtn)
+
+        mapBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_writePost_to_naverMapFragment)
+        }
+
+        postBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_writePost_to_postFragment)
+        }
+
+        myPageBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_writePost_to_myPageFragment)
+        }
+
+        homeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_writePost_to_mainFragment)
+        }
 
         //작성완료 버튼 클릭 시
         finishBtn.setOnClickListener{

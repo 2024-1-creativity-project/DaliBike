@@ -20,7 +20,7 @@ data class getResult(
 )
 
 data class like(
-    val postId: Int,
+    val PostId: Int,
     val likeNum: Int
 )
 

@@ -66,7 +66,7 @@ class MyPageFragment : Fragment() {
 
                             val formattedDate = date?.let { outputFormat.format(it) }
 
-                            regDateTxt.text = formattedDate
+                            regDateTxt.text = "가입일자: ${formattedDate}"
 
                             pointTxt.text = myRes.Points.toString()
 

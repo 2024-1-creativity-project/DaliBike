@@ -7,22 +7,6 @@
     android:background="@color/dalibike_ic_launcher_background"
     tools:context=".PostDetailFragment" >
 
-    <Button
-        android:id="@+id/back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/lightYellow"
-        android:fontFamily="@font/chab"
-        android:text="@string/back"
-        android:textColor="@color/oliveGreen"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.131" />
-
     <View
         android:id="@+id/menubar"
         android:layout_width="393dp"

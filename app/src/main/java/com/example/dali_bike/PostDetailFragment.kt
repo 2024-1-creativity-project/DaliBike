@@ -89,22 +89,19 @@ class PostDetailFragment : Fragment() {
             fetchGetComment(getPostId(postId))
             commentBtn.setOnClickListener {
                 if(comment.text.toString() != "") {
-                    fetchPostComment(Comment(postId, userId, comment.text.toString()))
+                    fetchPostComment(Comment(postId, userId, comment.text.toString()),postId)
                     comment.text = SpannableStringBuilder("")
 
                 }
-                fetchGetComment(getPostId(postId))
-                fetchLikeCommentCount(getPostId(postId))
+
             }
 
             likeBtn.setOnClickListener {
                 isChecked = !isChecked // 상태를 반전시킴
                 if (isChecked) {
-                    fetchLike(like(postId, 1))
-                    fetchLikeCommentCount(getPostId(postId))
+                    fetchLike(like(postId, 1),postId)
                 } else {
-                    fetchLike(like(postId, -1))
-                    fetchLikeCommentCount(getPostId(postId))
+                    fetchLike(like(postId, -1),postId)
                 }
             }
         }
@@ -112,12 +109,12 @@ class PostDetailFragment : Fragment() {
         return view
     }
 
-    private fun fetchLike(like: like) {
+    private fun fetchLike(like: like,postId:Int) {
         val repository = Repository()
 
         repository.postLike({ commnet ->
             commnet?.let {
-
+                fetchLikeCommentCount(getPostId(postId))
             }
 
         }, { error ->
@@ -150,12 +147,13 @@ class PostDetailFragment : Fragment() {
         }, postId)
     }
 
-    private fun fetchPostComment(comment: Comment) {
+    private fun fetchPostComment(comment: Comment, postId:Int) {
         val repository = Repository()
 
         repository.postComment({ commnet ->
             commnet?.let {
-
+                fetchGetComment(getPostId(postId))
+                fetchLikeCommentCount(getPostId(postId))
             }
 
         }, { error ->

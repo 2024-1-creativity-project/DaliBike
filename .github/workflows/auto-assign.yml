@@ -1,0 +1,46 @@
+name: Auto Assign (Frontend)
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      # Issue: 담당자 1
+      - name: Auto-assign issue
+        if: github.event_name == 'issues'
+        uses: pozil/auto-assign-issue@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: |
+            chaehui52
+            gam1017
+            LNK1119
+          numOfAssignee: 1
+
+      # Pull Requests: 리뷰어 2, 담당자 1
+      - name: Auto-assign PR reviewers/assignees
+        if: github.event_name == 'pull_request'
+        uses: kentaro-m/auto-assign@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          addReviewers: true
+          addAssignees: true
+          reviewers: |
+            chaehui52
+            gam1017
+            LNK1119
+          assignees: |
+            chaehui52
+            gam1017
+            LNK1119
+          number-of-reviewers: 2
+          number-of-assignees: 1
